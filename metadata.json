@@ -1,0 +1,14 @@
+{
+  "name": "Hưng Yên Tourism Association Portal",
+  "description": "Hệ thống Quản trị Hiệp hội Du lịch tỉnh Hưng Yên - Quản lý hội viên, nhân sự, tài chính và hỗ trợ AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "AI Meeting Minutes",
+    "Member Marketplace",
+    "Document Management",
+    "Role-based Access Control"
+  ]
+}
