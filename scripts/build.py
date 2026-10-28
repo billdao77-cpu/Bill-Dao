@@ -7,6 +7,7 @@ Chạy từ thư mục gốc repo:  python3 scripts/build.py
 2. Chép shared/scripts/doc_so.py vào các skill cần đọc số thành chữ
 3. Sinh chatgpt/<skill>.md: hướng dẫn dán vào Custom GPT / Project
 4. Đóng gói dist/<skill>.zip (upload lên claude.ai) và dist/tat-ca-skill.zip
+5. Sinh .claude-plugin/marketplace.json (cài bằng /plugin trong Claude Code)
 """
 import re
 import shutil
@@ -90,6 +91,36 @@ def dong_goi():
                         tat_ca.write(f, f.relative_to(SKILLS))
 
 
+def sinh_marketplace():
+    """Sinh .claude-plugin/marketplace.json: mỗi skill là 1 plugin + 1 gói cài cả bộ."""
+    import json
+    plugins = []
+    for sk in sorted(p for p in SKILLS.iterdir() if p.is_dir()):
+        meta, _ = tach_frontmatter((sk / "SKILL.md").read_text(encoding="utf-8"))
+        plugins.append({
+            "name": sk.name,
+            "source": f"./skills/{sk.name}",
+            "description": meta["description"],
+            "category": "van-phong",
+        })
+    plugins.append({
+        "name": "tron-bo-20-skill",
+        "source": "./",
+        "description": "Cài cả 20 skill văn phòng – kinh doanh Việt Nam trong một lần.",
+        "category": "van-phong",
+    })
+    data = {
+        "name": "20skill-van-phong",
+        "description": "20 skill AI văn phòng – kinh doanh cho thị trường Việt Nam: hợp đồng, báo giá, "
+                       "công văn, quyết định, tờ trình, biên bản, Excel, PDF, content bán hàng...",
+        "owner": {"name": "nguyenvansuai", "url": "https://github.com/nguyenvansuai"},
+        "plugins": plugins,
+    }
+    out = GOC / ".claude-plugin"
+    out.mkdir(exist_ok=True)
+    (out / "marketplace.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def kiem_tra():
     loi = []
     for sk in sorted(p for p in SKILLS.iterdir() if p.is_dir()):
@@ -107,6 +138,7 @@ def kiem_tra():
 if __name__ == "__main__":
     dong_bo()
     canh_bao = sinh_chatgpt()
+    sinh_marketplace()
     loi = kiem_tra()
     dong_goi()
     n = len([p for p in SKILLS.iterdir() if p.is_dir()])

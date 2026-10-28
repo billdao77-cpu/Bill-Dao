@@ -31,7 +31,29 @@ Mọi skill tuân theo cùng nguyên tắc: **không bịa thông tin** (thiếu
 
 ## Cài đặt
 
-### Claude Code (CLI / Desktop)
+### Claude Code – cài qua plugin marketplace (khuyên dùng)
+
+Gõ trong Claude Code. Bước 1 làm một lần:
+
+```
+/plugin marketplace add nguyenvansuai/20skill-van-phong
+```
+
+Bước 2: cài skill cần dùng, ví dụ chỉ cài Soạn hợp đồng:
+
+```
+/plugin install tro-ly-hop-dong@20skill-van-phong
+```
+
+Hoặc cài cả 20 skill:
+
+```
+/plugin install tron-bo-20-skill@20skill-van-phong
+```
+
+Tên để cài chính là cột **Lệnh** trong bảng trên (bỏ dấu `/`). Cập nhật bản mới: `/plugin marketplace update 20skill-van-phong`.
+
+### Claude Code – chép thủ công
 
 ```bash
 git clone https://github.com/nguyenvansuai/20skill-van-phong.git
@@ -76,7 +98,8 @@ skills/<tên-skill>/scripts/        # script hỗ trợ (nếu có)
 shared/                            # nguồn gốc tài liệu dùng chung -> build chép vào từng skill
 chatgpt/                           # bản hướng dẫn cho ChatGPT (sinh tự động)
 dist/                              # file zip để upload claude.ai (sinh tự động)
-scripts/build.py                   # đồng bộ shared, sinh chatgpt/, dist/, kiểm tra lỗi
+.claude-plugin/marketplace.json    # danh mục plugin cho Claude Code (sinh tự động)
+scripts/build.py                   # đồng bộ shared, sinh chatgpt/, dist/, marketplace, kiểm tra lỗi
 ```
 
 Sửa tài liệu dùng chung ở `shared/` rồi chạy:
