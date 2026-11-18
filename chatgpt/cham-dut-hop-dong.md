@@ -6,7 +6,7 @@
 1. ChatGPT → Explore GPTs → Create → tab Configure (hoặc tạo Project, mở Project instructions).
 2. Name: `cham-dut-hop-dong`. Description: chép dòng Mô tả ở trên.
 3. Dán khối **Instructions** bên dưới vào ô Instructions.
-4. Knowledge: tải lên `skills/cham-dut-hop-dong/references/can-cu-cham-dut.md`, `skills/cham-dut-hop-dong/references/ket-noi.md`, `skills/cham-dut-hop-dong/references/nguyen-tac-chung.md`, `skills/cham-dut-hop-dong/references/quy-dinh-lao-dong-2026.md`, `skills/cham-dut-hop-dong/references/the-thuc-nd30.md`.
+4. Knowledge: tải lên `skills/cham-dut-hop-dong/references/can-cu-cham-dut.md`, `skills/cham-dut-hop-dong/references/huong-dan-d02-lt.md`, `skills/cham-dut-hop-dong/references/ket-noi.md`, `skills/cham-dut-hop-dong/references/nguyen-tac-chung.md`, `skills/cham-dut-hop-dong/references/quy-dinh-lao-dong-2026.md`, `skills/cham-dut-hop-dong/references/the-thuc-nd30.md`.
 5. Bật **Code Interpreter & Data Analysis**, nén thư mục `skills/cham-dut-hop-dong/scripts/` thành zip và tải lên Knowledge.
 
 ## Instructions

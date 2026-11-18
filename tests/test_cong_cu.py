@@ -109,9 +109,40 @@ def test_the_thuc():
     kiem("Số tiền đúng không báo lỗi", "không khớp" not in loai)
 
 
+def test_bhxh():
+    r = goi("xac_dinh_dong_bhxh_thang", {"thang": "11/2026", "khoang_nghi": [{"tu_ngay": "16/11/2026", "loai": "nghi_viec"}]})
+    kiem("Nghỉ việc 16/11: 11 ngày < 14 → vẫn đóng, GH từ 12/2026", r["phai_dong"] and "12/2026" in r["goi_y_phuong_an"], r)
+    r = goi("xac_dinh_dong_bhxh_thang", {"thang": "11/2026", "khoang_nghi": [{"tu_ngay": "10/11/2026", "loai": "thai_san"}]})
+    kiem("Thai sản 10/11: 15 ngày → TS", not r["phai_dong"] and r["goi_y_phuong_an"].startswith("TS"), r)
+    r = goi("xac_dinh_dong_bhxh_thang", {"thang": "11/2026", "khoang_nghi": [{"tu_ngay": "02/11/2026", "den_ngay": "20/11/2026", "loai": "om_dau"}],
+                                         "thang_dau_tro_lai": True})
+    kiem("Tháng đầu trở lại, ốm 15 ngày → vẫn đóng (k6 Đ33)", r["phai_dong"], r)
+    r = goi("xac_dinh_dong_bhxh_thang", {"thang": "11/2026", "ngay_bat_dau_lam": "24/11/2026"})
+    kiem("Vào làm 24/11 → chưa báo tăng tháng 11", not r["phai_dong"], r)
+    with tempfile.TemporaryDirectory() as d:
+        f = os.path.join(d, "d02.xlsx")
+        ds = [{"ho_ten": "Nguyễn Văn A", "ngay_sinh": "01/02/1995", "chuc_danh_noi_lam_viec": "Nhân viên kinh doanh - Phường Bến Thành, TP. Hồ Chí Minh",
+               "tien_luong": 12000000, "loai_hd": "xac_dinh", "ngay_hieu_luc": "03/11/2026", "tu_thang": "11/2026", "noi_kcb": "BV Quận 1",
+               "phuong_an": "TM", "ghi_chu": "HĐLĐ số 1/2026"},
+              {"ho_ten": "Trần B", "ma_so_bhxh": "7901234567", "ngay_sinh": "01/01/1990", "phuong_an": "GH", "tu_thang": "12/2026"},
+              {"ho_ten": "Lê C", "ma_so_bhxh": "7901234568", "ngay_sinh": "01/01/1990", "chuc_danh_noi_lam_viec": "Nhân viên",
+               "tien_luong": 4000000, "phuong_an": "DC", "tu_thang": "11/2026", "ghi_chu": "QĐ 1"}]
+        r = goi("xuat_d02_lt", {"duong_dan_ra": f, "danh_sach": ds, "ngay_lap": "18/11/2026"})
+        kiem("Xuất D02-LT ra file", os.path.exists(f), r)
+        loi = " | ".join(r["loi"] + r["luu_y"])
+        kiem("Bắt GH thiếu ghi chú", "GH phải ghi chú" in loi, loi)
+        kiem("Bắt lương dưới tối thiểu vùng", "tối thiểu vùng" in loi, loi)
+        kiem("Bắt chức danh chung chung", "chung chung" in loi, loi)
+        kiem("TM chưa có mã → nhắc TK1-TS", "TK1-TS" in loi, loi)
+        from openpyxl import load_workbook
+        ws = load_workbook(f)["D02-LT"]
+        tieu_de = [ws.cell(r_, c).value for r_ in range(1, 20) for c in range(1, 22)]
+        kiem("Đủ số cột 1–19", all(str(i) in [str(x) for x in tieu_de] for i in range(1, 20)))
+
+
 if __name__ == "__main__":
     print(f"{len(tat_ca())} công cụ")
-    for f in [test_lich, test_doc_so, test_lao_dong, test_so_van_ban, test_the_thuc]:
+    for f in [test_lich, test_doc_so, test_lao_dong, test_bhxh, test_so_van_ban, test_the_thuc]:
         print(f.__name__)
         f()
     print("KẾT QUẢ:", "TẤT CẢ ĐẠT" if not LOI else f"{len(LOI)} LỖI")

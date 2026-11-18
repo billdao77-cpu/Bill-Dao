@@ -5,7 +5,7 @@ description: Hướng dẫn nghiệp vụ bảo hiểm xã hội, bảo hiểm y
 
 # BHXH – BHYT – BHTN
 
-Đọc trước: `references/nguyen-tac-chung.md`, `references/quy-dinh-lao-dong-2026.md`, `references/che-do-bhxh.md`.
+Đọc trước: `references/nguyen-tac-chung.md`, `references/quy-dinh-lao-dong-2026.md`, `references/che-do-bhxh.md`, và khi kê khai tăng/giảm/điều chỉnh: `references/huong-dan-d02-lt.md`.
 
 > Hồ sơ nộp qua phần mềm kê khai BHXH điện tử (I-VAN) hoặc Cổng dịch vụ công BHXH; mẫu biểu do BHXH Việt Nam ban hành, **thay đổi thường xuyên** → luôn nhắc người dùng tải mẫu mới nhất trên phần mềm/cổng. Plugin chuẩn bị số liệu, danh sách, hướng dẫn – **không nộp thay**.
 
@@ -17,8 +17,13 @@ HĐLĐ (kể cả tên gọi khác nhưng có nội dung HĐLĐ) **từ đủ 1 
 ### 2. Mức đóng
 `luong_net_gross` cho từng người (trần BHXH/BHYT 20 × lương cơ sở – 46,8 triệu đến 30/6/2026, 50,6 triệu từ 01/7/2026; trần BHTN 20 × lương tối thiểu vùng). Tỷ lệ: NLĐ 10,5%, DN 21,5% (+ KPCĐ 2%). Bảng lương chính thức → bộ kế toán.
 
-### 3. Báo tăng / giảm / điều chỉnh
-Phát sinh trong tháng → kê khai trong tháng (tăng mới, nghỉ việc, nghỉ thai sản, nghỉ không lương từ 14 ngày làm việc trở lên trong tháng – không đóng tháng đó, điều chỉnh lương). Lập bảng: `Họ tên | Mã số BHXH/số định danh | Phương án (tăng/giảm/điều chỉnh) | Từ tháng | Mức lương đóng | Ghi chú`.
+### 3. Báo tăng / giảm / điều chỉnh (Mẫu D02-LT theo QĐ 366/QĐ-BHXH)
+Phát sinh trong tháng → kê khai trong tháng. Người trong danh sách đang đóng mà không có biến động thì giữ nguyên, không kê khai. Trình tự:
+1. **Từng người có biến động → có đóng tháng đó không:** chạy `python3 scripts/cong_cu.py xac_dinh_dong_bhxh_thang thang=11/2026 khoang_nghi='[{"tu_ngay":"16/11/2026","loai":"nghi_viec"}]'` (người mới: `ngay_bat_dau_lam=`). Mốc: không làm việc từ 14 ngày làm việc trở lên trong tháng (tính từ mùng 1) thì không đóng; nghỉ việc giữa tháng chưa đủ 14 ngày → vẫn đóng, báo GH từ tháng sau.
+2. **Chọn mã phương án** (TM, ON, DC, CD, GH, TS, OF, KL...) và ghi chú bắt buộc theo bảng ở `references/huong-dan-d02-lt.md` mục 3. Chặn các lỗi hay gặp: "cộng tác viên" chấm công là HĐLĐ → TM; hợp đồng thử việc riêng chưa báo tăng [Cần kiểm tra]; khoản trả theo ngày công thực tế (ăn trưa) không đưa vào mức đóng [Cần kiểm tra]; giám đốc vượt trần chỉ đóng BHXH, BHYT trên trần.
+3. **Tính tiền đóng** bằng `luong_net_gross` (có trần) – tổng trước và sau biến động.
+4. **Xuất file đúng mẫu D02-LT** (phần A đơn vị, phần B cột A, B, 1–19) bằng `python3 scripts/cong_cu.py xuat_d02_lt duong_dan_ra=D02-LT_thang-11.xlsx danh_sach='[...]' don_vi='{...}'` – công cụ kiểm tra từng dòng (thiếu ngày sinh, thiếu loại HĐLĐ, thiếu ghi chú khi giảm, chức danh chung chung, lương dưới tối thiểu vùng) và ghi sheet "Kiem tra". Còn LỖI thì hỏi người dùng bổ sung, không tự điền.
+5. **Hướng dẫn nộp từng bước** trên phần mềm I-VAN theo `references/huong-dan-d02-lt.md` mục 5 + danh sách TK1-TS, giấy tờ đính kèm từng người. Mẫu Excel nhập liệu (import) của mỗi phần mềm khác nhau: nếu người dùng đưa file mẫu import của phần mềm họ dùng, chép dữ liệu đúng cột của file đó; không đoán cột.
 
 ### 4. Chế độ ốm đau, thai sản, dưỡng sức
 Tra `references/che-do-bhxh.md` → nêu: điều kiện, số ngày, mức hưởng, giấy tờ NLĐ nộp, việc DN làm, hạn. Tính ngày nghỉ (ngày làm việc hay ngày lịch – mỗi chế độ khác nhau) bằng `ngay_lam_viec`/`cong_ngay_lich`. Số tiền: nêu công thức + tham số (lương bình quân đóng BHXH 6 tháng, lương cơ sở) – số chính xác do cơ quan BHXH duyệt.
@@ -31,7 +36,7 @@ Tra `references/che-do-bhxh.md` → nêu: điều kiện, số ngày, mức hư�
 Sơ cứu, cấp cứu → khai báo, điều tra theo Luật ATVSLĐ → DN trả chi phí y tế đến khi ổn định, trả đủ lương trong thời gian điều trị; BHXH chi trả theo mức suy giảm khả năng lao động. Hướng dẫn biên bản, khai báo [Cần kiểm tra mẫu hiện hành].
 
 ## Đầu ra
-Kết luận có phải đóng/được hưởng không (kèm căn cứ + nhãn) · bảng danh sách kê khai · hướng dẫn từng bước cho NLĐ (gửi Zalo/email dạng nháp) · lịch hạn · cảnh báo mẫu biểu cần tải mới.
+Kết luận có phải đóng/được hưởng không (kèm căn cứ + nhãn) · file D02-LT đúng mẫu QĐ 366 kèm sheet kiểm tra · hướng dẫn nộp từng bước trên I-VAN · hướng dẫn từng bước cho NLĐ (gửi Zalo/email dạng nháp) · lịch hạn · cảnh báo mẫu biểu cần tải mới.
 
 <!-- KET-NOI:BAT-DAU (sinh tự động từ scripts/ket_noi.json – sửa ở đó rồi chạy build) -->
 ## Kết nối ứng dụng

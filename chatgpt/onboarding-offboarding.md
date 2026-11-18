@@ -6,7 +6,7 @@
 1. ChatGPT → Explore GPTs → Create → tab Configure (hoặc tạo Project, mở Project instructions).
 2. Name: `onboarding-offboarding`. Description: chép dòng Mô tả ở trên.
 3. Dán khối **Instructions** bên dưới vào ô Instructions.
-4. Knowledge: tải lên `skills/onboarding-offboarding/references/checklist-vao-ra.md`, `skills/onboarding-offboarding/references/ket-noi.md`, `skills/onboarding-offboarding/references/nguyen-tac-chung.md`, `skills/onboarding-offboarding/references/quy-dinh-lao-dong-2026.md`.
+4. Knowledge: tải lên `skills/onboarding-offboarding/references/checklist-vao-ra.md`, `skills/onboarding-offboarding/references/huong-dan-d02-lt.md`, `skills/onboarding-offboarding/references/ket-noi.md`, `skills/onboarding-offboarding/references/nguyen-tac-chung.md`, `skills/onboarding-offboarding/references/quy-dinh-lao-dong-2026.md`.
 5. Bật **Code Interpreter & Data Analysis**, nén thư mục `skills/onboarding-offboarding/scripts/` thành zip và tải lên Knowledge.
 
 ## Instructions

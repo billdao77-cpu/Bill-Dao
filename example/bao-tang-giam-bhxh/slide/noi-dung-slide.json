@@ -22,15 +22,15 @@
     "buoc": [
       "Đính kèm danh sách đang đóng + ghi chú biến động, gõ 1 câu",
       "bhxh-che-do xếp từng người vào tăng / giảm / điều chỉnh, có lý do",
-      "Công cụ ngay_lam_viec đếm ngày không làm việc so với mốc 14 ngày",
+      "Công cụ xac_dinh_dong_bhxh_thang đếm ngày không làm việc so với mốc 14 ngày",
       "Công cụ luong_net_gross tính tiền đóng, tự áp trần",
-      "Xuất Excel + danh sách giấy tờ từng người"
+      "Xuất file đúng mẫu D02-LT (QĐ 366) + hướng dẫn nộp I-VAN"
     ],
     "thoi_gian": "Khoảng 15 phút, có lý do từng dòng",
     "loi_ich": [
       "Không phải nhớ quy tắc 14 ngày, trần lương, đối tượng đóng",
       "Phát hiện \"cộng tác viên\" thực chất là HĐLĐ",
-      "Có sẵn bảng để nhập I-VAN và việc cần làm với từng người"
+      "Có file D02-LT đúng mẫu và các bước nộp trên phần mềm I-VAN"
     ]
   },
   "demo": {
@@ -46,21 +46,21 @@
       "Đính kèm danh sách đang đóng BHXH tháng 10 và ghi chú biến động tháng 11. Hãy:",
       "1. Lập danh sách báo tăng, giảm, điều chỉnh tháng 11 kèm lý do.",
       "2. Chỉ ra trường hợp dễ làm sai, vì sao.",
-      "3. Tính tổng tiền BHXH, BHYT, BHTN phải nộp tháng 11, so với tháng 10.",
+      "3. Tính tổng tiền BHXH, BHYT, BHTN tháng 11, so với tháng 10.",
       "4. Liệt kê giấy tờ, việc phải làm với từng người.",
-      "Xuất danh sách ra Excel."
+      "5. Xuất file đúng mẫu D02-LT (QĐ 366), hướng dẫn nộp trên I-VAN."
     ],
     "ket_qua": {
       "nhan_so": "Tổng nộp BHXH, BHYT, BHTN tháng 11",
       "so": "55.260.000đ",
       "y": [
-        "Kê khai 7 người: 2 tăng, 3 giảm, 2 điều chỉnh",
-        "Anh Cường nghỉ 13/11: vẫn đóng T11, giảm từ T12",
-        "\"Cộng tác viên\" chấm công: phải báo tăng",
-        "Thử việc riêng, ốm 10 ngày: không kê khai"
+        "7 dòng D02-LT: TM, TM, DC, DC, TS, KL, GH",
+        "Anh Cường nghỉ 13/11: vẫn đóng T11, GH từ T12",
+        "\"Cộng tác viên\" chấm công: phải báo TM",
+        "Có file D02-LT + các bước nộp I-VAN"
       ]
     },
     "connector": "Drive đọc danh sách lao động, quyết định nhân sự → lưu danh sách vào thư mục BHXH → Gmail tạo nháp hướng dẫn riêng từng người → Calendar nhắc chốt sổ, báo tăng lại.",
-    "nguoi_lam": "tải mẫu mới nhất trên phần mềm I-VAN, đối chiếu quy chế lương (phụ cấp nào phải đóng), tự kê khai, ký số và nộp."
+    "nguoi_lam": "tải mẫu nhập liệu của phần mềm I-VAN đang dùng, đối chiếu quy chế lương, kê khai TK1-TS, ký số và tự nộp."
   }
 }

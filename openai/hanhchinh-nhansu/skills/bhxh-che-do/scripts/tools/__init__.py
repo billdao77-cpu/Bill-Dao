@@ -4,7 +4,7 @@ Thêm công cụ: viết hàm + mô tả vào TOOLS của một module, rồi th
 """
 import importlib
 
-MODULES = ["lich_vn", "doc_so", "so_van_ban", "the_thuc", "lao_dong", "lich_tuan_thu"]
+MODULES = ["lich_vn", "doc_so", "so_van_ban", "the_thuc", "lao_dong", "bhxh", "lich_tuan_thu"]
 
 
 def tat_ca():

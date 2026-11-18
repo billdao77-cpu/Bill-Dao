@@ -15,12 +15,18 @@ Tôi là HCNS Công ty TNHH Công nghệ Bình Minh (thông tin đính kèm).
 2. Chỉ ra trường hợp dễ làm sai và giải thích vì sao.
 3. Tính tổng tiền BHXH, BHYT, BHTN phải nộp tháng 11 (phần người lao động và phần công ty), so với tháng 10.
 4. Liệt kê giấy tờ cần thu và việc phải làm với từng người.
-Xuất danh sách ra Excel.
+5. Xuất file Excel đúng mẫu D02-LT (QĐ 366/QĐ-BHXH) và hướng dẫn tôi từng bước nộp trên phần mềm I-VAN.
+Người không có trong file biến động thì giữ nguyên như tháng 10.
 ```
 
-Kết quả đúng: xem `ket-qua-mau/ket-qua.md` – **7 người kê khai** (2 tăng, 3 giảm, 2 điều chỉnh), anh Cường **vẫn đóng tháng 11** và báo giảm từ tháng 12, chị Bình và chị Giang không kê khai; **tổng nộp tháng 11: 55.260.000đ** (người lao động 18.164.500đ, công ty 37.095.500đ).
+Kết quả đúng: xem `ket-qua-mau/ket-qua.md` – **7 người kê khai** (2 tăng, 3 giảm, 2 điều chỉnh), mã phương án TM, TM, DC, DC, TS, KL, GH; anh Cường **vẫn đóng tháng 11** và báo giảm từ tháng 12, chị Bình và chị Giang không kê khai; file `D02-LT_thang-11-2026.xlsx` đúng mẫu QĐ 366 và các bước nộp trong `huong-dan-nop.md`; **tổng nộp tháng 11: 55.260.000đ** (người lao động 18.164.500đ, công ty 37.095.500đ).
 
 ## Prompt hỏi tiếp (nếu còn thời gian)
+
+```
+Đây là file mẫu nhập Excel tải từ phần mềm BHXH điện tử của công ty tôi (đính kèm).
+Chép dữ liệu từ file D02-LT vừa lập sang đúng các cột của mẫu này để tôi import.
+```
 
 ```
 Soạn tin nhắn hướng dẫn chị Dung nộp giấy tờ hưởng chế độ thai sản và cho biết chị được nghỉ, được hưởng thế nào.
