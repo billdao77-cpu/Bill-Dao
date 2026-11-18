@@ -1,67 +1,40 @@
 # Kết quả mẫu – Báo tăng, giảm, điều chỉnh BHXH tháng 11/2026
 
-Công ty TNHH Công nghệ Bình Minh (giả lập), vùng I, làm việc thứ Hai – thứ Sáu. Số ngày làm việc đếm bằng công cụ `ngay_lam_viec`, tiền đóng tính bằng công cụ `luong_net_gross` (có trần) của plugin. Câu chữ AI trả lời có thể khác, **phương án và con số phải giống**.
+Công ty TNHH Công nghệ Bình Minh (giả lập), vùng I, phần mềm kê khai iBH. Kết quả chạy thật bằng công cụ của plugin; câu chữ AI trả lời có thể khác, **phương án và con số phải giống**.
 
-File kết quả:
-- **`D02-LT_thang-11-2026.xlsx`** – danh sách đúng bố cục **mẫu D02-LT theo QĐ 366/QĐ-BHXH** (phần A thông tin đơn vị, phần B cột A, B, 1–19, mã phương án ở cột 18), kèm sheet "Kiem tra" (không còn lỗi; 2 lưu ý TK1-TS). Tạo bằng công cụ `xuat_d02_lt`.
-- `danh-sach-bao-tang-giam-thang-11.xlsx` – bảng làm việc nội bộ: lý do từng người + tiền đóng tháng 11.
-- `huong-dan-nop.md` – các bước nộp trên phần mềm I-VAN cho đúng hồ sơ tháng này.
+## File kết quả
 
-## 1. Danh sách kê khai tháng 11/2026
-
-| # | Họ tên | Mã (cột 18) | Từ tháng | Mức lương đóng | Lý do |
-|---|---|---|---|---:|---|
-| 1 | Nguyễn Văn An | **TM** | 11/2026 | 13.000.000 | HĐLĐ 12 tháng; lương 12tr + phụ cấp trách nhiệm 1tr. **Không** cộng tiền ăn trưa (trả theo ngày công) [Cần kiểm tra] |
-| 2 | Ngô Văn Khoa | **TM** | 11/2026 | 8.000.000 | Gọi là "cộng tác viên" nhưng làm giờ hành chính, chấm công → bản chất HĐLĐ (Điều 13 BLLĐ) → phải đóng |
-| 3 | Phạm Thị Dung | **TS** | 11/2026 | 11.000.000 | Nghỉ từ 10/11: không làm việc 15 ngày làm việc trong tháng (≥ 14) → không đóng; thời gian nghỉ thai sản vẫn tính là thời gian đóng BHXH |
-| 4 | Hoàng Văn Em | **KL** | 11/2026 | 9.000.000 | Nghỉ 09/11–30/11 = 16 ngày làm việc (≥ 14) → không đóng tháng 11; báo tăng lại khi đi làm |
-| 5 | Vũ Thị Hoa | **DC** | 11/2026 | 17.000.000 | 15tr → 17tr theo QĐ 45/QĐ-BM |
-| 6 | Bùi Quốc Long | **DC** | 11/2026 | 60.000.000 | BHXH, BHYT tính trên **trần 50.600.000**; BHTN tính trên 60.000.000 (trần BHTN vùng I 106.200.000) |
-| 7 | Lê Văn Cường | **GH** | **12/2026** | 14.000.000 | Ngày làm cuối 13/11 → chỉ không làm việc 11 ngày làm việc trong tháng 11 (< 14) → **vẫn đóng tháng 11**, báo giảm từ tháng 12 |
-
-**Không kê khai tháng này:**
-- **Trần Thị Bình** – ký hợp đồng thử việc riêng, không phải HĐLĐ → chưa đóng; báo tăng khi ký HĐLĐ [Cần kiểm tra hướng dẫn hiện hành; nếu thử việc ghi ngay trong HĐLĐ thì phải đóng].
-- **Đỗ Thị Giang** – nghỉ ốm 10 ngày làm việc (< 14) → vẫn đóng tháng 11; lập hồ sơ hưởng chế độ ốm đau.
-
-Tháng 11/2026 có 21 ngày làm việc (đếm bằng công cụ `xac_dinh_dong_bhxh_thang`). Quy tắc dùng xuyên suốt: người lao động **không làm việc và không hưởng lương từ 14 ngày làm việc trở lên trong tháng** thì không đóng BHXH tháng đó.
-
-## 2. Tiền đóng tháng 11 so với tháng 10
-
-| | Tháng 10 (10 người) | Tháng 11 (10 người) |
-|---|---:|---:|
-| Người lao động đóng (10,5%) | 17.167.500 | **18.164.500** |
-| Doanh nghiệp đóng (21,5%) | 35.152.500 | **37.095.500** |
-| **Tổng nộp cơ quan BHXH** | 52.320.000 | **55.260.000** |
-
-Chưa gồm kinh phí công đoàn 2%. Riêng ông Long: người lao động đóng 5.407.000 (không phải 6.300.000 nếu quên trần).
-
-## 3. Lỗi hay gặp nếu làm tay (và ví dụ này đã tránh)
-
-| Lỗi | Hậu quả |
+| File | Dùng để |
 |---|---|
-| Báo giảm anh Cường ngay tháng 11 | Đóng thiếu 1 tháng → truy đóng, tiền chậm đóng; anh Cường hụt 1 tháng BHXH, BHTN |
-| Không báo giảm chị Dung, anh Em | Đóng thừa 2 người; thủ tục thai sản của chị Dung bị vướng |
-| Không báo tăng anh Khoa vì "chỉ là cộng tác viên" | Trốn đóng BHXH → truy đóng, phạt; rủi ro tranh chấp khi anh Khoa nghỉ |
-| Cộng tiền ăn trưa vào mức đóng của anh An | Đóng thừa cho cả công ty và người lao động |
-| Tính ông Long trên đủ 60 triệu | Trừ lương ông Long thừa 893.000đ mỗi tháng |
-| Báo tăng chị Bình ngay khi thử việc | Đóng sai đối tượng, phải làm thủ tục thoái thu |
+| **`huong-dan-ke-khai-thang-11-2026.docx`** (đầu ra chính) | Người chưa có nghiệp vụ mở ra, làm từ trên xuống: xin thông tin còn thiếu → biết nộp hồ sơ gì → gõ từng người vào phần mềm → ký số, nộp → đóng tiền → việc tháng sau. Tạo bằng `huong_dan_ke_khai_bhxh` |
+| `D02-LT_thang-11-2026.xlsx` (tùy chọn) | Danh sách đúng mẫu D02-LT (QĐ 366) để lưu hồ sơ, trình giám đốc duyệt hoặc nộp giấy. Không dùng để nhập vào phần mềm (phần mềm phải gõ tay) |
 
-## 4. Giấy tờ và việc kèm theo
+## Nội dung chính của file hướng dẫn
 
-| Người | Việc phải làm |
+| Mục | Kết quả |
 |---|---|
-| An, Khoa | Kê khai TK1-TS (chưa có mã số BHXH), ghi số định danh cá nhân; đính kèm HĐLĐ / hợp đồng "cộng tác viên" |
-| Dung | Hướng dẫn nộp bản sao giấy khai sinh hoặc giấy chứng sinh để làm chế độ thai sản |
-| Giang | Giấy ra viện → hồ sơ hưởng chế độ ốm đau |
-| Cường | Chốt sổ, xác nhận thời gian đóng, trả giấy tờ trong 14 ngày làm việc kể từ ngày nghỉ việc (Điều 48 BLLĐ); hướng dẫn hưởng trợ cấp thất nghiệp (nộp hồ sơ trong 3 tháng) |
-| Em | Tháng 12/2026 báo **ON** (đi làm lại sau KL từ 01/12/2026) |
+| I. Tóm tắt | Tăng 2 (An, Khoa – TM) · Giảm 3 (Dung – TS, Em – KL, Cường – GH) · Điều chỉnh 2 (Hoa, Long – DC) · Không kê khai: Bình, Giang, 4 người không biến động · **Tổng nộp 55.260.000đ** (tháng 10: 52.320.000đ) · **Hạn đóng 31/12/2026** |
+| II. Làm trước | **Anh Khoa thiếu** dân tộc, số điện thoại, ngày cấp căn cước, nơi khai sinh, địa chỉ → có sẵn tin nhắn xin |
+| III. Nộp gì | **1 hồ sơ 600 kỳ 11/2026** chung cho tăng, giảm, điều chỉnh; D02-LT 7 dòng (phần mềm tự tạo); TK1-TS cho An, Khoa; giấy tờ đính kèm. Làm riêng: hồ sơ thai sản (Dung), trợ cấp thất nghiệp (Cường tự nộp) |
+| IV–VI. Từng người | Mỗi người 1 bảng "ô trên phần mềm – gõ vào": tab cần chọn trên iBH, mã số, ngày sinh, chức danh – nơi làm việc, lương, phụ cấp, loại HĐ, ngày hiệu lực, vùng lương, tỷ lệ đóng 32%, phương án (vd "Tăng mới chưa có sổ"), từ tháng, nơi KCB, ghi chú chép nguyên văn; người mới có thêm bảng TK1-TS |
+| VII. Giấy tờ | HĐLĐ (An, Khoa), TK1-TS có chữ ký, đơn nghỉ thai sản, đơn nghỉ không lương, QĐ nghỉ việc, QĐ tăng lương |
+| VIII. Không kê khai | Bình (thử việc riêng) [Cần kiểm tra] · Giang (ốm 10 ngày < 14) · Tuấn, Thảo, Phúc, Yến (không biến động) |
+| IX. Thao tác iBH | Chuẩn bị 1 lần (phòng ban, chức vụ, người nộp, chữ ký số) → thêm người mới vào danh sách lao động → hồ sơ 600 → tab D02 → Thêm → sửa từng dòng → TK1-TS → tệp đính kèm → lưu, ký số, nộp |
+| X. Sau khi nộp | Bị trả trong 3 ngày làm việc thì sửa; chuyển khoản trước 31/12/2026; đối chiếu Thông báo C12-TS |
+| XI. Tháng sau | Em báo ON 12/2026 · Dung báo ON khi đi làm lại + hồ sơ thai sản · Cường chốt sổ trong 14 ngày làm việc · Bình báo tăng khi ký HĐLĐ |
 
-## 5. Nộp hồ sơ
+## Các điểm dễ sai (đã xử lý trong file)
 
-Xem `huong-dan-nop.md`. Tóm tắt: đăng nhập phần mềm I-VAN → thủ tục báo tăng, giảm, điều chỉnh (thường mã 600) → nhập 7 dòng theo file D02-LT (nhập tay, hoặc chép sang **mẫu Excel nhập liệu của chính phần mềm** rồi import) → TK1-TS cho An, Khoa → đính kèm giấy tờ → ký số, nộp → theo dõi kết quả.
+| Người | Đúng | Hay làm sai |
+|---|---|---|
+| Cường (nghỉ từ 16/11) | Vẫn đóng tháng 11, **GH từ 12/2026** (chỉ nghỉ 11 ngày làm việc < 14) | Báo giảm luôn tháng 11 → đóng thiếu, bị truy |
+| Khoa ("cộng tác viên") | **TM** – bản chất HĐLĐ | Không báo tăng → trốn đóng |
+| An | Mức đóng 13tr (lương + phụ cấp trách nhiệm), không cộng ăn trưa [Cần kiểm tra] | Cộng cả tiền ăn trưa |
+| Dung, Em | TS, KL từ tháng 11 (nghỉ ≥ 14 ngày làm việc) | Không báo giảm → đóng thừa |
+| Long | Gõ lương thực tế 60tr; BHXH, BHYT tính trên trần 50,6tr [Cần kiểm tra cách phần mềm xử lý] | Trừ lương người lao động trên đủ 60tr |
 
-## 6. HCNS vẫn phải tự làm
+## Phần người làm hồ sơ vẫn phải tự làm
 
-- Tải mẫu nhập liệu mới nhất trên phần mềm I-VAN đang dùng; file D02-LT theo QĐ 366 không chắc khớp cột với mẫu import của từng phần mềm.
-- Đối chiếu quy chế lương: phụ cấp nào trả cố định thì phải tính vào mức đóng.
-- Kê khai, ký số và nộp trên phần mềm I-VAN / Cổng dịch vụ công BHXH – plugin **không nộp thay**.
+- Xin anh Khoa thông tin còn thiếu, cho An và Khoa ký TK1-TS.
+- Gõ vào phần mềm, ký số, nộp, chuyển khoản tiền đóng – plugin không đăng nhập, không nộp thay.
+- Đối chiếu quy chế lương (phụ cấp nào phải đóng) và những điểm gắn [Cần kiểm tra].

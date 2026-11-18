@@ -1,6 +1,6 @@
 # Plugin Hành chính – Nhân sự (HCNS) cho doanh nghiệp Việt Nam 2026
 
-Plugin trọn bộ cho **nhân viên và trưởng phòng Hành chính – Nhân sự** ở doanh nghiệp vừa và nhỏ (một người làm cả hai mảng, đúng thực tế phổ biến ở Việt Nam). Gồm **16 skill**, **6 lệnh quy trình**, **1 agent thẩm định**, **connector khai báo sẵn** (Gmail, Google Calendar, Google Drive, Microsoft 365, Zoom, Slack) và 22 công cụ tính toán theo pháp luật hiện hành đi kèm từng skill:
+Plugin trọn bộ cho **nhân viên và trưởng phòng Hành chính – Nhân sự** ở doanh nghiệp vừa và nhỏ (một người làm cả hai mảng, đúng thực tế phổ biến ở Việt Nam). Gồm **16 skill**, **6 lệnh quy trình**, **1 agent thẩm định**, **connector khai báo sẵn** (Gmail, Google Calendar, Google Drive, Microsoft 365, Zoom, Slack) và 23 công cụ tính toán theo pháp luật hiện hành đi kèm từng skill:
 
 - Văn bản đúng thể thức **Nghị định 30/2020/NĐ-CP**, xuất file Word chuẩn; kiểm tra thể thức tự động.
 - Lao động theo **Bộ luật Lao động 2019**, **NĐ 145/2020**, **Luật BHXH 2024**, **Luật Việc làm 2025**; lương tối thiểu vùng **NĐ 293/2025**; giảm trừ gia cảnh **NQ 110/2025**; biểu thuế TNCN 5 bậc 2026.
@@ -33,7 +33,7 @@ Nguyên tắc: **không bịa** (thiếu thì `[CẦN BỔ SUNG]`), **tính bằ
 | `danh-gia-luong-thuong` | KPI, đánh giá, PIP, quy chế đánh giá (căn cứ chấm dứt), thang bảng lương, quy chế thưởng |
 | `ky-luat-lao-dong` | Sàng lọc điều kiện, thời hiệu, thông báo họp 5 ngày làm việc, biên bản, quyết định, bồi thường |
 | `cham-dut-hop-dong` | Căn cứ chấm dứt, Điều 37, báo trước, trợ cấp, hậu quả trái luật, cắt giảm nhân sự |
-| `bhxh-che-do` | Đối tượng, mức đóng, báo tăng/giảm xuất file đúng mẫu D02-LT (QĐ 366) + hướng dẫn nộp I-VAN, ốm đau, thai sản, TNLĐ, thất nghiệp |
+| `bhxh-che-do` | Đối tượng, mức đóng, báo tăng/giảm: file Word hướng dẫn kê khai từng người cho người mới (+ D02-LT theo QĐ 366 khi cần), ốm đau, thai sản, TNLĐ, thất nghiệp |
 | `lich-tuan-thu-hcns` | Lịch nghĩa vụ cả năm (báo cáo 05/6, 05/12...), mốc HĐLĐ theo danh sách nhân viên, xuất .ics |
 
 ### Lệnh quy trình (Claude Code)

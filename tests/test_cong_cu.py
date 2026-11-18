@@ -138,6 +138,19 @@ def test_bhxh():
         ws = load_workbook(f)["D02-LT"]
         tieu_de = [ws.cell(r_, c).value for r_ in range(1, 20) for c in range(1, 22)]
         kiem("Đủ số cột 1–19", all(str(i) in [str(x) for x in tieu_de] for i in range(1, 20)))
+        f2 = os.path.join(d, "hd.docx")
+        ds[0].update(gioi_tinh="Nam", so_dinh_danh="079095001234")
+        r = goi("huong_dan_ke_khai_bhxh", {"duong_dan_ra": f2, "thang": "11/2026", "danh_sach": ds, "phan_mem": "ibh",
+                                           "khong_ke_khai": [{"ho_ten": "X", "ly_do": "thử việc"}],
+                                           "tien_dong": {"nld": 1, "dn": 2, "tong": 3}})
+        kiem("Xuất file hướng dẫn kê khai", os.path.exists(f2), r)
+        kiem("Đếm tăng/giảm/điều chỉnh", (r["tang"], r["giam"], r["dieu_chinh"]) == (1, 1, 1), r)
+        kiem("Người mới thiếu dân tộc → liệt kê", any("Dân tộc" in x for _, c in r["thong_tin_con_thieu"] for x in c), r)
+        kiem("Hạn đóng tiền tháng 11 = 31/12/2026", r["han_dong_tien"] == "31/12/2026", r)
+        from docx import Document
+        txt = "\n".join(x.text for x in Document(f2).paragraphs)
+        kiem("File có mục nộp chung hồ sơ 600", "NỘP CHUNG" in " ".join(c.text for tb in Document(f2).tables for row in tb.rows for c in row.cells))
+        kiem("File có mục thông tin còn thiếu + tin nhắn", "Tin nhắn gửi" in txt, txt[:200])
 
 
 if __name__ == "__main__":

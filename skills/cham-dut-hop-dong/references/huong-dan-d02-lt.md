@@ -11,6 +11,12 @@ Nguồn: Quyết định 366/QĐ-BHXH ngày 29/4/2026 của BHXH Việt Nam ban 
 | Thông tin đơn vị thay đổi | TK3-TS |
 | Căn cứ lập | HĐLĐ, quyết định tuyển dụng; quyết định nâng lương, điều chuyển; quyết định chấm dứt HĐLĐ; giấy tờ nghỉ ốm, thai sản |
 
+**Tăng, giảm, điều chỉnh trong cùng kỳ nộp CHUNG 1 hồ sơ** (1 danh sách D02-LT, mỗi người 1 dòng, phương án riêng). TK1-TS do người lao động kê khai, ký; đơn vị nộp kèm. Theo QĐ 366, hồ sơ đơn vị gồm TK3-TS (khi đăng ký/thay đổi thông tin đơn vị) + D02-LT + hồ sơ người tham gia – **không còn bảng kê D01-TS** như QĐ 595 (một số phần mềm vẫn hiện tab D01-TS: bỏ trống nếu không bắt buộc). Hồ sơ hưởng chế độ (ốm đau, thai sản) và trợ cấp thất nghiệp là thủ tục **riêng**.
+
+Thông tin TK1-TS của người lao động (QĐ 366): [01] họ tên, [02] giới tính, [03] ngày sinh, [04] số định danh/căn cước/hộ chiếu, [05] dân tộc, [06] quốc tịch, [07] số điện thoại, [08] email, [09] nơi KCB ban đầu, [10] hình thức nhận kết quả, [11] địa chỉ nhận bản giấy, [17] hồ sơ kèm theo; người lao động ký. Phần mềm thường hỏi thêm ngày cấp căn cước, nơi đăng ký khai sinh, địa chỉ nơi ở.
+
+Sau khi nộp: cơ quan BHXH báo trả lại/bổ sung trong không quá 03 ngày làm việc nếu hồ sơ thiếu, sai; kết quả đóng hằng tháng gửi bằng Thông báo C12-TS. Hạn đóng tiền theo phương thức hằng tháng: chậm nhất ngày cuối cùng của tháng tiếp theo (Luật BHXH 2024).
+
 Trên phần mềm kê khai, nhóm hồ sơ này thường là **thủ tục 600** (đăng ký, điều chỉnh đóng BHXH, BHYT, BHTN; cấp sổ, thẻ) [Cần kiểm tra tên/mã trên phần mềm đang dùng].
 
 Thời điểm: lập **trong tháng phát sinh**. Báo giảm chậm (nghỉ việc, thai sản, không lương) dễ bị truy thu BHYT tháng báo giảm.

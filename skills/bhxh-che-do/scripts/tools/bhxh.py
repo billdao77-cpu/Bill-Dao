@@ -263,6 +263,279 @@ def xuat_d02_lt(duong_dan_ra, danh_sach, don_vi=None, vung=1, ngay_lap=None, so_
                        "phương án trên phần mềm trước khi nộp."}
 
 
+
+# ---------------------------------------------------------------- File hướng dẫn kê khai cho người mới
+LOAI_HD = {"khong_xac_dinh": "Không xác định thời hạn", "xac_dinh": "Xác định thời hạn", "khac": "HĐ, thỏa thuận khác"}
+GIAY_TO_MAC_DINH = {
+    "TM": ["HĐLĐ (bản scan)", "Tờ khai TK1-TS có chữ ký người lao động (nếu chưa có mã số BHXH)"],
+    "TC": ["HĐLĐ (bản scan)"], "TD": ["HĐLĐ (bản scan)"], "TL": ["HĐLĐ (bản scan)"],
+    "ON": ["Xác nhận ngày đi làm lại (bảng chấm công)"],
+    "DC": ["Quyết định điều chỉnh lương / phụ lục HĐLĐ (bản scan)"], "DL": ["Quyết định điều chỉnh (bản scan)"],
+    "CD": ["Quyết định / phụ lục HĐLĐ thay đổi chức danh, nơi làm việc"],
+    "GH": ["Quyết định chấm dứt HĐLĐ hoặc thỏa thuận chấm dứt (bản scan)"],
+    "TS": ["Đơn xin nghỉ thai sản (bản scan); giấy chứng sinh / giấy khai sinh khi có"],
+    "OF": ["Giấy ra viện / giấy chứng nhận nghỉ việc hưởng BHXH"], "KL": ["Đơn xin nghỉ không lương đã được duyệt (bản scan)"],
+}
+TK1_TRUONG = [("ho_ten", "[01] Họ và tên"), ("gioi_tinh", "[02] Giới tính"), ("ngay_sinh", "[03] Ngày, tháng, năm sinh"),
+              ("so_dinh_danh", "[04] Số CCCD/định danh cá nhân/hộ chiếu"), ("dan_toc", "[05] Dân tộc"), ("quoc_tich", "[06] Quốc tịch"),
+              ("dien_thoai", "[07] Số điện thoại di động"), ("email", "[08] Email nhận sổ, thẻ điện tử"),
+              ("noi_kcb", "[09] Nơi đăng ký KCB ban đầu"), ("hinh_thuc_nhan_ket_qua", "[10] Nhận kết quả (điện tử/giấy)"),
+              ("ngay_cap", "Ngày cấp căn cước (phần mềm hỏi)"), ("noi_khai_sinh", "Nơi đăng ký giấy khai sinh (phần mềm hỏi)"),
+              ("dia_chi", "Địa chỉ nhận hồ sơ / nơi sinh sống (phần mềm hỏi)")]
+TK1_BAT_BUOC = {"ho_ten", "gioi_tinh", "ngay_sinh", "so_dinh_danh", "dan_toc", "quoc_tich", "dien_thoai", "noi_kcb",
+                "ngay_cap", "noi_khai_sinh", "dia_chi"}
+NHAN_IBH = {"TM": "Tăng mới chưa có sổ",
+            "TC": "Tăng chuyển đã có sổ, di chuyển từ tỉnh khác đến", "TD": "Tăng đến đã có sổ, di chuyển trong địa bàn tỉnh",
+            "ON": "Nghỉ không lương / Nghỉ ốm / Nghỉ thai sản đi làm lại (chọn đúng trường hợp)"}
+THAO_TAC = {
+    "ibh": ("Phần mềm iBH (ivan.vn)", [
+        "Người MỚI (chưa có trong phần mềm): menu \"Doanh nghiệp\" → \"Người lao động\" → \"Tạo mới\", khai tab Thông tin chung và "
+        "Thông tin tham gia BHXH, BHYT theo khối thông tin của từng người ở mục IV (TĂNG) (ô có dấu * đỏ là bắt buộc).",
+        "Nghiệp vụ \"Thu\" → chọn hồ sơ 600 → \"Tạo mới\"; chọn kỳ kê khai.",
+        "Tab D02 → nút \"Thêm\" → chọn tab TĂNG LAO ĐỘNG / GIẢM LAO ĐỘNG / TĂNG TIỀN LƯƠNG... → tích người cần kê khai → \"Thêm\".",
+        "Bấm nút sửa ở cuối dòng từng người, gõ đúng các ô trong khối của người đó (mục IV, V, VI).",
+        "Tab TK1-TS: kiểm tra thông tin người tăng mới; tab \"Tệp đính kèm\": tải giấy tờ ở mục VII.",
+        "\"Lưu\" → ký số → nộp. Theo dõi trạng thái hồ sơ trên phần mềm."]),
+    "cong_bhxh": ("Cổng giao dịch điện tử BHXH Việt Nam", [
+        "Đăng nhập mục \"Tổ chức\" bằng mã số thuế đơn vị; cắm chữ ký số, dùng Chrome và đã cài phần mềm hỗ trợ ký số của BHXH.",
+        "\"Kê khai hồ sơ\" → \"Quản lý lao động\": bấm \"Nạp vào từ BHXH\" để lấy người đang đóng; thêm người MỚI theo khối thông tin ở mục IV (TĂNG).",
+        "\"Danh sách thủ tục\" → thủ tục 600 → chọn kỳ kê khai.",
+        "Tích chọn từng người, chọn phân loại (tăng lao động, giảm lao động, tăng/giảm tiền lương, khác) → \"Áp dụng\".",
+        "Gõ các ô của từng người theo mục IV, V, VI; đính kèm giấy tờ ở mục VII.",
+        "Ký số → gửi hồ sơ. Theo dõi kết quả trên cổng."]),
+    "chung": ("Phần mềm kê khai BHXH (I-VAN) hoặc cổng BHXH", [
+        "Người MỚI: thêm vào danh sách lao động của phần mềm theo khối thông tin ở mục IV (TĂNG).",
+        "Chọn thủ tục báo tăng, giảm, điều chỉnh (thường mã 600), chọn kỳ kê khai.",
+        "Thêm từng người vào danh sách D02-LT, chọn đúng phương án, gõ các ô theo mục IV, V, VI.",
+        "Khai TK1-TS cho người chưa có mã số BHXH; đính kèm giấy tờ ở mục VII.",
+        "Kiểm tra lỗi phần mềm báo → ký số → nộp. Theo dõi kết quả."]),
+}
+
+
+def _thang_sau(thang):
+    y, m = _thang(thang)
+    return f"{m % 12 + 1:02d}/{y + (m == 12)}"
+
+
+def _cuoi_thang_sau(thang):
+    y, m = _thang(thang)
+    y2, m2 = y + (m == 12), m % 12 + 1
+    d = date(y2 + (m2 == 12), m2 % 12 + 1, 1) - timedelta(days=1)
+    return _dmy(d)
+
+
+def _tien(x):
+    return f"{x:,.0f}".replace(",", ".") if isinstance(x, (int, float)) else (x or "")
+
+
+def huong_dan_ke_khai(duong_dan_ra, thang, danh_sach, don_vi=None, khong_ke_khai=(), tien_dong=None, viec_thang_sau=(),
+                      phan_mem="chung", vung=1, ngay_lap=None):
+    """Ghi file Word "Hướng dẫn kê khai BHXH tháng ..." cho người mới: nộp gì, gõ gì cho từng người, còn thiếu gì, sau khi nộp."""
+    try:
+        from docx import Document
+        from docx.enum.text import WD_ALIGN_PARAGRAPH
+        from docx.shared import Pt, RGBColor
+    except ImportError:
+        return {"loi": "Cần thư viện python-docx: pip install python-docx"}
+    don_vi = don_vi or {}
+    nhom = {"tang": [], "giam": [], "dieu_chinh": []}
+    loi_dl, thieu = [], []
+    for r in danh_sach:
+        pa, l, _ = kiem_tra_dong_d02(r, vung, ngay_lap)
+        loi_dl += l
+        if pa in MA_PHUONG_AN:
+            nhom[MA_PHUONG_AN[pa][0]].append((pa, r))
+        if pa == "TM" and not r.get("ma_so_bhxh"):
+            con = [nhan for k, nhan in TK1_TRUONG if k in TK1_BAT_BUOC and not r.get(k)]
+            if con:
+                thieu.append((r.get("ho_ten", "?"), con))
+    can_tk1 = [r.get("ho_ten") for pa, r in nhom["tang"] if pa == "TM" and not r.get("ma_so_bhxh")]
+
+    doc = Document()
+    st = doc.styles["Normal"]
+    st.font.name, st.font.size = "Times New Roman", Pt(12)
+    do = RGBColor(0xB4, 0x23, 0x18)
+
+    def h(text, lv=1):
+        doc.add_heading(text, level=lv)
+
+    def p(text, dam=False, mau=None):
+        para = doc.add_paragraph()
+        run = para.add_run(text)
+        run.bold = dam
+        if mau:
+            run.font.color.rgb = mau
+        return para
+
+    def bang(hang, rong=None, tieu_de=None):
+        t = doc.add_table(rows=0, cols=len(hang[0]) if hang else 2)
+        t.style = "Table Grid"
+        for i, row in enumerate(([tieu_de] if tieu_de else []) + hang):
+            cells = t.add_row().cells
+            for c, v in zip(cells, row):
+                c.text = str(v if v is not None else "")
+                if tieu_de and i == 0:
+                    for run in c.paragraphs[0].runs:
+                        run.bold = True
+        doc.add_paragraph()
+        return t
+
+    tieu = doc.add_heading(f"HƯỚNG DẪN KÊ KHAI BHXH THÁNG {_thang(thang)[1]:02d}/{_thang(thang)[0]}", 0)
+    tieu.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p(f"Đơn vị: {don_vi.get('ten_don_vi', '…')} – Mã đơn vị BHXH: {don_vi.get('ma_don_vi', '…')}"
+      + (f" – Lập ngày {ngay_lap}" if ngay_lap else ""))
+    p("Đọc từ trên xuống, làm lần lượt. Mỗi người có một khối \"gõ vào phần mềm\": chép đúng từng ô. "
+      "Ai không có trong file này thì giữ nguyên như tháng trước, không kê khai.")
+
+    h("I. Tóm tắt tháng này")
+    tong = tien_dong or {}
+    bang([["Tăng", f"{len(nhom['tang'])} người: " + ", ".join(f"{r.get('ho_ten')} ({pa})" for pa, r in nhom["tang"])],
+          ["Giảm", f"{len(nhom['giam'])} người: " + ", ".join(f"{r.get('ho_ten')} ({pa})" for pa, r in nhom["giam"])],
+          ["Điều chỉnh", f"{len(nhom['dieu_chinh'])} người: " + ", ".join(f"{r.get('ho_ten')} ({pa})" for pa, r in nhom["dieu_chinh"])],
+          ["Không kê khai", f"{len(khong_ke_khai)} người: " + ", ".join(x.get("ho_ten", "") for x in khong_ke_khai)],
+          ["Tổng tiền phải nộp tháng này", f"{_tien(tong.get('tong'))} đồng (người lao động {_tien(tong.get('nld'))}; công ty "
+                                           f"{_tien(tong.get('dn'))})" + (f" – tháng trước {_tien(tong.get('tong_thang_truoc'))}"
+                                                                          if tong.get("tong_thang_truoc") else "") if tong else "—"],
+          ["Hạn đóng tiền", f"Chậm nhất {_cuoi_thang_sau(thang)} (ngày cuối cùng của tháng tiếp theo – Luật BHXH 2024)"]],
+         tieu_de=["Nội dung", "Chi tiết"])
+    if loi_dl or thieu:
+        p("CHÚ Ý: còn thiếu thông tin – làm mục II trước khi kê khai.", dam=True, mau=do)
+
+    h("II. Việc làm TRƯỚC: thông tin còn thiếu")
+    if not thieu and not loi_dl:
+        p("Đủ thông tin – làm tiếp mục III.")
+    for ten, con in thieu:
+        p(f"{ten}: thiếu " + ", ".join(con), dam=True)
+        p(f"Tin nhắn gửi {ten}: \"Chào anh/chị, phòng nhân sự cần thông tin để báo tăng BHXH, BHYT tháng {thang}: "
+          + "; ".join(x.split('] ')[-1].replace(" (phần mềm hỏi)", "").lower() for x in con) + ". Anh/chị gửi giúp em trong hôm nay, kèm ảnh 2 mặt căn cước. Cảm ơn anh/chị.\"")
+    for x in loi_dl:
+        doc.add_paragraph(x, style="List Bullet")
+
+    h("III. Hồ sơ tháng này nộp gì")
+    hs = [["1", f"1 hồ sơ thủ tục 600 (báo tăng, giảm, điều chỉnh) kỳ {thang}: tăng, giảm, điều chỉnh NỘP CHUNG trong hồ sơ này"],
+          ["2", f"Danh sách D02-LT gồm {sum(len(v) for v in nhom.values())} dòng – phần mềm tự tạo khi bạn gõ từng người ở mục IV, V, VI"]]
+    if can_tk1:
+        hs.append(["3", "Tờ khai TK1-TS cho người chưa có mã số BHXH: " + ", ".join(can_tk1)])
+    hs.append([str(len(hs) + 1), "Giấy tờ đính kèm theo mục VII"])
+    bang(hs, tieu_de=["#", "Thành phần"])
+    rieng = []
+    if any(pa == "TS" for pa, _ in nhom["giam"]):
+        rieng.append("Chế độ thai sản: hồ sơ hưởng chế độ nộp riêng (ngoài thủ tục 600) khi có giấy chứng sinh/giấy khai sinh.")
+    if any(pa == "GH" for pa, _ in nhom["giam"]):
+        rieng.append("Trợ cấp thất nghiệp: người lao động tự nộp tại trung tâm dịch vụ việc làm trong 3 tháng kể từ ngày nghỉ việc.")
+    if rieng:
+        p("Không nằm trong hồ sơ 600 (làm riêng):", dam=True)
+        for x in rieng:
+            doc.add_paragraph(x, style="List Bullet")
+
+    def khoi(i, pa, r):
+        doc.add_heading(f"{i}. {r.get('ho_ten')} – {pa}: {MA_PHUONG_AN[pa][1]}", level=2)
+        if r.get("ly_do"):
+            p("Vì sao: " + r["ly_do"])
+        dong = [["Họ và tên", r.get("ho_ten")],
+                ["Mã số BHXH", r.get("ma_so_bhxh") or "Chưa có → để trống, khai TK1-TS"],
+                ["Ngày sinh", r.get("ngay_sinh")]]
+        if MA_PHUONG_AN[pa][0] != "giam":
+            dong += [["Chức vụ, chức danh nghề, nơi làm việc", r.get("chuc_danh_noi_lam_viec")],
+                     ["Tiền lương" + (" (mới)" if r.get("luong_cu") else ""), _tien(r.get("tien_luong"))]]
+            if r.get("luong_cu"):
+                dong.append(["Tiền lương cũ (để đối chiếu, không gõ)", _tien(r.get("luong_cu"))])
+            if r.get("phu_cap_bo_sung"):
+                dong.append(["Phụ cấp lương (iBH: ô \"Phụ cấp lương\"; khoản thu nhập bổ sung: ô \"Các khoản bổ sung\")",
+                             _tien(r.get("phu_cap_bo_sung"))])
+            if r.get("loai_hd"):
+                dong.append(["Loại HĐLĐ", LOAI_HD.get(r["loai_hd"], r["loai_hd"])])
+            if r.get("ngay_hieu_luc"):
+                dong.append(["Ngày HĐLĐ / quyết định có hiệu lực", r.get("ngay_hieu_luc")])
+        if phan_mem == "ibh":
+            tab = {"tang": "TĂNG LAO ĐỘNG", "giam": "GIẢM LAO ĐỘNG"}.get(MA_PHUONG_AN[pa][0])
+            if MA_PHUONG_AN[pa][0] == "dieu_chinh":
+                tab = "GIẢM TIỀN LƯƠNG" if (r.get("luong_cu") or 0) > (r.get("tien_luong") or 0) else "TĂNG TIỀN LƯƠNG"
+            dong.insert(0, ["Tab chọn khi bấm \"Thêm\" (iBH)", tab])
+            if MA_PHUONG_AN[pa][0] != "giam":
+                dong += [["Vùng lương", f"Vùng {['I', 'II', 'III', 'IV'][vung - 1]}"],
+                         ["Tỷ lệ đóng", "32% (đóng đủ BHXH, BHYT, BHTN, BHTNLĐ-BNN)"]]
+        nhan_pa = NHAN_IBH.get(pa) if phan_mem == "ibh" and NHAN_IBH.get(pa) else ""
+        if nhan_pa and pa == "TM" and r.get("ma_so_bhxh") and r.get("da_co_so"):
+            nhan_pa = "Tăng mới"
+        dong += [["Phương án", f"{pa} – {MA_PHUONG_AN[pa][1]}" + (f" → trên iBH chọn: \"{nhan_pa}\"" if nhan_pa else
+                                                                  " (chọn dòng có nội dung tương ứng)")],
+                 ["Từ tháng/năm", r.get("tu_thang")]]
+        if r.get("den_thang"):
+            dong.append(["Đến tháng/năm", r.get("den_thang")])
+        if r.get("noi_kcb") and MA_PHUONG_AN[pa][0] == "tang":
+            dong.append(["Nơi đăng ký KCB ban đầu", r.get("noi_kcb")])
+        if r.get("hinh_thuc_nhan_ket_qua"):
+            dong.append(["Hình thức nhận kết quả", r.get("hinh_thuc_nhan_ket_qua")])
+        dong.append(["Ghi chú (chép nguyên văn)", r.get("ghi_chu")])
+        bang(dong, tieu_de=["Ô trên phần mềm", "Gõ vào"])
+        if pa == "TM" and not r.get("ma_so_bhxh"):
+            p("Thông tin tờ khai TK1-TS / thêm người mới vào danh sách lao động:", dam=True)
+            bang([[nhan, r.get(k) or ("CÒN THIẾU – hỏi người lao động" if k in TK1_BAT_BUOC else "(không bắt buộc)")]
+                  for k, nhan in TK1_TRUONG] + [["[17] Hồ sơ kèm theo", "; ".join(r.get("giay_to") or GIAY_TO_MAC_DINH["TM"][:1])]],
+                 tieu_de=["Trường TK1-TS", "Giá trị"])
+            p("Người lao động ký TK1-TS với câu \"Tôi chịu trách nhiệm trước pháp luật về nội dung đã kê khai\". "
+              "Phần mềm có thể hỏi thêm (nơi đăng ký khai sinh, địa chỉ, ngày cấp căn cước) – hỏi người lao động, không đoán.")
+
+    so = 0
+    for ma, ten in (("tang", "IV. TĂNG"), ("giam", "V. GIẢM"), ("dieu_chinh", "VI. ĐIỀU CHỈNH")):
+        h(f"{ten} ({len(nhom[ma])} người)")
+        if not nhom[ma]:
+            p("Không có.")
+        for pa, r in nhom[ma]:
+            so += 1
+            khoi(so, pa, r)
+
+    h("VII. Giấy tờ đính kèm (scan PDF, đặt tên rõ)")
+    gt = []
+    for ma in ("tang", "giam", "dieu_chinh"):
+        for pa, r in nhom[ma]:
+            for x in r.get("giay_to") or GIAY_TO_MAC_DINH.get(pa, []):
+                if "TK1-TS" in x and r.get("ma_so_bhxh"):
+                    continue
+                gt.append([r.get("ho_ten"), x])
+    bang(gt or [["—", "—"]], tieu_de=["Người", "Giấy tờ"])
+
+    h("VIII. Không kê khai tháng này")
+    bang([[x.get("ho_ten"), x.get("ly_do")] for x in khong_ke_khai] or [["—", "—"]], tieu_de=["Người", "Lý do"])
+
+    ten_pm, buoc = THAO_TAC.get(phan_mem, THAO_TAC["chung"])
+    h(f"IX. Thao tác trên {ten_pm}")
+    p("Chuẩn bị 1 lần (nếu chưa làm):", dam=True)
+    for x in (["Tạo danh sách Phòng ban và Chức vụ trong phần mềm trước khi thêm người lao động (iBH bắt buộc)."] if phan_mem == "ibh" else []) + [
+            f"Đầu hồ sơ: Kỳ kê khai = {thang}; Người nộp = {don_vi.get('nguoi_nop') or 'họ tên người làm hồ sơ'}; "
+            f"Số điện thoại = {don_vi.get('dien_thoai_nguoi_nop') or don_vi.get('dien_thoai') or 'số của người làm hồ sơ'}.",
+            "Chữ ký số của doanh nghiệp còn hạn, đã cắm vào máy, đã cài phần mềm ký số."]:
+        doc.add_paragraph(x, style="List Bullet")
+    for b in buoc:
+        doc.add_paragraph(b, style="List Number")
+    p("Các bước theo hướng dẫn của nhà cung cấp/BHXH; tên nút có thể khác theo phiên bản – làm theo đúng các ô ở mục IV, V, VI.")
+
+    h("X. Sau khi nộp")
+    for x in ["Lưu mã hồ sơ, biên nhận. Cơ quan BHXH thông báo trả lại/bổ sung trong không quá 03 ngày làm việc nếu hồ sơ thiếu, sai "
+              "(QĐ 366/QĐ-BHXH) – sửa theo lý do rồi nộp lại.",
+              f"Chuyển khoản tiền đóng tháng {thang} chậm nhất {_cuoi_thang_sau(thang)}: số tài khoản thu của cơ quan BHXH ghi trên "
+              "Thông báo kết quả đóng (C12-TS) hoặc hỏi BHXH cơ sở; nội dung chuyển khoản ghi mã đơn vị "
+              f"{don_vi.get('ma_don_vi', '…')} + \"nộp BHXH tháng {thang}\". Chậm đóng bị tính tiền chậm đóng.",
+              "Đối chiếu số tiền với Thông báo kết quả đóng (Mẫu C12-TS) cơ quan BHXH gửi hằng tháng.",
+              "Lưu toàn bộ hồ sơ vào thư mục BHXH theo tháng."]:
+        doc.add_paragraph(x, style="List Bullet")
+
+    h("XI. Việc phải nhớ tháng sau")
+    nho = list(viec_thang_sau)
+    for pa, r in nhom["giam"]:
+        if pa in ("KL", "OF") and r.get("den_thang") == thang:
+            nho.append(f"{r.get('ho_ten')}: báo ON (đi làm lại) kỳ {_thang_sau(thang)} nếu đã đi làm lại.")
+        if pa == "TS":
+            nho.append(f"{r.get('ho_ten')}: báo ON khi đi làm lại sau thai sản; làm hồ sơ hưởng chế độ thai sản.")
+        if pa == "GH":
+            nho.append(f"{r.get('ho_ten')}: chốt sổ, trả giấy tờ trong 14 ngày làm việc kể từ ngày nghỉ việc (Điều 48 BLLĐ).")
+    for x in nho or ["—"]:
+        doc.add_paragraph(x, style="List Bullet")
+    doc.save(duong_dan_ra)
+    return {"duong_dan": duong_dan_ra, "tang": len(nhom["tang"]), "giam": len(nhom["giam"]), "dieu_chinh": len(nhom["dieu_chinh"]),
+            "can_tk1_ts": can_tk1, "thong_tin_con_thieu": thieu, "loi": loi_dl, "han_dong_tien": _cuoi_thang_sau(thang)}
+
 TOOLS = [
     {"name": "xac_dinh_dong_bhxh_thang", "fn": xac_dinh_dong_thang,
      "description": "Xác định người lao động có phải đóng BHXH, BHYT, BHTN trong một tháng hay không: đếm số ngày làm việc không làm "
@@ -286,4 +559,20 @@ TOOLS = [
                                       + ", ".join(MA_PHUONG_AN)},
          "don_vi": {"type": "object", "description": "Thông tin phần A: " + ", ".join(k for k, _ in DON_VI)},
          "vung": {"type": "integer", "enum": [1, 2, 3, 4]}, "ngay_lap": {"type": "string"}, "so_hieu": {"type": "string"}}}},
+    {"name": "huong_dan_ke_khai_bhxh", "fn": huong_dan_ke_khai,
+     "description": "Xuất file Word 'Hướng dẫn kê khai BHXH tháng ...' cho người mới làm: tóm tắt tăng/giảm/điều chỉnh, tổng tiền, hạn đóng; "
+                    "hồ sơ nộp gì (chung 1 hồ sơ 600, TK1-TS cho ai); khối 'gõ vào phần mềm' cho từng người; thông tin TK1-TS còn thiếu "
+                    "kèm tin nhắn xin người lao động; giấy tờ đính kèm; ai không kê khai và vì sao; thao tác trên iBH (ivan) / cổng BHXH; "
+                    "sau khi nộp; việc tháng sau. Đây là đầu ra chính khi báo tăng, giảm, điều chỉnh.",
+     "schema": {"type": "object", "required": ["duong_dan_ra", "thang", "danh_sach"], "properties": {
+         "duong_dan_ra": {"type": "string"}, "thang": {"type": "string", "description": "mm/yyyy"},
+         "danh_sach": {"type": "array", "items": {"type": "object"},
+                       "description": "Mỗi người như xuat_d02_lt + ly_do, luong_cu, giay_to (list), và cho TM chưa có mã: so_dinh_danh, "
+                                      "gioi_tinh, dan_toc, quoc_tich, dien_thoai, email"},
+         "don_vi": {"type": "object"},
+         "khong_ke_khai": {"type": "array", "items": {"type": "object", "properties": {"ho_ten": {}, "ly_do": {}}}},
+         "tien_dong": {"type": "object", "description": "nld, dn, tong, tong_thang_truoc (tính bằng luong_net_gross)"},
+         "viec_thang_sau": {"type": "array", "items": {"type": "string"}},
+         "phan_mem": {"type": "string", "enum": ["chung", "ibh", "cong_bhxh"]},
+         "vung": {"type": "integer"}, "ngay_lap": {"type": "string"}}}},
 ]
