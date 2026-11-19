@@ -267,7 +267,7 @@ def xuat_d02_lt(duong_dan_ra, danh_sach, don_vi=None, vung=1, ngay_lap=None, so_
 # ---------------------------------------------------------------- File hướng dẫn kê khai (gọn, 1–2 trang)
 LOAI_HD = {"khong_xac_dinh": "HĐ không xác định thời hạn", "xac_dinh": "HĐ xác định thời hạn", "khac": "HĐ, thỏa thuận khác"}
 HANH_DONG = {"tang": "Tăng", "giam": "Giảm", "dieu_chinh": "Điều chỉnh"}
-NHAN_PA = {"TM": "Tăng mới chưa có sổ", "TC": "Tăng chuyển từ tỉnh khác (TC)", "TD": "Tăng chuyển cùng tỉnh (TD)",
+NHAN_PA = {"TM": "Tăng mới (TM)", "TC": "Tăng chuyển từ tỉnh khác (TC)", "TD": "Tăng chuyển cùng tỉnh (TD)",
            "TL": "Chỉ tham gia BHTNLĐ-BNN (TL)", "ON": "Đi làm lại (ON)", "DC": "Điều chỉnh lương (DC)",
            "DL": "Điều chỉnh mức đóng BHTNLĐ-BNN (DL)", "CD": "Điều chỉnh chức danh (CD)", "GH": "Giảm hẳn (GH)",
            "GD": "Giảm chuyển đơn vị (GD)", "GC": "Giảm chuyển tỉnh (GC)", "GN": "Giảm BHTN (GN)", "GL": "Giảm BHTNLĐ-BNN (GL)",
@@ -352,8 +352,7 @@ def huong_dan_ke_khai(duong_dan_ra, thang, danh_sach, don_vi=None, khong_ke_khai
     tieu = doc.add_paragraph()
     run = tieu.add_run(f"HƯỚNG DẪN KÊ KHAI BHXH THÁNG {m:02d}/{y}")
     run.bold, run.font.size = True, Pt(15)
-    doc.add_paragraph(" – ".join(x for x in [don_vi.get("ten_don_vi"), f"Mã đơn vị {don_vi['ma_don_vi']}" if don_vi.get("ma_don_vi") else "",
-                                              f"Phần mềm {phan_mem}" if phan_mem else ""] if x))
+    doc.add_paragraph(" – ".join(x for x in [don_vi.get("ten_don_vi"), f"Mã đơn vị {don_vi['ma_don_vi']}" if don_vi.get("ma_don_vi") else ""] if x))
 
     dam(f"1. Kê khai thủ tục 600, kỳ {m:02d}/{y} (1 hồ sơ)")
     hang = []

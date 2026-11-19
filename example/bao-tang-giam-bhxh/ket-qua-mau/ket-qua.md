@@ -11,7 +11,7 @@ Công ty TNHH Công nghệ Bình Minh (giả lập), vùng I, phần mềm kê k
 
 ## Nội dung file hướng dẫn (2 trang)
 
-1. **Bảng thủ tục 600, kỳ 11/2026 (1 hồ sơ)** – 7 dòng: An, Khoa **Tăng** (Tăng mới chưa có sổ); Dung **Giảm** (TS), Em **Giảm** (KL), Cường **Giảm** (GH, từ **12/2026**); Hoa, Long **Điều chỉnh** (DC). Mỗi dòng có phương án chọn, từ tháng, mức lương, thông tin khác cần nhập, ghi chú chép vào phần mềm, giấy tờ đính kèm.
+1. **Bảng thủ tục 600, kỳ 11/2026 (1 hồ sơ)** – 7 dòng: An, Khoa **Tăng** (Tăng mới – TM); Dung **Giảm** (TS), Em **Giảm** (KL), Cường **Giảm** (GH, từ **12/2026**); Hoa, Long **Điều chỉnh** (DC). Mỗi dòng có phương án chọn, từ tháng, mức lương, thông tin khác cần nhập, ghi chú chép vào phần mềm, giấy tờ đính kèm.
    Bảng **TK1-TS** (trong cùng hồ sơ 600) cho An, Khoa: anh Khoa **THIẾU** dân tộc, điện thoại, nơi khai sinh, địa chỉ → xin trước khi nộp.
 2. **Không kê khai:** Bình (thử việc riêng) · Giang (ốm 10 ngày, dưới 14) · những người còn lại không thay đổi.
 3. **Đóng tiền:** 55.260.000đ, chậm nhất 31/12/2026.
