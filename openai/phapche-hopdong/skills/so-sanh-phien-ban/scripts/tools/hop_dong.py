@@ -234,6 +234,103 @@ def moc_hop_dong(trong_so_ngay=60, hom_nay=None, xuat_ics="", thu_muc=None):
 
 
 _TM = {"thu_muc": {"type": "string", "description": "Thư mục lưu sổ (mặc định ./so-hop-dong)"}}
+
+# ---------------------------------------------------------------- Bảng góp ý hợp đồng (gửi đối tác + trình duyệt nội bộ)
+Y_KIEN = {"chap_nhan": "Chấp nhận", "khong_chap_nhan": "Không chấp nhận", "de_xuat_sua": "Đề nghị sửa",
+          "bo_sung": "Đề nghị bổ sung"}
+
+
+def bang_gop_y_hop_dong(duong_dan_ra, ten_hop_dong, ben_toi, doi_tac, thay_doi, ngay_ban_doi_tac="", ban_goc="",
+                        han_phan_hoi="", thieu=(), nguoi_lap=""):
+    """2 file Word tách riêng (tránh gửi nhầm phần nội bộ): (1) <tên>_gui-doi-tac.docx – Bảng ý kiến gửi đối tác – mỗi dòng 1 Điều: đối tác đề xuất, ý kiến của ta, câu chữ đề nghị;
+    (2) Trình duyệt nội bộ – mức rủi ro, sửa không báo, căn cứ, quyết định cần duyệt, thông tin còn thiếu."""
+    try:
+        from docx import Document
+        from docx.enum.section import WD_ORIENT
+        from docx.shared import Cm, Pt
+    except ImportError:
+        return {"loi": "Cần thư viện python-docx: pip install python-docx"}
+    loi = []
+    for i, x in enumerate(thay_doi, 1):
+        if x.get("quyet_dinh") not in Y_KIEN:
+            loi.append(f"Dòng {i} ({x.get('dieu')}): quyet_dinh phải là {', '.join(Y_KIEN)}")
+        if x.get("quyet_dinh") in ("de_xuat_sua", "bo_sung") and not x.get("cau_chu_de_nghi"):
+            loi.append(f"Dòng {i} ({x.get('dieu')}): đề nghị sửa/bổ sung nhưng chưa có câu chữ đề nghị")
+    if loi:
+        return {"loi": loi}
+    def moi():
+        d = Document()
+        sec = d.sections[0]
+        sec.orientation = WD_ORIENT.LANDSCAPE
+        sec.page_width, sec.page_height = sec.page_height, sec.page_width
+        for c in ("left_margin", "right_margin", "top_margin", "bottom_margin"):
+            setattr(sec, c, Cm(1.6))
+        d.styles["Normal"].font.name, d.styles["Normal"].font.size = "Times New Roman", Pt(11)
+        return d
+
+    goc = duong_dan_ra[:-5] if duong_dan_ra.lower().endswith(".docx") else duong_dan_ra
+    file_gui, file_noi_bo = goc + "_gui-doi-tac.docx", goc + "_noi-bo.docx"
+    doc = moi()
+
+    def dam(text, co=None):
+        r = doc.add_paragraph().add_run(text)
+        r.bold = True
+        if co:
+            r.font.size = Pt(co)
+
+    def bang(tieu_de, hang, rong):
+        tb = doc.add_table(rows=1, cols=len(tieu_de))
+        tb.style, tb.autofit = "Table Grid", False
+        for c, v in zip(tb.rows[0].cells, tieu_de):
+            c.text = v
+            c.paragraphs[0].runs[0].bold = True
+        for row in hang:
+            for c, v in zip(tb.add_row().cells, row):
+                c.text = str(v if v not in (None, "") else "–")
+        for col, w in zip(tb.columns, rong):
+            col.width = Cm(w)
+        for row in tb.rows:
+            for c, w in zip(row.cells, rong):
+                c.width = Cm(w)
+
+    dam(f"BẢNG Ý KIẾN VỀ DỰ THẢO {ten_hop_dong.upper()}", 14)
+    doc.add_paragraph(f"{ben_toi} gửi {doi_tac} – ý kiến về bản do {doi_tac} gửi lại"
+                      + (f" ngày {ngay_ban_doi_tac}" if ngay_ban_doi_tac else "")
+                      + (f", đối chiếu với bản {ban_goc}" if ban_goc else "") + ".")
+    hang = []
+    for i, x in enumerate(thay_doi, 1):
+        y = Y_KIEN[x["quyet_dinh"]]
+        if x["quyet_dinh"] == "khong_chap_nhan" and ban_goc:
+            y += f" – giữ như bản {ban_goc}"
+        if x.get("ly_do_gui_doi_tac"):
+            y += f". {x['ly_do_gui_doi_tac']}"
+        hang.append([i, x.get("dieu"), x.get("ban_moi") or "(bổ sung mới)", y,
+                     x.get("cau_chu_de_nghi") or (x.get("ban_cu") if x["quyet_dinh"] == "khong_chap_nhan" else "")])
+    bang(["STT", "Điều", f"Nội dung {doi_tac} đề xuất", f"Ý kiến của {ben_toi}", "Câu chữ đề nghị"], hang,
+         [1.3, 2.6, 7.3, 6.1, 8.3])
+    if han_phan_hoi:
+        doc.add_paragraph(f"Đề nghị {doi_tac} phản hồi trước ngày {han_phan_hoi}. Các điều khoản khác giữ như bản {doi_tac} gửi.")
+    doc.save(file_gui)
+    doc = moi()
+
+    dam("TRÌNH DUYỆT NỘI BỘ – KHÔNG GỬI ĐỐI TÁC", 14)
+    doc.add_paragraph(f"Hợp đồng: {ten_hop_dong} – Đối tác: {doi_tac}" + (f" – Người lập: {nguoi_lap}" if nguoi_lap else ""))
+    bang(["STT", "Điều", "Thay đổi của đối tác", "Sửa không báo", "Rủi ro", "Đề xuất", "Căn cứ / lý do"],
+         [[i, x.get("dieu"), (f"{x.get('ban_cu')} → {x.get('ban_moi')}" if x.get("ban_cu") else (x.get("ban_moi") or "Ta bổ sung")),
+           "Có" if x.get("sua_khong_bao") else "", x.get("muc_rui_ro"), Y_KIEN[x["quyet_dinh"]], x.get("can_cu")]
+          for i, x in enumerate(thay_doi, 1)], [1.3, 2.4, 7.0, 1.8, 2.0, 2.6, 8.5])
+    if thieu:
+        dam("Thông tin còn thiếu")
+        for x in thieu:
+            doc.add_paragraph(x, style="List Bullet")
+    doc.add_paragraph("Giám đốc duyệt:   ☐ Đồng ý gửi   ☐ Sửa lại: ................................................")
+    doc.save(file_noi_bo)
+    dem = {}
+    for x in thay_doi:
+        dem[Y_KIEN[x["quyet_dinh"]]] = dem.get(Y_KIEN[x["quyet_dinh"]], 0) + 1
+    return {"file_gui_doi_tac": file_gui, "file_noi_bo": file_noi_bo, "so_dong": len(thay_doi), "theo_y_kien": dem,
+            "sua_khong_bao": sum(1 for x in thay_doi if x.get("sua_khong_bao")), "thieu": list(thieu)}
+
 TOOLS = [
     {"name": "so_sanh_van_ban", "fn": so_sanh_van_ban,
      "description": "So sánh hai phiên bản hợp đồng/văn bản (.docx, .pdf có lớp chữ, .txt hoặc nội dung dán vào): liệt kê từng chỗ Sửa/Thêm/Xóa "
@@ -262,4 +359,17 @@ TOOLS = [
                     "tùy chọn xuất file .ics có nhắc trước 14 và 3 ngày.",
      "schema": {"type": "object", "properties": {
          "trong_so_ngay": {"type": "integer"}, "hom_nay": {"type": "string"}, "xuat_ics": {"type": "string"}, **_TM}}},
+    {"name": "bang_gop_y_hop_dong", "fn": bang_gop_y_hop_dong,
+     "description": "Xuất 2 file Word sau khi so sánh bản đối tác sửa: <tên>_gui-doi-tac.docx 'Bảng ý kiến về dự thảo hợp đồng' gửi đối tác – mỗi dòng 1 "
+                    "Điều: nội dung đối tác đề xuất, ý kiến (Chấp nhận / Không chấp nhận / Đề nghị sửa / Đề nghị bổ sung), câu chữ đề "
+                    "nghị; <tên>_noi-bo.docx trình duyệt nội bộ (không gửi đối tác) – thay đổi, sửa không báo, mức rủi ro, căn cứ, thông tin còn thiếu, ô giám đốc duyệt.",
+     "schema": {"type": "object", "required": ["duong_dan_ra", "ten_hop_dong", "ben_toi", "doi_tac", "thay_doi"], "properties": {
+         "duong_dan_ra": {"type": "string"}, "ten_hop_dong": {"type": "string"}, "ben_toi": {"type": "string"},
+         "doi_tac": {"type": "string"}, "ngay_ban_doi_tac": {"type": "string"}, "ban_goc": {"type": "string",
+                                                                                         "description": "vd 'ngày 05/11/2026'"},
+         "han_phan_hoi": {"type": "string"}, "nguoi_lap": {"type": "string"},
+         "thieu": {"type": "array", "items": {"type": "string"}},
+         "thay_doi": {"type": "array", "items": {"type": "object", "properties": {
+             "dieu": {}, "ban_cu": {}, "ban_moi": {}, "quyet_dinh": {"enum": list(Y_KIEN)}, "cau_chu_de_nghi": {},
+             "ly_do_gui_doi_tac": {}, "muc_rui_ro": {}, "can_cu": {}, "sua_khong_bao": {"type": "boolean"}}}}}}},
 ]

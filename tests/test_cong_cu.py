@@ -76,9 +76,24 @@ def test_hop_dong():
     kiem("Mốc: có file ics", os.path.exists(r["file_ics"]))
 
 
+def test_gop_y():
+    with tempfile.TemporaryDirectory() as d:
+        f = os.path.join(d, "yk.docx")
+        td = [{"dieu": "Điều 9", "ban_cu": "phạt 8%", "ban_moi": "phạt 12%", "quyet_dinh": "khong_chap_nhan", "sua_khong_bao": True},
+              {"dieu": "Điều 5", "ban_cu": "30 ngày", "ban_moi": "60 ngày", "quyet_dinh": "de_xuat_sua", "cau_chu_de_nghi": "45 ngày"}]
+        r = goi("bang_gop_y_hop_dong", {"duong_dan_ra": f, "ten_hop_dong": "HĐ", "ben_toi": "A", "doi_tac": "B", "thay_doi": td})
+        kiem("Tách 2 file gửi đối tác / nội bộ", os.path.exists(r["file_gui_doi_tac"]) and os.path.exists(r["file_noi_bo"]), r)
+        from docx import Document
+        gui = " ".join(c.text for tb in Document(r["file_gui_doi_tac"]).tables for row in tb.rows for c in row.cells)
+        kiem("File gửi đối tác không lộ rủi ro, sửa không báo", "Rủi ro" not in gui and "Sửa không báo" not in gui, gui[:200])
+        r = goi("bang_gop_y_hop_dong", {"duong_dan_ra": f, "ten_hop_dong": "HĐ", "ben_toi": "A", "doi_tac": "B",
+                                        "thay_doi": [{"dieu": "Điều 5", "quyet_dinh": "de_xuat_sua"}]})
+        kiem("Đề nghị sửa thiếu câu chữ → báo lỗi", "loi" in r, r)
+
+
 if __name__ == "__main__":
     print(f"{len(tat_ca())} công cụ")
-    for f in [test_phap_ly, test_hop_dong]:
+    for f in [test_phap_ly, test_hop_dong, test_gop_y]:
         print(f.__name__)
         f()
     print("KẾT QUẢ:", "TẤT CẢ ĐẠT" if not LOI else f"{len(LOI)} LỖI")

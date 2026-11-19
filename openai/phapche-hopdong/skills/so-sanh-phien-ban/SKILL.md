@@ -14,10 +14,12 @@ description: So sánh hai phiên bản hợp đồng hoặc văn bản (bản m�
 4. Đánh giá từng thay đổi: `Có lợi cho bạn / Bất lợi / Trung tính`, mức `🔴/🟡/🔵`.
 5. Nếu đối tác gửi kèm "danh sách sửa đổi" (cover note) → đối chiếu: thay đổi nào **không được nêu trong danh sách** → đánh dấu "SỬA KHÔNG BÁO".
 
-## Báo cáo
-1. Tóm tắt: tổng số thay đổi, số thay đổi cần chú ý, tỷ lệ giống nhau, có sửa không báo không.
-2. Bảng: `# | Điều | Loại (Sửa/Thêm/Xóa) | Bản cũ | Bản mới | Tác động với bạn | Mức | Đề xuất (chấp nhận / từ chối / sửa lại thành ...)`.
-3. Các thay đổi nên chấp nhận để đổi lấy điều khác (gợi ý cho đàm phán – skill `dam-phan-hop-dong`).
+## Đầu ra
+Sau khi đánh giá xong, chốt với người dùng quyết định từng thay đổi (Chấp nhận / Không chấp nhận / Đề nghị sửa / Đề nghị bổ sung), rồi xuất bằng `bang_gop_y_hop_dong` (`python3 scripts/cong_cu.py bang_gop_y_hop_dong duong_dan_ra=y-kien.docx ten_hop_dong="..." ben_toi="..." doi_tac="..." ngay_ban_doi_tac=... ban_goc="ngày ..." han_phan_hoi=... thay_doi='[...]' thieu='[...]'`). Công cụ ghi **2 file tách riêng**:
+1. `<tên>_gui-doi-tac.docx` – **Bảng ý kiến gửi đối tác**: mỗi dòng 1 Điều: nội dung đối tác đề xuất, ý kiến của ta (lý do ngắn chỉ khi có lợi cho đàm phán, vd viện dẫn luật), câu chữ đề nghị. Không có đánh giá rủi ro, không lộ phương án nhượng bộ.
+2. `<tên>_noi-bo.docx` – **Trình duyệt nội bộ**: thay đổi cũ → mới, sửa không báo, mức rủi ro, đề xuất, căn cứ một dòng, thông tin còn thiếu, ô giám đốc duyệt.
+
+Câu chữ đề nghị viết sẵn để chép vào hợp đồng. Thông tin chưa có (bên mình là bên nào, giá trị lô hàng, phương án sếp chấp nhận) → ghi vào `thieu`, không tự giả định. Trả lời trong chat chỉ cần: số thay đổi, số sửa không báo, 2 file đã tạo.
 
 ## Lưu ý
 - Thay đổi nhỏ nguy hiểm thường gặp: "và" ↔ "hoặc"; "phải" ↔ "có thể"; thêm/bỏ "không"; "ngày" ↔ "ngày làm việc"; "kể từ ngày ký" ↔ "kể từ ngày nhận hóa đơn"; bỏ trần phạt; đổi Trọng tài ↔ Tòa án; đổi địa điểm giải quyết tranh chấp; thêm "tự động gia hạn".

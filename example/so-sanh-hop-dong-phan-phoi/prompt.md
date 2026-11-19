@@ -23,10 +23,10 @@ Tôi là pháp chế của Bên A – bên cung cấp trong hợp đồng phân 
 1. So bản tôi gửi ngày 05/11 với bản đại lý sửa, liệt kê mọi thay đổi theo từng Điều.
 2. Chỉ ra thay đổi nào có hại cho Bên A, mức độ rủi ro, căn cứ pháp luật.
 3. Dự đoán đại lý sẽ phản bác thế nào và đề xuất phương án nhượng bộ.
-4. Soạn câu chữ sửa lại và email phản hồi đại lý.
+4. Soạn câu chữ sửa lại; xuất 1 file bảng ý kiến gửi đại lý và 1 file trình duyệt nội bộ.
 ```
 
-Kết quả đúng: xem `ket-qua-mau/ket-qua.md` – **5 thay đổi, 4 về nội dung** (độc quyền khu vực, thanh toán 60 ngày, phạt 12% vượt trần 8%, chuyển sang trọng tài tại Cần Thơ) và 1 sửa chính tả vô hại.
+Kết quả đúng: xem `ket-qua-mau/ket-qua.md` – **5 thay đổi, 4 về nội dung** (độc quyền khu vực, thanh toán 60 ngày, phạt 12% vượt trần 8%, chuyển sang trọng tài tại Cần Thơ) và 1 sửa chính tả vô hại; 2 file `y-kien-hop-dong-phan-phoi_gui-doi-tac.docx` (6 dòng: 2 đề nghị sửa, 2 không chấp nhận, 1 chấp nhận, 1 đề nghị bổ sung bất khả kháng) và `_noi-bo.docx`.
 
 ## Prompt hỏi tiếp (nếu còn thời gian)
 

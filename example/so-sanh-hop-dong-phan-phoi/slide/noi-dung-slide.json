@@ -24,13 +24,13 @@
       "Công cụ so_sanh_van_ban so theo từng Điều, đánh dấu chỗ nhạy cảm",
       "kiem_tra_phat_vi_pham tính phạt 12% so với trần 8%",
       "Agent luật sư đối phương dự đoán phản bác",
-      "Ra câu chữ sửa lại + email phản hồi"
+      "Xuất 2 file: bảng ý kiến gửi đối tác + trình duyệt nội bộ"
     ],
     "thoi_gian": "Khoảng 15 phút, có bảng thay đổi đầy đủ",
     "loi_ich": [
       "Không sót thay đổi; phân biệt sửa chính tả với sửa nội dung",
       "Có căn cứ luật và phương án nhượng bộ để đàm phán",
-      "Có sẵn email trả lời, sếp duyệt là gửi"
+      "Bảng ý kiến gửi được ngay, không lộ phần đánh giá nội bộ"
     ]
   },
   "demo": {
@@ -47,16 +47,16 @@
       "1. So bản 05/11 với bản đại lý sửa, liệt kê thay đổi theo từng Điều.",
       "2. Thay đổi nào có hại cho Bên A, mức rủi ro, căn cứ.",
       "3. Dự đoán đại lý phản bác thế nào, đề xuất nhượng bộ.",
-      "4. Soạn câu chữ sửa lại và email phản hồi."
+      "4. Soạn câu chữ sửa; xuất bảng ý kiến gửi đối tác + file nội bộ."
     ],
     "ket_qua": {
       "nhan_so": "Thay đổi về nội dung (trên 5 chỗ sửa)",
       "so": "4 điều khoản",
       "y": [
-        "Điều 2: \"được\" → \"không được\" bán tại 3 tỉnh",
-        "Điều 5: thanh toán 30 → 60 ngày",
-        "Điều 9: phạt 12% – vượt trần 8% (Đ301 LTM)",
-        "Điều 11: Tòa án → trọng tài tại Cần Thơ"
+        "Đ2 độc quyền, Đ5 60 ngày: đề nghị sửa",
+        "Đ9 phạt 12%, Đ11 trọng tài: không chấp nhận",
+        "Bổ sung điều khoản bất khả kháng",
+        "2 file: gửi đối tác / trình duyệt nội bộ"
       ]
     },
     "connector": "Gmail lấy 2 phiên bản trong chuỗi thư → so sánh → Drive lưu bảng so sánh → Gmail tạo nháp trả lời đúng chuỗi → Calendar đặt lịch họp đàm phán.",

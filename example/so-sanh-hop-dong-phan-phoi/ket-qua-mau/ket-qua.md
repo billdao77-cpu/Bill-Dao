@@ -1,5 +1,7 @@
 # Kết quả mẫu – So sánh hợp đồng phân phối số 25/2026/HĐPP-SM
 
+**Đầu ra chính: 2 file tách riêng** – `y-kien-hop-dong-phan-phoi_gui-doi-tac.docx` (bảng ý kiến gửi Phú Hưng: 6 dòng – mỗi Điều: đối tác đề xuất, ý kiến Sao Mai, câu chữ đề nghị) và `y-kien-hop-dong-phan-phoi_noi-bo.docx` (trình Tổng Giám đốc: rủi ro, 4 chỗ sửa không báo, căn cứ, thông tin còn thiếu). Tạo bằng công cụ `bang_gop_y_hop_dong`. Các mục dưới đây là nội dung phân tích dẫn tới 2 file đó.
+
 So sánh chạy thật bằng công cụ `so_sanh_van_ban`, `kiem_tra_phat_vi_pham`, `quet_dieu_khoan_hop_dong` của plugin trên 2 file trong `dau-vao/`. Đứng về phía **Bên A – Công ty CP Thực phẩm Sao Mai (bên cung cấp)**. Câu chữ AI trả lời có thể khác, **danh sách thay đổi và con số phải giống**.
 
 ## 1. Kết luận nhanh

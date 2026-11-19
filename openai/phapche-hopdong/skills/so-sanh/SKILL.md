@@ -8,4 +8,4 @@ Thông tin cần có từ người dùng: [file bản cũ] [file bản mới] [b
 
 So sánh phiên bản: yêu cầu của người dùng
 
-Dùng skill `so-sanh-phien-ban`: chạy `so_sanh_van_ban`, đọc ngữ cảnh từng thay đổi, đánh giá tác động với bên người dùng, đối chiếu danh sách sửa đổi đối tác gửi kèm (nếu có) để tìm sửa không báo. Kết thúc bằng gợi ý chấp nhận/từ chối/sửa lại từng điểm.
+Dùng skill `so-sanh-phien-ban`: chạy `so_sanh_van_ban`, đọc ngữ cảnh từng thay đổi, đánh giá tác động với bên người dùng, đối chiếu danh sách sửa đổi đối tác gửi kèm (nếu có) để tìm sửa không báo. Chốt quyết định từng điểm rồi xuất `bang_gop_y_hop_dong`: 1 file bảng ý kiến gửi đối tác và 1 file trình duyệt nội bộ.
