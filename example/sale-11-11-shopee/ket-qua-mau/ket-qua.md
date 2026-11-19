@@ -1,5 +1,7 @@
 # Kết quả mẫu – Sale 11.11 serum Lumi Glow trên Shopee
 
+**Đầu ra chính: `bang-cai-khuyen-mai-11-11.docx`** – mở ra là cài được trên kênh bán: mỗi SKU 1 dòng hành động (Serum LG30 **SỬA MỨC GIẢM → cài 26%, giá 333.000đ**, lãi 33.480đ/đơn, ROAS tối thiểu 3,22; Sữa rửa mặt LC150 **CHẠY** 20%; Kem chống nắng LS50 **THIẾU giá vốn – chưa cài**), bảng sửa nội dung (chữ cũ → chữ mới), pháp lý. Tạo bằng `bang_cai_khuyen_mai.py` từ `chuong-trinh-11-11.json`. Các mục dưới đây là phân tích chi tiết cho serum.
+
 Con số chạy thật bằng công cụ `tinh_gia.py`, `kiem_khuyen_mai.py` (skill `gia-san-pham-khuyen-mai`) và `validate_copy.py` (skill `kiem-tra-phap-ly-quang-cao`) trên dữ liệu trong `dau-vao/`. Câu chữ AI trả lời mỗi lần có thể khác, **con số phải giống**.
 
 ## 1. Giảm 40% có lãi không? → **Lỗ 14.400đ mỗi đơn**
@@ -26,7 +28,7 @@ Cách tính nhẩm hay gặp: "270.000 − 135.000 giá vốn = lãi 135.000" �
 | Chi phí quảng cáo tối đa mỗi đơn ở giá sale (CPA hòa vốn) | 55.600 |
 | ROAS hòa vốn ở giá thường 450.000 | 2,34 |
 
-Đề xuất: **giảm 25%** (giá 337.500đ) → lãi 36.900đ/đơn (10,9%) sau quảng cáo; hoặc giữ 40% nhưng chỉ khi ROAS thực tế đạt từ 4,86 trở lên.
+Đề xuất (công cụ tính): **giảm 26%** (giá 333.000đ) → lãi 33.480đ/đơn (≥ 10%) sau quảng cáo, ROAS tối thiểu 3,22; hoặc giữ 40% chỉ khi ROAS thực tế đạt từ 4,86 trở lên.
 
 ## 3. Chương trình có vi phạm quy định khuyến mại không?
 
@@ -43,10 +45,10 @@ Cách tính nhẩm hay gặp: "270.000 − 135.000 giá vốn = lãi 135.000" �
 | "Serum số 1 Việt Nam" | Từ ngữ "số 1" phải có tài liệu chứng minh (Luật Quảng cáo) | Công cụ (LAW001) |
 | "DUY NHẤT HÔM NAY" | Từ ngữ tuyệt đối, sai thời gian thật | Công cụ (LAW001) |
 | "Trắng da sau 7 ngày", "không hiệu quả hoàn tiền 100%" | Cam kết công dụng, thời gian vượt công dụng đã công bố | Skill rà theo checklist |
-| "được bác sĩ da liễu khuyên dùng" | Dùng danh nghĩa bác sĩ để quảng cáo mỹ phẩm (NĐ 342/2025) | Skill rà theo checklist |
+| "được bác sĩ da liễu khuyên dùng" | Dùng danh nghĩa bác sĩ để quảng cáo mỹ phẩm (NĐ 342/2025) | Công cụ (SK002, khi chạy `--doctype my-pham`) |
 | "Tốt hơn hẳn serum Hàn Quốc giá gấp đôi" | Quảng cáo so sánh không có tài liệu chứng minh | Skill rà theo checklist |
 | "Giá gốc 750.000đ" | Giá gốc ảo | Skill rà theo checklist |
-| (thiếu) | Chưa ghi tổ chức chịu trách nhiệm, số phiếu công bố | Skill rà theo checklist |
+| (thiếu) | Chưa ghi tổ chức chịu trách nhiệm, số phiếu công bố | Công cụ (MP001, khi chạy `--doctype my-pham`) |
 
 ## 5. Nội dung viết lại (3 phương án, đúng luật)
 
@@ -56,7 +58,7 @@ Cách tính nhẩm hay gặp: "270.000 − 135.000 giá vốn = lãi 135.000" �
 > Serum Vitamin C Lumi Glow giúp da ẩm mịn, hỗ trợ làm sáng và đều màu da khi dùng đều đặn sáng – tối. Kết cấu mỏng nhẹ, thấm nhanh, hợp da văn phòng. Đổi trả trong 7 ngày nếu sản phẩm lỗi hoặc không đúng mô tả.
 
 **Phương án B – nhấn ưu đãi (dùng cho banner):**
-> SALE 11.11 – Serum Lumi Glow giảm 25% từ 10/11 đến hết 12/11/2026: 450.000đ → 337.500đ. Số lượng có hạn.
+> SALE 11.11 – Serum Lumi Glow giảm 26% từ 10/11 đến hết 12/11/2026: 450.000đ → 333.000đ. Số lượng có hạn.
 
 **Phương án C – nhấn trải nghiệm:**
 > Hơn 2.000 đánh giá trên Shopee [CẦN BỔ SUNG số thật]. Bạn thoa 2–3 giọt sau bước làm sạch, ban ngày dùng thêm kem chống nắng để bảo vệ da.

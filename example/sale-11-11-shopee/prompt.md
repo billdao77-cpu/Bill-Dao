@@ -9,16 +9,17 @@
 ## Prompt demo (chép nguyên văn)
 
 ```
-Shop tôi bán serum trên Shopee (hồ sơ shop và bảng phí đính kèm).
-Sếp muốn giảm 40% dịp 11.11, từ 10/11 đến 12/11/2026. Hãy:
-1. Tính mỗi đơn lãi hay lỗ bao nhiêu sau toàn bộ phí sàn, đóng gói, hoàn đơn và quảng cáo.
+Shop tôi bán mỹ phẩm trên Shopee (hồ sơ shop và bảng phí đính kèm).
+Sếp muốn giảm serum 40%, kem chống nắng 40%, sữa rửa mặt 20% dịp 11.11, từ 10/11 đến 12/11/2026 (sheet "San pham 11.11"). Hãy:
+1. Tính từng sản phẩm mỗi đơn lãi hay lỗ bao nhiêu sau toàn bộ phí sàn, đóng gói, hoàn đơn và quảng cáo; chỉ chạy sản phẩm lãi từ 10%.
 2. Giảm tối đa bao nhiêu % thì vẫn có lãi? ROAS Shopee Ads bao nhiêu thì hòa vốn?
 3. Chương trình có vi phạm quy định khuyến mại không?
 4. Soát tiêu đề, mô tả, banner trong file noi-dung-quang-cao.txt, chỉ ra câu vi phạm
    và viết lại bản đúng luật mà vẫn hấp dẫn.
+Xuất file bảng cài chương trình khuyến mại: mỗi sản phẩm cài giảm bao nhiêu, giá bao nhiêu, ROAS tối thiểu; nội dung sửa chữ cũ → chữ mới.
 ```
 
-Kết quả đúng: xem `ket-qua-mau/ket-qua.md` – **giảm 40% lỗ 14.400đ/đơn**, giảm tối đa 35,8% để hòa vốn, ROAS hòa vốn 4,86; banner "giá gốc 750.000đ" và "duy nhất hôm nay" sai; ít nhất 8 câu vi phạm trong nội dung.
+Kết quả đúng: xem `ket-qua-mau/ket-qua.md` và `bang-cai-khuyen-mai-11-11.docx` – serum **giảm 40% lỗ 14.400đ/đơn → cài giảm 26% (333.000đ)**, sữa rửa mặt 20% CHẠY, kem chống nắng THIẾU giá vốn – chưa cài; serum, giảm tối đa 35,8% để hòa vốn, ROAS hòa vốn 4,86; banner "giá gốc 750.000đ" và "duy nhất hôm nay" sai; ít nhất 8 câu vi phạm trong nội dung.
 
 ## Prompt hỏi tiếp (nếu còn thời gian)
 

@@ -14,6 +14,8 @@ D = "tests/du-lieu-mau"
 S = "skills"
 
 CA = [
+    ("Bảng cài khuyến mại: SKU lỗ → sửa mức giảm, thiếu giá vốn → THIẾU",
+     f"{S}/gia-san-pham-khuyen-mai/scripts/bang_cai_khuyen_mai.py --self-test", ["self-test OK"]),
     ("Đối soát: loại trùng, hủy, 'Hoàn thành' không bị loại, dòng lệch cột → [?]",
      f"{S}/bao-cao-doi-soat-hieu-qua/scripts/doi_soat.py --tu 01/10/2026 --den 31/10/2026 --san {D}/san.csv --crm {D}/crm.csv --ads {D}/ads.csv --tk {D}/saoke.csv --ty-le-gia-von 44%",
      ["Doanh thu thật 3.530.000 đồng từ 6 đơn", "SP004", "lệch cột", "KHÔNG ngoại suy", "CRM01, CRM02"]),

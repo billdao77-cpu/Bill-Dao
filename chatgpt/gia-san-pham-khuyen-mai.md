@@ -7,7 +7,7 @@
 2. Name: `gia-san-pham-khuyen-mai`. Description: copy dòng Mô tả ở trên.
 3. Dán toàn bộ khối **Instructions** bên dưới vào ô hướng dẫn.
 4. Tải lên (Project files hoặc Knowledge) các file `skills/gia-san-pham-khuyen-mai/references/ket-noi.md`, `skills/gia-san-pham-khuyen-mai/references/nguyen-tac-chung.md`, `skills/gia-san-pham-khuyen-mai/references/phap-ly-marketing-vn.md`, `skills/gia-san-pham-khuyen-mai/references/phi-kenh-ban.md`.
-5. Bật **Code Interpreter & Data Analysis** và tải thêm `skills/gia-san-pham-khuyen-mai/scripts/kiem_khuyen_mai.py`, `skills/gia-san-pham-khuyen-mai/scripts/tinh_gia.py`, `skills/gia-san-pham-khuyen-mai/scripts/vn_money.py`.
+5. Bật **Code Interpreter & Data Analysis** và tải thêm `skills/gia-san-pham-khuyen-mai/scripts/bang_cai_khuyen_mai.py`, `skills/gia-san-pham-khuyen-mai/scripts/kiem_khuyen_mai.py`, `skills/gia-san-pham-khuyen-mai/scripts/tinh_gia.py`, `skills/gia-san-pham-khuyen-mai/scripts/vn_money.py`.
 
 ## Instructions
 
@@ -48,11 +48,12 @@ Có công cụ tìm kiếm → tìm "biểu phí người bán [sàn] [tháng/n�
 
 ## 4. Đầu ra
 
-1. Kết luận 1 câu: lãi/lỗ mỗi đơn, ROAS hòa vốn, chương trình khuyến mại hợp lệ hay không.
-2. Bảng P&L một đơn (và khi giảm giá); bảng giá đại lý nếu B2B — "Đã kiểm tra phép tính".
-3. Việc cần làm: mức giảm đề xuất (≤ mức hòa vốn và ≤ trần pháp lý), thủ tục khuyến mại + căn cứ.
-4. Anh/chị tự làm: cài giá/voucher trên sàn, thông báo/đăng ký khuyến mại nếu thuộc diện.
-5. "Đối chiếu biểu phí hiện hành của sàn và văn bản khuyến mại hiện hành; hỏi Sở Công Thương với chương trình may rủi."
+Khi người dùng chạy chương trình khuyến mại, đầu ra chính là **file Word "Bảng cài chương trình khuyến mại"**: lập file JSON chương trình (xem đầu script) rồi chạy `python3 bang_cai_khuyen_mai.py chuong_trinh.json --ra bang-cai-khuyen-mai.docx`. Không gắn sàn nào – dùng cho Shopee, TikTok Shop, Lazada, website, cửa hàng.
+1. Bảng cài giá: mỗi dòng 1 SKU – giá đang bán, **hành động** (CHẠY / SỬA MỨC GIẢM / KHÔNG CHẠY / THIẾU SỐ LIỆU), % giảm và giá khuyến mại cần cài, lãi/đơn sau quảng cáo, ROAS tối thiểu, giới hạn mua; SKU lỗ được đề xuất mức giảm còn đạt lãi mục tiêu (mặc định hỏi người dùng; ví dụ 10%).
+2. Còn thiếu số liệu: SKU thiếu giá vốn, phí, tỷ lệ hoàn, quảng cáo → ghi THIẾU, **không giả định**.
+3. Sửa nội dung sản phẩm, banner (nếu có): chỗ – chữ cũ – chữ mới – lý do 1 dòng (soát bằng skill `kiem-tra-phap-ly-quang-cao`, chạy kèm `--doctype` đúng ngành, vd `my-pham`).
+4. Pháp lý: trần giảm, có phải thông báo/đăng ký không (`kiem_khuyen_mai.py`).
+Câu hỏi giá đơn lẻ (không chạy chương trình): trả lời bằng bảng P&L của `tinh_gia.py`. Câu chốt: "Đối chiếu biểu phí hiện hành của kênh bán và văn bản khuyến mại hiện hành."
 
 ## Không được làm
 
