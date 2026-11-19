@@ -23,14 +23,14 @@
       "Đính kèm thư mục hóa đơn XML + sổ quỹ, gõ 1 câu yêu cầu",
       "doc-hoa-don-xml đọc hàng loạt, tự kiểm phép tính, MST, chữ ký, mã CQT, hóa đơn trùng",
       "thue-gtgt-dn loại hóa đơn không đủ điều kiện, tính số phải nộp",
-      "Xuất bảng kê Excel + thư nháp gửi nhà cung cấp",
+      "Xuất file hướng dẫn điền tờ khai 01/GTGT: chỉ tiêu – số điền – lấy từ đâu",
       "Kế toán chỉ rà kết quả, tra cứu, duyệt"
     ],
     "thoi_gian": "Khoảng 15 phút, kể cả rà soát",
     "loi_ich": [
       "Con số tính bằng công cụ, có căn cứ từng hóa đơn bị loại",
       "Không phải nhớ điều kiện khấu trừ, ngưỡng 5 triệu",
-      "Có sẵn file Excel và thư nháp, không gõ lại"
+      "Mở file là điền được tờ khai, có phụ lục giảm thuế 8%"
     ]
   },
   "demo": {
@@ -50,15 +50,15 @@
       "3. Tính thuế GTGT phải nộp tháng 10.",
       "4. Cho biết hạn nộp.",
       "5. Soạn thư đề nghị nhà cung cấp điều chỉnh hóa đơn sai.",
-      "Xuất bảng kê ra Excel."
+      "Xuất file hướng dẫn điền tờ khai 01/GTGT."
     ],
     "ket_qua": {
-      "nhan_so": "Thuế GTGT phải nộp tháng 10",
+      "nhan_so": "Chỉ tiêu [40] – thuế GTGT phải nộp",
       "so": "22.824.000đ",
       "y": [
-        "HĐ 3301 trùng (gửi 2 lần)",
-        "HĐ 568 – 12,96 triệu trả tiền mặt: loại 960.000đ",
-        "HĐ 88 sai MST người mua: chờ hóa đơn điều chỉnh",
+        "[23] 108,2 tr · [24] 8,686 tr · [25] 7,726 tr",
+        "[32] 400 tr · [33] 32,4 tr + phụ lục giảm thuế 8%",
+        "Loại: HĐ trùng, HĐ sai MST, HĐ tiền mặt",
         "Hạn nộp: 20/11/2026"
       ]
     },

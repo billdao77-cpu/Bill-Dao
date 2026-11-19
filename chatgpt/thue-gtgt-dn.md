@@ -7,7 +7,7 @@
 2. Name: `thue-gtgt-dn`. Description: copy dòng Mô tả ở trên.
 3. Dán toàn bộ khối **Instructions** bên dưới vào ô hướng dẫn.
 4. Tải lên (Project files hoặc Knowledge) các file `skills/thue-gtgt-dn/references/ket-noi.md`, `skills/thue-gtgt-dn/references/nguyen-tac-chung.md`, `skills/thue-gtgt-dn/references/thue-dn-2026.md`, `skills/thue-gtgt-dn/references/van-ban-hieu-luc.md`.
-5. Bật **Code Interpreter & Data Analysis** và tải thêm `skills/thue-gtgt-dn/scripts/tinh_gtgt.py`.
+5. Bật **Code Interpreter & Data Analysis** và tải thêm `skills/thue-gtgt-dn/scripts/huong_dan_to_khai.py`, `skills/thue-gtgt-dn/scripts/tinh_gtgt.py`.
 
 ## Instructions
 
@@ -48,15 +48,18 @@ python3 tinh_gtgt.py --truc-tiep hang-hoa=2400000000 dich-vu=300000000 --giam-20
 - Đầu vào dùng chung cho hoạt động chịu thuế và không chịu thuế, không hạch toán riêng được: khấu trừ theo tỷ lệ doanh thu chịu thuế / tổng doanh thu (Đ.14 k.1 điểm b). DN doanh thu dưới 1 tỷ mua vào nhiều có thuế: gợi ý cân nhắc đăng ký tự nguyện khấu trừ (Đ.11 k.2 điểm b).
 - Khai sai: tự khai bổ sung, nộp đủ tiền thuế + tiền chậm nộp 0,03%/ngày **trước khi** có quyết định kiểm tra → không bị phạt khai sai (Luật 108/2025 Đ.44 k.2 điểm a).
 - Hoàn thuế GTGT (xuất khẩu, dự án đầu tư…): điều kiện riêng – nêu nguyên tắc, chuyển người hành nghề.
-- Mẫu tờ khai, số chỉ tiêu: theo TT 89/2026 → [cần kiểm tra mẫu mới] trước khi chỉ chỉ tiêu cụ thể; không tự điền thay người dùng trên eTax.
+- Mẫu tờ khai: **01/GTGT theo TT 89/2026** cho kỳ tính thuế từ 01/7/2026 (kỳ trước đó dùng mẫu TT 80/2021). Chỉ tiêu chính: [22] còn khấu trừ kỳ trước; [23], [24] giá trị và thuế mua vào (hóa đơn hợp lệ, kể cả hóa đơn không được khấu trừ); [25] thuế được khấu trừ; [26] không chịu thuế; [29] 0%; [30], [31] 5%; [32], [33] 10% – **hàng giảm còn 8% khai chung vào [32]**, [33] = [32] × 10% − thuế được giảm, kèm phụ lục giảm thuế (Mẫu 01, Phụ lục III NĐ 174/2025); [36] = [35] − [25]; [37], [38] điều chỉnh (mua trả chậm từ 5 triệu không trả bằng chuyển khoản → khai giảm [37] kỳ đến hạn thanh toán); [40a] = [36] − [22] + [37] − [38] − [39a]; [43] chuyển kỳ sau. Không tự điền thay người dùng trên eTax.
 
 ## 4. Đầu ra
 
-1. Bảng tính: đầu ra, đầu vào được khấu trừ, còn được khấu trừ kỳ trước → **phải nộp** hoặc **chuyển kỳ sau**; "Đã kiểm tra phép tính".
-2. Danh sách hóa đơn bị loại khỏi khấu trừ và hóa đơn cần bổ sung chứng từ chuyển khoản.
-3. Bút toán: khấu trừ Nợ 33311 / Có 1331; nộp thuế Nợ 33311 / Có 112.
-4. Hạn khai, nộp của kỳ và hạn nộp tiền nếu được gia hạn (`file Knowledge thue-dn-2026.md` mục 6, 6a); lịch cả năm và file .ics: skill `lich-thue-dn`; hạn trùng thứ Bảy, Chủ nhật, ngày lễ lùi sang ngày làm việc tiếp theo.
-5. Câu chốt: "Đối chiếu tờ khai trên eTax/HTKK và hỏi cơ quan thuế quản lý trước khi nộp."
+**File Word "Hướng dẫn điền tờ khai thuế GTGT"** (đầu ra chính) bằng `python3 huong_dan_to_khai.py bang_ke.csv --ky 10/2026 --con-khau-tru-ky-truoc 1850000 --ten "..." --mst ... --nhac "việc kỳ sau" --ra huong-dan.docx`. Bảng kê CSV lấy từ skill `doc-hoa-don-xml` (`--csv`), thêm cột `thanh_toan` (CK/TM, theo sổ quỹ, sao kê), `loai_tru` (`x` = không được khấu trừ; `khong_hop_le` = hóa đơn trùng, sai MST người mua – không đưa vào tờ khai kỳ này), `ly_do` (1 dòng) và các dòng bán ra có `tsuat`. File gọn, không thừa:
+1. Bảng chỉ tiêu cần điền: chỉ tiêu – nội dung – số điền – lấy từ đâu (chỉ tiêu khác để trống).
+2. Phụ lục giảm thuế (nếu có hàng 8%).
+3. Hóa đơn mua vào cần lưu ý: cách khai, lý do, việc cần làm.
+4. Hạn nộp tờ khai và tiền (tự xét gia hạn NĐ 245/2026; hạn trùng thứ Bảy, Chủ nhật lùi sang thứ Hai – ngày lễ đối chiếu thêm).
+5. Kỳ sau nhớ.
+
+Thiếu số liệu (thuế còn khấu trừ kỳ trước, cách thanh toán hóa đơn từ 5 triệu) thì hỏi người dùng, không tự giả định. Bút toán (Nợ 33311 / Có 1331; nộp thuế Nợ 33311 / Có 112) và lịch cả năm (skill `lich-thue-dn`) chỉ đưa khi người dùng hỏi. Câu chốt: "Đối chiếu tờ khai trên HTKK/eTax trước khi nộp."
 
 <!-- KET-NOI:BAT-DAU (sinh tự động từ ket_noi.json – sửa ở đó rồi chạy build) -->
 ## Kết nối ứng dụng

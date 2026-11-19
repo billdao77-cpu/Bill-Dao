@@ -1,6 +1,8 @@
 # Kết quả mẫu – Thuế GTGT tháng 10/2026, Công ty TNHH Thương mại An Phát
 
-Kết quả chạy thật bằng công cụ của skill `doc-hoa-don-xml` và `thue-gtgt-dn` trên dữ liệu trong `dau-vao/`. Dùng để giảng viên đối chiếu; câu chữ AI trả lời mỗi lần có thể khác, **con số phải giống**.
+Kết quả chạy thật bằng công cụ của skill `doc-hoa-don-xml` và `thue-gtgt-dn` trên dữ liệu trong `dau-vao/`.
+
+**Đầu ra chính: `huong-dan-to-khai-gtgt-thang-10-2026.docx`** – mở ra là điền được tờ khai 01/GTGT (TT 89/2026): bảng chỉ tiêu – số điền – lấy từ đâu, phụ lục giảm thuế, hóa đơn cần lưu ý, hạn nộp, việc kỳ sau. `bang-ke-thang-10.csv` là bảng kê đã đánh dấu dùng để tạo file; `bang-ke-mua-vao-thang-10.xlsx` để lưu sổ (không phải nộp kèm tờ khai). Dùng để giảng viên đối chiếu; câu chữ AI trả lời mỗi lần có thể khác, **con số phải giống**.
 
 ## 1. Bảng kê hóa đơn mua vào (8 file → 7 hóa đơn)
 
@@ -24,15 +26,20 @@ File Excel: `bang-ke-mua-vao-thang-10.xlsx` (sheet "Mua vao" và "Chua phan loai
 3. **HĐ 88 ghi sai mã số thuế người mua** – trên hóa đơn là 0319876534, đúng phải là 0319876543 (đảo hai số cuối). Chưa khấu trừ 784.000; đề nghị người bán lập hóa đơn điều chỉnh (thư nháp ở mục 5).
 4. **HĐ 9015 chưa thanh toán** – hóa đơn từ 5 triệu, hợp đồng cho trả chậm 30 ngày: được kê khai, nhưng khi trả phải chuyển khoản và lưu chứng từ [cần kiểm tra quy định mua trả chậm].
 
-## 3. Số thuế GTGT tháng 10/2026
+## 3. Điền tờ khai 01/GTGT tháng 10/2026 (TT 89/2026)
 
-| Chỉ tiêu | Số tiền (đồng) |
-|---|---:|
-| Thuế còn được khấu trừ kỳ trước chuyển sang | 1.850.000 |
-| Thuế GTGT đầu vào đủ điều kiện khấu trừ | 7.726.000 |
-| Doanh số bán ra chưa thuế (8%: 380.000.000; 10%: 20.000.000) | 400.000.000 |
-| Thuế GTGT đầu ra (8%: 30.400.000; 10%: 2.000.000) | 32.400.000 |
-| **Thuế GTGT phải nộp** | **22.824.000** |
+| Chỉ tiêu | Nội dung | Số điền |
+|---|---|---:|
+| [22] | Còn được khấu trừ kỳ trước chuyển sang | 1.850.000 |
+| [23] | Giá trị mua vào (hóa đơn hợp lệ, kể cả HĐ 568 trả tiền mặt; bỏ HĐ trùng 3301 và HĐ 88 sai MST) | 108.200.000 |
+| [24] | Thuế mua vào | 8.686.000 |
+| [25] | Thuế được khấu trừ | 7.726.000 |
+| [32] | Bán ra 10% (gồm hàng giảm còn 8%) | 400.000.000 |
+| [33] | = 400.000.000 × 10% − 7.600.000 thuế được giảm (HTKK tự tính) | 32.400.000 |
+| [36] | [35] − [25] | 24.674.000 |
+| [40] | **Thuế GTGT phải nộp** = [36] − [22] | **22.824.000** |
+
+Kèm **phụ lục giảm thuế** (Mẫu 01, Phụ lục III NĐ 174/2025): giấy in, văn phòng phẩm 213.500.000; thùng carton, bao bì 166.500.000; thuế được giảm 7.600.000 (phần mềm quản lý kho 10% không được giảm).
 
 So với cách cộng tay tất cả 8 file: thuế đầu vào 11.750.000 → phải nộp 18.800.000, **khai thiếu 4.024.000 đồng** → bị truy thu, phạt 20% số thuế khai thiếu và tiền chậm nộp 0,03%/ngày.
 

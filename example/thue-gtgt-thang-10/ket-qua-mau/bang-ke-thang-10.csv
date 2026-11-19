@@ -1,0 +1,14 @@
+﻿chieu,ngay,ban_mst,ban_ten,so,tien_hang,tien_thue,tsuat,thanh_toan,loai_tru,ly_do,ten_hang
+mua-vao,2026-10-03,0301112223,CÔNG TY TNHH GIẤY SÀI GÒN,1201,45000000,3600000,,CK,,,
+mua-vao,2026-10-06,0302223334,CÔNG TY CỔ PHẦN VẬN TẢI MINH LONG,568,12000000,960000,,TM,,"Từ 5 triệu nhưng trả tiền mặt (PC 0312) – không khấu trừ, không tính chi phí được trừ",
+mua-vao,2026-10-09,0303334445,CÔNG TY TNHH BAO BÌ THÀNH CÔNG,3301,28500000,2280000,,CK,,,
+mua-vao,2026-10-09,0303334445,CÔNG TY TNHH BAO BÌ THÀNH CÔNG,3301,28500000,2280000,,CK,khong_hop_le,Trùng hóa đơn (nhà cung cấp gửi lại) – chỉ khai 1 lần,
+mua-vao,2026-10-14,0304445556,CÔNG TY TNHH THIẾT BỊ VĂN PHÒNG HOÀNG GIA,88,9800000,784000,,CK,khong_hop_le,"Ghi sai MST người mua (0319876534) – đề nghị người bán lập hóa đơn điều chỉnh, khai khi nhận được",
+mua-vao,2026-10-15,0305556667,CÔNG TY CỔ PHẦN VIỄN THÔNG SAO VIỆT,4521,1500000,150000,,TM,,,
+mua-vao,2026-10-20,0306667778,CÔNG TY TNHH ĐIỆN MÁY NAM PHONG,702,3200000,256000,,TM,,,
+mua-vao,2026-10-28,0307778889,CÔNG TY TNHH LOGISTICS CÁT LÁI,9015,18000000,1440000,,,,,
+ban-ra,2026-10-05,0319876543,,215,126000000,10080000,8%,,,,"Giấy in, văn phòng phẩm"
+ban-ra,2026-10-12,0319876543,,216,98500000,7880000,8%,,,,"Thùng carton, bao bì"
+ban-ra,2026-10-19,0319876543,,217,87500000,7000000,8%,,,,"Giấy in, văn phòng phẩm"
+ban-ra,2026-10-26,0319876543,,218,68000000,5440000,8%,,,,"Thùng carton, bao bì"
+ban-ra,2026-10-30,0319876543,,219,20000000,2000000,10%,,,,"Phần mềm quản lý kho (dịch vụ CNTT, không được giảm)"

@@ -19,10 +19,10 @@ Hãy:
 4. Cho biết hạn nộp.
 5. Soạn thư đề nghị nhà cung cấp xuất lại / điều chỉnh hóa đơn sai.
 
-Xuất bảng kê ra file Excel.
+Xuất file Word hướng dẫn điền tờ khai 01/GTGT: chỉ tiêu nào điền số nào, lấy từ đâu.
 ```
 
-Kết quả đúng: xem `ket-qua-mau/ket-qua.md` – **thuế phải nộp 22.824.000 đồng**, 3 hóa đơn có vấn đề (trùng 3301, tiền mặt 568, sai MST 88) và lưu ý HĐ 9015 chưa thanh toán.
+Kết quả đúng: xem `ket-qua-mau/ket-qua.md` và `huong-dan-to-khai-gtgt-thang-10-2026.docx` – **thuế phải nộp 22.824.000 đồng** (chỉ tiêu [40]), [23] 108.200.000, [24] 8.686.000, [25] 7.726.000, [32] 400.000.000, [33] 32.400.000 kèm phụ lục giảm thuế, 3 hóa đơn có vấn đề (trùng 3301, tiền mặt 568, sai MST 88) và lưu ý HĐ 9015 chưa thanh toán.
 
 ## Prompt hỏi tiếp (nếu còn thời gian)
 
