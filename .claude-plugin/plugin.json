@@ -1,7 +1,7 @@
 {
   "name": "phapche-hopdong",
   "version": "1.0.0",
-  "description": "Plugin Pháp chế – Hợp đồng cho doanh nghiệp Việt Nam 2026: soạn hợp đồng theo loại, rà soát rủi ro theo bên, so sánh phiên bản, đàm phán, quản lý mốc hợp đồng, thu hồi công nợ, khởi kiện – trọng tài – thi hành án, thủ tục doanh nghiệp và chủ sở hữu hưởng lợi, họp ĐHĐCĐ/HĐTV/HĐQT, bảo vệ dữ liệu cá nhân, sở hữu trí tuệ, cập nhật văn bản pháp luật mới. Khai báo sẵn connector Gmail, Google Drive, Google Calendar, Microsoft 365, DocuSign; kèm công cụ tính: lãi chậm trả, trần phạt 8%, thời hiệu, án phí, tỷ lệ biểu quyết, so sánh văn bản, quét điều khoản, sổ hợp đồng.",
+  "description": "Plugin Pháp chế – Hợp đồng cho doanh nghiệp Việt Nam 2026: soạn, rà soát, so sánh phiên bản (bảng ý kiến gửi đối tác), đàm phán, quản lý mốc hợp đồng, thu hồi công nợ, tố tụng – trọng tài, thủ tục doanh nghiệp, họp ĐHĐCĐ/HĐTV/HĐQT, bảo vệ dữ liệu cá nhân, sở hữu trí tuệ, cập nhật pháp luật. Có sẵn connector Gmail, Drive, Calendar, Microsoft 365, DocuSign và công cụ tính lãi chậm trả, trần phạt 8%, thời hiệu, án phí, biểu quyết.",
   "author": {
     "name": "nguyenvansuai",
     "url": "https://github.com/nguyenvansuai"
