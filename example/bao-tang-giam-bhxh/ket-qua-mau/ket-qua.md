@@ -1,6 +1,6 @@
 # Kết quả mẫu – Báo tăng, giảm, điều chỉnh BHXH tháng 11/2026
 
-Công ty TNHH Công nghệ Bình Minh (giả lập), vùng I, phần mềm kê khai iBH. Kết quả chạy thật bằng công cụ của plugin; câu chữ AI trả lời có thể khác, **phương án và con số phải giống**.
+Công ty TNHH Công nghệ Bình Minh (giả lập), vùng I. Kết quả chạy thật bằng công cụ của plugin; câu chữ AI trả lời có thể khác, **phương án và con số phải giống**.
 
 ## File kết quả
 

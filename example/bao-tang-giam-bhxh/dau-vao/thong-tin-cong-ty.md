@@ -10,7 +10,7 @@
 - Đăng ký tham gia tại: BHXH cơ sở Sài Gòn (giả lập)
 - Làm việc thứ Hai – thứ Sáu, nghỉ thứ Bảy, Chủ nhật; nơi làm việc của toàn bộ nhân viên: Phường Bến Thành, TP. Hồ Chí Minh
 - Kỳ cần làm: báo tăng – giảm – điều chỉnh **tháng 11/2026**; ngày lập hồ sơ 18/11/2026
-- Người làm hồ sơ: Trịnh Thu Thảo (HCNS), SĐT 0909000111 · Phần mềm kê khai đang dùng: iBH (baohiemxahoi.ivan.vn)
+- Người làm hồ sơ: Trịnh Thu Thảo (HCNS), SĐT 0909000111
 - Quy chế lương: phụ cấp trách nhiệm là khoản trả cố định theo chức danh; tiền ăn trưa trả bằng tiền theo ngày công thực tế
 
 Toàn bộ tên người, mã số BHXH, số định danh trong thư mục này là **giả lập để học**.

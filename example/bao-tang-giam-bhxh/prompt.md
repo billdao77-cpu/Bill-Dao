@@ -9,7 +9,7 @@
 ## Prompt demo (chép nguyên văn)
 
 ```
-Tôi là HCNS Công ty TNHH Công nghệ Bình Minh (thông tin đính kèm), mới làm BHXH lần đầu, công ty dùng phần mềm iBH.
+Tôi là HCNS Công ty TNHH Công nghệ Bình Minh (thông tin đính kèm), mới làm BHXH lần đầu.
 Đính kèm danh sách đang đóng BHXH tháng 10/2026 và ghi chú biến động nhân sự tháng 11/2026.
 Người không có trong file biến động thì giữ nguyên như tháng 10.
 Hãy lập cho tôi file hướng dẫn kê khai BHXH tháng 11: tăng ai, giảm ai, điều chỉnh ai, mỗi người gõ gì vào phần mềm,
