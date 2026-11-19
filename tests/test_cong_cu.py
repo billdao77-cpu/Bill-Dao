@@ -144,13 +144,14 @@ def test_bhxh():
                                            "khong_ke_khai": [{"ho_ten": "X", "ly_do": "thử việc"}],
                                            "tien_dong": {"nld": 1, "dn": 2, "tong": 3}})
         kiem("Xuất file hướng dẫn kê khai", os.path.exists(f2), r)
-        kiem("Đếm tăng/giảm/điều chỉnh", (r["tang"], r["giam"], r["dieu_chinh"]) == (1, 1, 1), r)
+        kiem("Đếm tăng/giảm/điều chỉnh", r["theo_hanh_dong"] == {"Tăng": 1, "Giảm": 1, "Điều chỉnh": 1}, r)
         kiem("Người mới thiếu dân tộc → liệt kê", any("Dân tộc" in x for _, c in r["thong_tin_con_thieu"] for x in c), r)
         kiem("Hạn đóng tiền tháng 11 = 31/12/2026", r["han_dong_tien"] == "31/12/2026", r)
         from docx import Document
-        txt = "\n".join(x.text for x in Document(f2).paragraphs)
-        kiem("File có mục nộp chung hồ sơ 600", "NỘP CHUNG" in " ".join(c.text for tb in Document(f2).tables for row in tb.rows for c in row.cells))
-        kiem("File có mục thông tin còn thiếu + tin nhắn", "Tin nhắn gửi" in txt, txt[:200])
+        bang600 = Document(f2).tables[0]
+        kiem("Bảng 600 có cột Hành động, mỗi dòng 1 người", bang600.rows[0].cells[3].text == "Hành động" and len(bang600.rows) == 4,
+             [c.text for c in bang600.rows[0].cells])
+        kiem("Ô thiếu TK1-TS ghi THIẾU", any(c.text == "THIẾU" for c in Document(f2).tables[1].rows[1].cells))
 
 
 if __name__ == "__main__":

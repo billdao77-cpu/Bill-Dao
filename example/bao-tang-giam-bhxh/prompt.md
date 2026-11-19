@@ -16,7 +16,7 @@ Hãy lập cho tôi file hướng dẫn kê khai BHXH tháng 11: tăng ai, giả
 hồ sơ nộp gì, còn thiếu thông tin gì của ai, tổng tiền phải đóng và hạn đóng.
 ```
 
-Kết quả đúng: xem `ket-qua-mau/ket-qua.md` và file `huong-dan-ke-khai-thang-11-2026.docx` – **tăng 2 (TM), giảm 3 (TS, KL, GH), điều chỉnh 2 (DC)**, nộp chung 1 hồ sơ 600, TK1-TS cho An và Khoa; **anh Khoa còn thiếu 5 thông tin** (có tin nhắn xin); anh Cường **vẫn đóng tháng 11, GH từ tháng 12**; chị Bình, chị Giang không kê khai; **tổng nộp 55.260.000đ, hạn 31/12/2026**.
+Kết quả đúng: xem `ket-qua-mau/ket-qua.md` và file `huong-dan-ke-khai-thang-11-2026.docx` – **tăng 2 (TM), giảm 3 (TS, KL, GH), điều chỉnh 2 (DC)**, gom 1 bảng thủ tục 600, TK1-TS cho An và Khoa trong cùng hồ sơ; **anh Khoa còn thiếu 4 thông tin** (ghi THIẾU trong bảng TK1-TS); anh Cường **vẫn đóng tháng 11, GH từ tháng 12**; chị Bình, chị Giang không kê khai; **tổng nộp 55.260.000đ, hạn 31/12/2026**.
 
 ## Prompt hỏi tiếp (nếu còn thời gian)
 

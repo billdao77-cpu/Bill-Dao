@@ -23,8 +23,8 @@
       "Đính kèm danh sách đang đóng + ghi chú biến động, gõ 1 câu",
       "Công cụ xac_dinh_dong_bhxh_thang: ai phải kê khai, mã gì, từ tháng nào",
       "luong_net_gross tính tiền đóng, tự áp trần",
-      "Liệt kê thông tin còn thiếu + tin nhắn xin người lao động",
-      "Xuất file Word hướng dẫn: gõ gì cho từng người, nộp gì, đóng tiền khi nào"
+      "Đánh dấu thông tin TK1-TS còn thiếu để xin người lao động",
+      "Xuất file Word: 1 bảng thủ tục 600, mỗi dòng tăng/giảm/điều chỉnh"
     ],
     "thoi_gian": "Khoảng 15 phút, có lý do từng dòng",
     "loi_ich": [
@@ -54,7 +54,7 @@
       "so": "55.260.000đ",
       "y": [
         "Tăng 2, giảm 3, điều chỉnh 2 – nộp chung 1 hồ sơ 600",
-        "Anh Khoa thiếu 5 thông tin → có tin nhắn xin",
+        "Anh Khoa thiếu 4 thông tin TK1-TS → ghi THIẾU",
         "Anh Cường nghỉ 13/11: vẫn đóng T11, GH từ T12",
         "Hạn đóng tiền 31/12/2026"
       ]
