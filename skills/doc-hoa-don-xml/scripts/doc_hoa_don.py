@@ -17,6 +17,7 @@ import sys
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 NGUONG_CHUYEN_KHOAN = 5_000_000
 HET_GIAM_8 = dt.date(2026, 12, 31)  # NĐ 174/2025 – giảm 10% → 8% đến hết 31/12/2026
@@ -237,10 +238,10 @@ def xuat(ds, path_csv, path_xlsx):
     rows = [[c, hd["ngay"], hd["mau_so"], hd["ky_hieu"], hd["so"], hd["ban_ten"], hd["ban_mst"], hd["mua_ten"], hd["mua_mst"],
              hd["tien_hang"], hd["tien_thue"], hd["ck_tm"], hd["tong"], hd["ma_cqt"], " | ".join(cb), hd["file"]] for hd, c, cb in ds]
     if path_csv:
-        with open(path_csv, "w", encoding="utf-8-sig", newline="") as f:
+        with an_toan.mo_ghi(path_csv, ".csv", encoding="utf-8-sig", newline="") as f:
             w = csv.writer(f)
             w.writerow(cot)
-            w.writerows(rows)
+            w.writerows(an_toan.dong_csv(r) for r in rows)
         print(f"Đã ghi {path_csv}")
     if path_xlsx:
         from openpyxl import Workbook
@@ -262,7 +263,7 @@ def xuat(ds, path_csv, path_xlsx):
             for row in ws.iter_rows(min_row=2):
                 for c in row[8:12]:
                     c.number_format = "#,##0"
-        wb.save(path_xlsx)
+        an_toan.luu_xlsx(wb, path_xlsx)
         print(f"Đã ghi {path_xlsx}")
 
 

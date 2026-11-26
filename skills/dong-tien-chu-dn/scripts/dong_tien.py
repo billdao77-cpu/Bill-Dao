@@ -17,6 +17,7 @@ import csv
 import datetime as dt
 import re
 import sys
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 
 def so(s):
@@ -223,7 +224,7 @@ def xuat_13_tuan(path, tuan, ds, so_du_dau):
     for row in ws2.iter_rows(min_row=2):
         row[0].number_format = "DD/MM/YYYY"
         row[3].number_format = "#,##0"
-    wb.save(path)
+    an_toan.luu_xlsx(wb, path)
 
 
 def self_test():

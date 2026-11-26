@@ -16,6 +16,7 @@ import csv
 import datetime as dt
 import sys
 import uuid
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 LE_CO_DINH = [(1, 1), (4, 30), (5, 1), (9, 2)]
 
@@ -113,15 +114,15 @@ def main(argv=None):
     print("Hạn nộp tiền = hạn nộp hồ sơ khai. Nên nộp trước hạn gốc. Đối chiếu văn bản hiện hành trước khi dựa vào lịch.")
     nhac = [int(x) for x in a.nhac_truoc.split(",") if x.strip()]
     if a.ics:
-        with open(a.ics, "w", encoding="utf-8", newline="") as f:
+        with an_toan.mo_ghi(a.ics, ".ics", encoding="utf-8", newline="") as f:
             f.write(ics(ds, nhac))
         print(f"Đã ghi {a.ics} – nhập vào Google Calendar: Cài đặt → Nhập và xuất → Nhập.")
     if a.csv:
-        with open(a.csv, "w", encoding="utf-8-sig", newline="") as f:
+        with an_toan.mo_ghi(a.csv, ".csv", encoding="utf-8-sig", newline="") as f:
             w = csv.writer(f)
             w.writerow(["han_thuc_te", "han_goc", "viec", "can_cu"])
             for goc, han, viec, cc in ds:
-                w.writerow([han.isoformat(), goc.isoformat(), viec, cc])
+                w.writerow(an_toan.dong_csv([han.isoformat(), goc.isoformat(), viec, cc]))
         print(f"Đã ghi {a.csv}")
     return 0
 

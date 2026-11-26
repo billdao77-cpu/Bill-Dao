@@ -17,6 +17,7 @@ import datetime as dt
 import re
 import sys
 import unicodedata
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 
 def so(s):
@@ -172,7 +173,7 @@ def xuat(path, cap, con_so, con_sk):
                     c.number_format = "DD/MM/YYYY"
                 elif isinstance(c.value, float):
                     c.number_format = "#,##0"
-    wb.save(path)
+    an_toan.luu_xlsx(wb, path)
 
 
 def self_test():

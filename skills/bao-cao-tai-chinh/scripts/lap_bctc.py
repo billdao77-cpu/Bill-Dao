@@ -17,6 +17,7 @@ import csv
 import io
 import re
 import sys
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 B02 = [("01", "Doanh thu bán hàng và cung cấp dịch vụ"), ("02", "Các khoản giảm trừ doanh thu"),
        ("10", "Doanh thu thuần về bán hàng và cung cấp dịch vụ (10 = 01 − 02)"), ("11", "Giá vốn hàng bán"),
@@ -217,7 +218,7 @@ def xuat_xlsx(path, c, b01c, b01d, b02, ten_dn, nam):
             for x in row:
                 if isinstance(x.value, (int, float)) or (isinstance(x.value, str) and x.value.startswith("=")):
                     x.number_format = "#,##0;(#,##0)"
-    wb.save(path)
+    an_toan.luu_xlsx(wb, path)
 
 
 def main(argv=None):

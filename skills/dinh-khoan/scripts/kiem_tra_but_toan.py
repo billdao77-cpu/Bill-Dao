@@ -21,6 +21,7 @@ import re
 import sys
 from collections import defaultdict
 from pathlib import Path
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 NGUONG_TIEN_MAT = 5_000_000
 CHI_TT200 = {"521": "TT133 không có 521 – giảm trừ doanh thu ghi Nợ 511",
@@ -159,7 +160,7 @@ def xuat_xlsx(path, dong, ps, dm):
             for c in row:
                 if isinstance(c.value, (int, float)) or (isinstance(c.value, str) and c.value.startswith("=SUM")):
                     c.number_format = "#,##0"
-    wb.save(path)
+    an_toan.luu_xlsx(wb, path)
 
 
 def doc_csv(path_or_text):
@@ -195,7 +196,7 @@ def main(argv=None):
     for tk in sorted(ps):
         print(f"  {tk:6} {dm[tk]['ten'][:42]:42} Nợ {ps[tk][0]:>16,.0f}  Có {ps[tk][1]:>16,.0f}".replace(",", "."))
     if a.phat_sinh:
-        with open(a.phat_sinh, "w", encoding="utf-8", newline="") as f:
+        with an_toan.mo_ghi(a.phat_sinh, ".csv", encoding="utf-8", newline="") as f:
             w = csv.writer(f)
             w.writerow(["so_hieu", "ps_no", "ps_co"])
             for tk in sorted(ps):

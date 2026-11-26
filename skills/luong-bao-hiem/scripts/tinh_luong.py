@@ -23,6 +23,7 @@ import datetime as dt
 import re
 import sys
 from collections import defaultdict
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 LTTV_2026 = {1: 5_310_000, 2: 4_730_000, 3: 4_140_000, 4: 3_700_000}  # NĐ 293/2025
 GIAM_TRU_BAN_THAN, GIAM_TRU_NPT = 15_500_000, 6_200_000  # Luật 109/2025 Đ.10
@@ -212,7 +213,7 @@ def xuat_xlsx(path, ds, ky):
         for c in row[4:]:
             c.number_format = "#,##0"
     ws.column_dimensions["B"].width = 26
-    wb.save(path)
+    an_toan.luu_xlsx(wb, path)
 
 
 def self_test():

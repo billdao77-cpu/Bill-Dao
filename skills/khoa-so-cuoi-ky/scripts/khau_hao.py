@@ -17,6 +17,7 @@ import csv
 import datetime as dt
 import sys
 from collections import defaultdict
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 NGUONG_TSCD = 30_000_000
 
@@ -140,7 +141,7 @@ def main(argv=None):
         for row in ws.iter_rows(min_row=2):
             for c in row[2:7]:
                 c.number_format = "#,##0"
-        wb.save(a.xlsx)
+        an_toan.luu_xlsx(wb, a.xlsx)
         print(f"Đã ghi {a.xlsx}")
     return 0
 

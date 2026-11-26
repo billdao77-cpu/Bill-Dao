@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tinh_gtgt import NGUONG, d, so  # noqa: E402
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 # Gia hạn nộp TIỀN thuế GTGT năm 2026 (NĐ 245/2026) – chỉ DN nhỏ, siêu nhỏ hoặc ngành Phụ lục I, đã gửi đề nghị trước 02/11/2026
 GIA_HAN_2026 = {"05/2026": "20/11/2026", "06/2026": "21/12/2026", "07/2026": "21/12/2026", "08/2026": "21/12/2026",
@@ -208,7 +209,7 @@ def lap_file(ra, ct, loai, cho_ck, pl, ky, ten="", mst="", nhac=()):
                           f"hạn nộp tờ khai không đổi.")
     if nhac:
         dam(f"{so_muc + 2}. Kỳ sau nhớ: " + " · ".join(nhac))
-    doc.save(ra)
+    an_toan.luu_docx(doc, ra)
 
 
 def main(argv=None):

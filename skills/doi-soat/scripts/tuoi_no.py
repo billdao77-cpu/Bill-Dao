@@ -16,6 +16,7 @@ import datetime as dt
 import re
 import sys
 from collections import defaultdict
+import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
 
 NHOM = [(0, "Chưa đến hạn"), (30, "Quá hạn 1–30 ngày"), (90, "31–90 ngày"), (180, "91–180 ngày"), (365, "181–365 ngày"), (10**9, "Trên 1 năm")]
 
@@ -109,7 +110,7 @@ def main(argv=None):
             row[2].number_format = "DD/MM/YYYY"
             row[4].number_format = row[7].number_format = "#,##0"
             row[6].number_format = "0%"
-        wb.save(a.xlsx)
+        an_toan.luu_xlsx(wb, a.xlsx)
         print(f"Đã ghi {a.xlsx}")
     return 0
 
