@@ -1,0 +1,10 @@
+{
+  "name": "van-phong",
+  "version": "1.0.0-vn.1",
+  "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của bộ skill văn phòng VN: Excel và làm sạch dữ liệu, báo cáo, biên bản, kế hoạch, đề xuất, email công sở, slide, tóm tắt và phân tích tài liệu, xử lý PDF, chuyển đổi file, kiểm tra lỗi AI, viết tự nhiên, prompt. Không MCP; script chạy cục bộ, không ghi đè file, chặn công thức độc hại khi xuất Excel.",
+  "author": {
+    "name": "nguyenvansuai (upstream) – bản tùy chỉnh nội bộ"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/nguyenvansuai/20skill-van-phong"
+}
