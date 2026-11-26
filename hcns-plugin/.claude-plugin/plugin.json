@@ -1,0 +1,23 @@
+{
+  "name": "hanhchinh-nhansu",
+  "version": "1.0.0-vn.1",
+  "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của plugin Hành chính – Nhân sự VN: văn bản đúng thể thức NĐ 30/2020, giấy tờ hành chính, kiểm tra trước trình ký, sổ văn bản, lưu trữ, quy chế, hội họp; tuyển dụng, HĐLĐ, onboarding/offboarding, nội quy, chấm công – làm thêm giờ, lương thưởng, kỷ luật, chấm dứt HĐLĐ, BHXH, lịch tuân thủ. Không khai báo MCP server; công cụ tính toán chạy cục bộ, không kết nối mạng.",
+  "author": {
+    "name": "nguyenvansuai",
+    "url": "https://github.com/nguyenvansuai"
+  },
+  "homepage": "https://github.com/nguyenvansuai/hanhchinh-nhansu",
+  "repository": "https://github.com/nguyenvansuai/hanhchinh-nhansu",
+  "license": "MIT",
+  "keywords": [
+    "hanh-chinh",
+    "nhan-su",
+    "hcns",
+    "van-thu",
+    "lao-dong",
+    "viet-nam",
+    "nd-30-2020",
+    "bo-luat-lao-dong"
+  ],
+  "privacyPolicyUrl": "https://github.com/nguyenvansuai/hanhchinh-nhansu/blob/main/PRIVACY.md"
+}

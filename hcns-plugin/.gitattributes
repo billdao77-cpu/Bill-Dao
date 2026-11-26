@@ -1,0 +1,5 @@
+# Bản tùy chỉnh vn-custom: khi merge từ upstream, giữ nguyên phiên bản của nhánh này cho các file cấu hình quyền.
+# Cần bật một lần: git config merge.ours.driver true
+.mcp.json merge=ours
+.claude-plugin/marketplace.json merge=ours
+.claude-plugin/plugin.json merge=ours
