@@ -32,22 +32,26 @@ claude plugin validate .
 
 ## Cập nhật từ upstream mà không mất phần tùy chỉnh
 
+Bản này nằm trong repo Bill-Dao, thư mục `hcns-plugin/`, được thêm bằng `git subtree` (giữ nguyên lịch sử upstream và các commit `vn-custom:`). Chạy từ gốc repo Bill-Dao:
+
 ```bash
 git config merge.ours.driver true
-git fetch upstream main
-git log --oneline vn-custom..upstream/main
-git merge upstream/main
-python3 custom/dong_bo.py
-python3 tests/test_cong_cu.py && python3 tests/test_vn_custom.py
+git fetch https://github.com/nguyenvansuai/hanhchinh-nhansu main
+git diff 268678e FETCH_HEAD --stat
+git subtree pull --prefix=hcns-plugin https://github.com/nguyenvansuai/hanhchinh-nhansu main -m "Cập nhật upstream hanhchinh-nhansu"
+python3 hcns-plugin/custom/dong_bo.py
+python3 hcns-plugin/tests/test_cong_cu.py && python3 hcns-plugin/tests/test_vn_custom.py
+claude plugin validate hcns-plugin
 ```
 
-- `.mcp.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json` luôn giữ bản của nhánh này khi merge (`.gitattributes`).
-- **Trước khi merge, đọc diff của upstream** (`git diff vn-custom...upstream/main`) như một lần kiểm toán mới: chú ý file mới trong `hooks/`, `.mcp.json`, `settings.json`, lệnh `subprocess`/mạng trong `tools/`, và câu chỉ dẫn lạ trong `SKILL.md`.
-- Xung đột ở `skills/*/scripts/tools/*` hoặc `skills/*/references/*`: giải quyết ở `tools/` và `shared/` (nguồn), rồi chạy `python3 custom/dong_bo.py` để sinh lại bản sao.
-- Sau khi merge, tăng `version` trong `.claude-plugin/plugin.json` và `marketplace.json` (ví dụ `1.0.0-vn.2`), rồi `claude plugin marketplace update hcns-vn-custom` và `claude plugin update hanhchinh-nhansu@hcns-vn-custom`.
+- **Đọc diff của upstream trước khi pull** (lệnh `git diff` ở trên) và coi đó là một lần kiểm toán mới. Cần chú ý file mới trong `hooks/`, các thay đổi ở `.mcp.json` hoặc `settings.json`, lệnh `subprocess` hoặc truy cập mạng trong `tools/`, và các câu chỉ dẫn lạ trong `SKILL.md`. Thay `268678e` bằng commit upstream của lần cập nhật gần nhất.
+- Khi merge, `.mcp.json`, `.claude-plugin/marketplace.json` và `.claude-plugin/plugin.json` luôn giữ bản của nhánh này (do `.gitattributes`, cần bật `merge.ours.driver`).
+- Nếu xung đột ở `skills/*/scripts/tools/*` hoặc `skills/*/references/*`: giải quyết ở `tools/` và `shared/` (đây là nguồn), rồi chạy `python3 hcns-plugin/custom/dong_bo.py` để sinh lại các bản sao.
+- Sau khi cập nhật, tăng `version` trong `.claude-plugin/plugin.json` và `marketplace.json` (ví dụ `1.0.0-vn.2`), rồi chạy `claude plugin marketplace update hcns-vn-custom` và `claude plugin update hanhchinh-nhansu@hcns-vn-custom`.
 
 ## Khôi phục bản gốc
 
-- Xem đúng bản upstream đã kiểm toán: `git checkout upstream-268678e`.
-- Bỏ một thay đổi cụ thể: `git revert <commit vn-custom>`.
-- Gỡ plugin khỏi Claude Code: `claude plugin uninstall hanhchinh-nhansu@hcns-vn-custom` rồi `claude plugin marketplace remove hcns-vn-custom`.
+- Xem đúng bản upstream đã kiểm toán: `git show 268678e:README.md`, hoặc lấy lại toàn bộ bằng `git archive 268678e | tar -x -C /đường/dẫn/tạm`.
+- Bỏ một thay đổi cụ thể: `git revert <commit vn-custom: ...>` (các commit vẫn còn trong lịch sử Bill-Dao).
+- Gỡ plugin khỏi Claude Code: `claude plugin uninstall hanhchinh-nhansu@hcns-vn-custom --scope local`, rồi `claude plugin marketplace remove hcns-vn-custom`.
+- Gỡ hẳn khỏi repo: `git rm -r hcns-plugin` rồi commit. Lịch sử vẫn còn để khôi phục khi cần.
