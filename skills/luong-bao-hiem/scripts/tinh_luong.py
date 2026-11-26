@@ -23,7 +23,14 @@ import datetime as dt
 import re
 import sys
 from collections import defaultdict
-import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
+try:  # vn-custom: không ghi đè, chống chèn công thức
+    import an_toan  # noqa: E402
+except ImportError:  # chạy bằng python -I: thư mục script không nằm trong sys.path → nạp theo đường dẫn
+    import importlib.util as _iu
+    import os as _os
+    _sp = _iu.spec_from_file_location("an_toan", _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "an_toan.py"))
+    an_toan = _iu.module_from_spec(_sp)
+    _sp.loader.exec_module(an_toan)
 
 LTTV_2026 = {1: 5_310_000, 2: 4_730_000, 3: 4_140_000, 4: 3_700_000}  # NĐ 293/2025
 GIAM_TRU_BAN_THAN, GIAM_TRU_NPT = 15_500_000, 6_200_000  # Luật 109/2025 Đ.10

@@ -17,7 +17,14 @@ import csv
 import io
 import re
 import sys
-import an_toan  # vn-custom: không ghi đè, chống chèn công thức  # noqa: E402
+try:  # vn-custom: không ghi đè, chống chèn công thức
+    import an_toan  # noqa: E402
+except ImportError:  # chạy bằng python -I: thư mục script không nằm trong sys.path → nạp theo đường dẫn
+    import importlib.util as _iu
+    import os as _os
+    _sp = _iu.spec_from_file_location("an_toan", _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "an_toan.py"))
+    an_toan = _iu.module_from_spec(_sp)
+    _sp.loader.exec_module(an_toan)
 
 B02 = [("01", "Doanh thu bán hàng và cung cấp dịch vụ"), ("02", "Các khoản giảm trừ doanh thu"),
        ("10", "Doanh thu thuần về bán hàng và cung cấp dịch vụ (10 = 01 − 02)"), ("11", "Giá vốn hàng bán"),
