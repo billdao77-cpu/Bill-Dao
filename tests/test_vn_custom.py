@@ -97,8 +97,20 @@ def test_cli():
     kiem("Ngày sai → JSON lỗi, không traceback", '"loi"' in out.stdout and "Traceback" not in out.stderr, out.stdout[-300:])
 
 
+def test_so_sanh_tach_dieu():
+    print("test_so_sanh_tach_dieu")
+    cu = "Điều 1. A.\nĐiều 2. Giá 100.\nĐiều 3. Thanh toán 30 ngày.\nĐiều 4. Phạt tối đa 8%.\nĐiều 6. Bảo hành 12 tháng."
+    moi = "Điều 1. A.\nĐiều 2. Giá 100.\nĐiều 3. Thanh toán 60 ngày.\nĐiều 4. Phạt tối đa 5%.\nĐiều 5. Được đổi model."
+    r = goi("so_sanh_van_ban", {"van_ban_cu": cu, "van_ban_moi": moi})
+    loai = sorted((x["loai"], x["vi_tri"][:6]) for x in r["thay_doi"])
+    kiem("Mỗi Điều thay đổi là một dòng (Sửa 3, Sửa 4, Thêm 5, Xóa 6)",
+         loai == [("Sửa", "Điều 3"), ("Sửa", "Điều 4"), ("Thêm", "Điều 5"), ("Xóa", "Điều 6")], loai)
+    r = goi("so_sanh_van_ban", {"van_ban_cu": "Điều 1. X.\nĐiều 2. Y.", "van_ban_moi": "Điều 1. X.\nĐiều 2. Y."})
+    kiem("Hai bản giống nhau → 0 thay đổi", r["so_thay_doi"] == 0, r)
+
+
 if __name__ == "__main__":
-    for f in [test_tham_so, test_chong_ghi_de, test_csv, test_an_phi_va_phat, test_rui_ro, test_cli]:
+    for f in [test_tham_so, test_chong_ghi_de, test_csv, test_an_phi_va_phat, test_rui_ro, test_so_sanh_tach_dieu, test_cli]:
         f()
     print("KẾT QUẢ:", "TẤT CẢ ĐẠT" if not LOI else f"{len(LOI)} LỖI: {LOI}")
     sys.exit(1 if LOI else 0)

@@ -51,16 +51,56 @@ def _dieu_hien_tai(doan, i):
 
 
 # ---------- So sánh hai phiên bản ----------
+def _nhan_dieu(s):
+    m = re.match(r"^Điều\s+(\d+[a-z]?)", s)
+    return m.group(1) if m else None
+
+
+def _tach_thay_doi(sm, a, b):
+    """vn-custom: tách khối 'replace' gồm nhiều đoạn thành từng cặp theo số Điều, để mỗi Điều bị sửa/thêm/xóa là một dòng
+    riêng (bản gốc gộp các đoạn liền nhau, làm thay đổi ở Điều sau bị giấu trong dòng của Điều trước)."""
+    for op, i1, i2, j1, j2 in sm.get_opcodes():
+        if op == "equal":
+            continue
+        if op != "replace" or (i2 - i1 == 1 and j2 - j1 == 1):
+            yield op, i1, i2, j1, j2, "\n".join(a[i1:i2]), "\n".join(b[j1:j2])
+            continue
+        cu_ds, moi_ds = list(range(i1, i2)), list(range(j1, j2))
+        moi_theo_dieu = {}
+        for j in moi_ds:
+            k = _nhan_dieu(b[j])
+            if k and k not in moi_theo_dieu:
+                moi_theo_dieu[k] = j
+        cap, da_dung = [], set()
+        for i in cu_ds:
+            k = _nhan_dieu(a[i])
+            if k in moi_theo_dieu and moi_theo_dieu[k] not in da_dung:
+                cap.append((i, moi_theo_dieu[k]))
+                da_dung.add(moi_theo_dieu[k])
+        cu_khong_so = [i for i in cu_ds if i not in {x for x, _ in cap} and not _nhan_dieu(a[i])]
+        moi_khong_so = [j for j in moi_ds if j not in da_dung and not _nhan_dieu(b[j])]
+        for i, j in zip(cu_khong_so, moi_khong_so):  # chỉ đoạn không có số Điều mới ghép theo thứ tự
+            cap.append((i, j))
+        cu_con = [i for i in cu_ds if i not in {x for x, _ in cap}]
+        moi_con = [j for j in moi_ds if j not in {y for _, y in cap}]
+        su_kien = [(j, "replace", i, j) for i, j in cap] + [(j, "insert", None, j) for j in moi_con] + \
+                  [(j1 + (i - i1), "delete", i, None) for i in cu_con]
+        for _, o, i, j in sorted(su_kien, key=lambda x: (x[0], x[1] != "delete")):
+            if o == "replace":
+                if a[i] != b[j]:
+                    yield "replace", i, i + 1, j, j + 1, a[i], b[j]
+            elif o == "insert":
+                yield "insert", i1, i1, j, j + 1, "", b[j]
+            else:
+                yield "delete", i, i + 1, j1, j1, a[i], ""
+
+
 def so_sanh_van_ban(ban_cu=None, ban_moi=None, van_ban_cu=None, van_ban_moi=None, toi_da=150):
     a = _doc_doan(ban_cu, van_ban_cu)
     b = _doc_doan(ban_moi, van_ban_moi)
     sm = difflib.SequenceMatcher(a=a, b=b, autojunk=False)
     thay_doi = []
-    for op, i1, i2, j1, j2 in sm.get_opcodes():
-        if op == "equal":
-            continue
-        cu = "\n".join(a[i1:i2])
-        moi = "\n".join(b[j1:j2])
+    for op, i1, i2, j1, j2, cu, moi in _tach_thay_doi(sm, a, b):
         chi_tiet = ""
         if op == "replace" and len(cu) < 2000 and len(moi) < 2000:
             w = difflib.ndiff(cu.split(), moi.split())
