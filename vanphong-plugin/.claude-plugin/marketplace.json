@@ -1,0 +1,23 @@
+{
+  "name": "van-phong-vn-custom",
+  "description": "Marketplace nội bộ: bản tùy chỉnh đã kiểm toán của 20skill-van-phong (upstream nguyenvansuai/20skill-van-phong).",
+  "owner": {
+    "name": "Văn phòng (bản tùy chỉnh nội bộ)"
+  },
+  "plugins": [
+    {
+      "name": "van-phong",
+      "source": "./",
+      "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của bộ skill văn phòng VN: Excel và làm sạch dữ liệu, báo cáo, biên bản, kế hoạch, đề xuất, email công sở, slide, tóm tắt và phân tích tài liệu, xử lý PDF, chuyển đổi file, kiểm tra lỗi AI, viết tự nhiên, prompt. Không MCP; script chạy cục bộ, không ghi đè file, chặn công thức độc hại khi xuất Excel.",
+      "version": "1.0.0-vn.1",
+      "category": "van-phong"
+    },
+    {
+      "name": "van-phong-mo-rong",
+      "source": "./mo-rong",
+      "description": "Gói mở rộng của bộ văn phòng: công văn, quyết định, tờ trình, thông báo, hợp đồng, báo giá, content bán hàng. Chỉ cài khi KHÔNG dùng các plugin chuyên sâu hanhchinh-nhansu, phapche-hopdong, tron-bo-skill-sales-marketing (trùng chức năng).",
+      "version": "1.0.0-vn.1",
+      "category": "van-phong"
+    }
+  ]
+}
