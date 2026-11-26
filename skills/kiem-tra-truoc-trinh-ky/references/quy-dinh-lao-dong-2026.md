@@ -69,6 +69,7 @@ Trần lương đóng BHXH, BHYT: 20 × lương cơ sở (46,8 triệu đến 30
 | Giờ làm việc | ≤ 8 giờ/ngày, ≤ 48 giờ/tuần | 105 |
 | Làm thêm giờ | ≤ 50% giờ chuẩn/ngày; ≤ 40 giờ/tháng; ≤ 200 giờ/năm (300 giờ với ngành luật định) | 107 |
 | Lương làm thêm | ≥ 150% ngày thường; 200% ngày nghỉ hằng tuần; 300% lễ Tết (chưa kể lương ngày lễ) | 98 |
+| Làm việc ban đêm (22h–6h) | +30% lương giờ ngày thường; làm thêm ban đêm thêm 20% → 200%/210% ngày thường, 270% nghỉ tuần, 390% lễ Tết (công cụ `tinh_luong_lam_them`) | 98, 106; Điều 57 NĐ 145/2020 |
 | Nghỉ hằng tuần | ≥ 24 giờ liên tục/tuần | 111 |
 | Nghỉ lễ Tết | 11 ngày/năm | 112 |
 | Phép năm | 12/14/16 ngày; +1 ngày/5 năm | 113, 114 |

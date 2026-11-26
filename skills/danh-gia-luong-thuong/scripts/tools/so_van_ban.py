@@ -38,12 +38,18 @@ def _doc(path):
         return list(csv.DictReader(f))
 
 
+def _an_toan_csv(v):
+    """Chống chèn công thức (CSV/formula injection) khi mở sổ bằng Excel: ô bắt đầu bằng = + - @ được thêm dấu '."""
+    s = "" if v is None else str(v)
+    return "'" + s if s[:1] in ("=", "+", "-", "@", "\t", "\r") else s
+
+
 def _ghi(path, cot, rows):
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cot)
         w.writeheader()
-        w.writerows(rows)
+        w.writerows({k: _an_toan_csv(v) for k, v in r.items()} for r in rows)
     os.replace(tmp, path)
 
 

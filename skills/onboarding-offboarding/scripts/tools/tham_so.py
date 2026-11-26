@@ -1,7 +1,7 @@
 """Tham số pháp lý theo thời điểm. Mỗi mục có nguồn; khi văn bản thay đổi chỉ sửa file này.
 
 Mức độ tin cậy: "da_doi_chieu" = đã đối chiếu nhiều nguồn; "can_kiem_tra" = cần đối chiếu văn bản gốc.
-Cập nhật lần cuối: 11/2026.
+Cập nhật lần cuối: 11/2026 (vn-custom: đối chiếu lại NĐ 293/2025, NĐ 161/2026, Luật 109/2025/QH15 ngày 26/11/2026).
 """
 from datetime import date
 
@@ -15,7 +15,7 @@ LUONG_TOI_THIEU_VUNG = [
 
 LUONG_CO_SO = [
     (date(2024, 7, 1), 2_340_000, "Nghị định 73/2024/NĐ-CP"),
-    (date(2026, 7, 1), 2_530_000, "Nghị định 161/2026/NĐ-CP (cần kiểm tra văn bản gốc)"),
+    (date(2026, 7, 1), 2_530_000, "Nghị định 161/2026/NĐ-CP ngày 15/5/2026 (đã đối chiếu nguồn tin pháp luật 11/2026; nên xem văn bản gốc trên Công báo)"),
 ]
 
 # Tỷ lệ đóng bảo hiểm bắt buộc (Luật BHXH 2024, Luật BHYT, Luật Việc làm 2025) – không đổi trong 2026
@@ -36,7 +36,7 @@ BIEU_THUE_TNCN = [
     (date(2009, 1, 1), [(5e6, .05), (10e6, .10), (18e6, .15), (32e6, .20), (52e6, .25), (80e6, .30), (float("inf"), .35)],
      "Luật Thuế TNCN 2007 (biểu 7 bậc)"),
     (date(2026, 1, 1), [(10e6, .05), (30e6, .10), (60e6, .20), (100e6, .30), (float("inf"), .35)],
-     "Luật Thuế TNCN số 109/2025/QH15 – biểu 5 bậc áp dụng kỳ tính thuế 2026 (bậc 30% cần đối chiếu văn bản gốc)"),
+     "Luật Thuế TNCN số 109/2025/QH15 – biểu 5 bậc áp dụng kỳ tính thuế 2026 (cần kiểm tra: các nguồn chưa thống nhất ngày áp dụng 01/01 hay 01/7/2026 cho khấu trừ hằng tháng – đối chiếu Điều 9, 29 văn bản gốc và hướng dẫn của cơ quan thuế)"),
 ]
 
 # Thời gian thử việc tối đa (Điều 25 BLLĐ 2019)
