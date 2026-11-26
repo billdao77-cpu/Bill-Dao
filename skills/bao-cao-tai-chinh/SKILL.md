@@ -28,7 +28,7 @@ python3 scripts/lap_bctc.py can_doi_phat_sinh.csv --ten-dn "Công ty TNHH ABC" -
 
 ## 3. Phân tích nhanh (khi người dùng cần)
 
-Từ số liệu B01a/B02 tính bằng code: biên lợi nhuận gộp (20/10), biên lợi nhuận ròng (60/10), khả năng thanh toán hiện hành ((110+120+130+140)/300 – xấp xỉ vì TT133 không tách ngắn/dài hạn), nợ/vốn chủ (300/400), vòng quay phải thu (10/bình quân 131), vòng quay hàng tồn kho (11/bình quân 141). So với năm trước; giải thích biến động lớn.
+Từ số liệu B01a/B02 tính bằng code – dùng `python3 scripts/phan_tich_tai_chinh.py bctc.csv --ten-dn "..." --nam 2026` (bản vn-custom: CSV `chi_tieu,nam_nay,nam_truoc`; script kiểm tra 200 = 500 và các dòng tổng B02 trước khi tính, báo "không tính được" khi mẫu số bằng 0): biên lợi nhuận gộp (20/10), biên lợi nhuận ròng (60/10), khả năng thanh toán hiện hành ((110+120+130+140)/300 – xấp xỉ vì TT133 không tách ngắn/dài hạn), nợ/vốn chủ (300/400), vòng quay phải thu (10/bình quân 131), vòng quay hàng tồn kho (11/bình quân 141). So với năm trước; giải thích biến động lớn.
 
 ## 4. Đầu ra
 

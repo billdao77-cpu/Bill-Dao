@@ -11,7 +11,7 @@ GOC = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(GOC / "scripts"))
 import build  # noqa: E402
 
-THEM = {}  # skill mới của bản vn-custom: {"ten-skill": [file shared]}
+THEM = {"kiem-tra-chung-tu": ["thue-dn-2026.md"]}  # skill mới của bản vn-custom: {"ten-skill": [file shared]}
 for k, v in THEM.items():
     build.SHARED_MAP.setdefault(k, v)
 for f in ["the-skill.md"]:
