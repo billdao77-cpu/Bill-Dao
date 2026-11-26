@@ -5,7 +5,7 @@ argument-hint: "[thư mục/file hồ sơ, mục đích (dự thầu, ký kết,
 
 Xử lý hồ sơ: $ARGUMENTS
 
-1. `xu-ly-pdf`: `pdf_tool.py thongtin` từng file – trang scan cần OCR (thiếu `ocrmypdf` → hỏi người dùng trước khi cài); rút chữ/bảng ra file mới (`chu`, `bang`).
+1. `xu-ly-pdf`: `python3 "${CLAUDE_PLUGIN_ROOT}/skills/xu-ly-pdf/scripts/pdf_tool.py" thongtin <file>` từng file – trang scan cần OCR (thiếu `ocrmypdf` → hỏi người dùng trước khi cài); rút chữ/bảng ra file mới (`chu`, `bang`).
 2. `chuyen-doi-file` nếu có .doc/.xls cũ hoặc lỗi font TCVN3.
 3. `tom-tat-tai-lieu`: một câu – ý chính – việc cần làm cho từng tài liệu.
 4. `phan-tich-tai-lieu`: rủi ro, nghĩa vụ, điều kiện, câu hỏi cần làm rõ, theo góc nhìn đã nêu.
