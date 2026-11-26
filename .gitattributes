@@ -3,4 +3,3 @@
 .mcp.json merge=ours
 .claude-plugin/marketplace.json merge=ours
 .claude-plugin/plugin.json merge=ours
-agents/tham-dinh-hcns.md merge=ours
