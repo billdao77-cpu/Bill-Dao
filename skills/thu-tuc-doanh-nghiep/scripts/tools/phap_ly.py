@@ -67,6 +67,10 @@ def kiem_tra_phat_vi_pham(gia_tri_phan_nghia_vu_vi_pham, ty_le_phat_phan_tram, l
         kq["tien_phat_toi_da"] = _tien(gt * tran_pt / 100)
     else:
         kq["hop_le"] = True
+    if loai_hop_dong == "thuong_mai":
+        kq["canh_bao_luat_moi"] = ("Luật sửa đổi, bổ sung một số điều của Luật Thương mại (và các luật liên quan) được Quốc hội thông qua "
+                                   "tháng 11/2026, hiệu lực 01/7/2027; dự thảo từng đề xuất bỏ quy định trần phạt 8% – CHƯA xác minh nội "
+                                   "dung cuối cùng. Hợp đồng thực hiện/vi phạm từ 01/7/2027 phải đối chiếu văn bản chính thức [Cần kiểm tra].")
     kq["luu_y"] = ("Phạt vi phạm chỉ áp dụng khi hợp đồng có thỏa thuận phạt. Muốn vừa phạt vừa đòi bồi thường thiệt hại: "
                    "LTM cho phép (Điều 307); BLDS – phải thỏa thuận rõ (khoản 3 Điều 418). Tính trên giá trị PHẦN nghĩa vụ bị vi "
                    "phạm, không phải toàn bộ giá trị hợp đồng (với hợp đồng thương mại).")
@@ -123,7 +127,8 @@ def an_phi_so_tham(gia_tri_tranh_chap=None, loai="kinh_doanh_thuong_mai", co_gia
         "lao_dong": [(6e6, 300_000, 0, 0), (400e6, 0, .03, 0), (2e9, 12e6, .02, 400e6), (inf, 44e6, .001, 2e9)],
     }[loai]
     phi = _bac(gt, bang)
-    tam_ung = max(phi * 0.5, 300_000 if loai != "kinh_doanh_thuong_mai" else 3_000_000 * 0.5)
+    # vn-custom: tạm ứng = 50% án phí dự tính, tối thiểu bằng án phí sơ thẩm không có giá ngạch (Điều 7 NQ 326/2016) [Cần kiểm tra]
+    tam_ung = max(phi * 0.5, 3_000_000 if loai == "kinh_doanh_thuong_mai" else 300_000)
     return {"loai": loai, "gia_tri_tranh_chap": _tien(gt), "an_phi_so_tham_du_kien": _tien(phi),
             "tam_ung_an_phi_uoc_tinh": _tien(tam_ung),
             "can_cu": "Danh mục án phí, lệ phí Tòa án kèm NQ 326/2016/UBTVQH14 (còn hiệu lực theo tra cứu 11/2026). Tạm ứng án phí "

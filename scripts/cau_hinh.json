@@ -1,8 +1,42 @@
 {
   "danh_muc": "phap-che-hop-dong",
-  "shared_cho_tat_ca": ["nguyen-tac-chung.md", "quy-dinh-phap-ly-2026.md"],
+  "shared_cho_tat_ca": [
+    "nguyen-tac-chung.md",
+    "quy-dinh-phap-ly-2026.md"
+  ],
   "shared_theo_skill": {
-    "playbook-dieu-khoan.md": ["soan-hop-dong", "ra-soat-hop-dong", "dam-phan-hop-dong", "so-sanh-phien-ban", "quan-ly-hop-dong"]
+    "playbook-dieu-khoan.md": [
+      "soan-hop-dong",
+      "ra-soat-hop-dong",
+      "dam-phan-hop-dong",
+      "so-sanh-phien-ban",
+      "quan-ly-hop-dong",
+      "quan-tri-rui-ro"
+    ],
+    "khung-chuc-nang.md": [
+      "ra-soat-hop-dong",
+      "soan-hop-dong",
+      "so-sanh-phien-ban",
+      "quan-ly-hop-dong",
+      "dam-phan-hop-dong",
+      "checklist-ky-ket",
+      "quan-tri-rui-ro"
+    ]
   },
-  "skill_dung_cong_cu": ["soan-hop-dong", "ra-soat-hop-dong", "so-sanh-phien-ban", "dam-phan-hop-dong", "quan-ly-hop-dong", "thu-hoi-cong-no", "tranh-chap-to-tung", "thu-tuc-doanh-nghiep", "hop-hoi-dong-quan-tri", "bao-ve-du-lieu-ca-nhan", "so-huu-tri-tue", "cap-nhat-phap-luat"]
+  "skill_dung_cong_cu": [
+    "soan-hop-dong",
+    "ra-soat-hop-dong",
+    "so-sanh-phien-ban",
+    "dam-phan-hop-dong",
+    "quan-ly-hop-dong",
+    "thu-hoi-cong-no",
+    "tranh-chap-to-tung",
+    "thu-tuc-doanh-nghiep",
+    "hop-hoi-dong-quan-tri",
+    "bao-ve-du-lieu-ca-nhan",
+    "so-huu-tri-tue",
+    "cap-nhat-phap-luat",
+    "checklist-ky-ket",
+    "quan-tri-rui-ro"
+  ]
 }

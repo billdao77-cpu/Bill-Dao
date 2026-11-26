@@ -5,32 +5,46 @@ description: Rà soát hợp đồng do đối tác gửi hoặc hợp đồng s
 
 # Rà soát hợp đồng
 
-Đọc trước: `references/nguyen-tac-chung.md`, `references/quy-dinh-phap-ly-2026.md`, `references/playbook-dieu-khoan.md`, `references/checklist-ra-soat.md`.
+Đọc trước: `references/nguyen-tac-chung.md`, `references/quy-dinh-phap-ly-2026.md`, `references/playbook-dieu-khoan.md`, `references/checklist-ra-soat.md`, `references/khung-chuc-nang.md` (mục 1).
 
-## Quy trình
+## Quy trình 10 bước (bản vn-custom)
 
-**1. Bối cảnh** – người dùng là bên nào; giá trị; quan hệ với đối tác (mới/lâu năm, ai mạnh hơn); điểm người dùng lo nhất; hạn ký. Thiếu bên → hỏi trước khi rà.
+**1. Tiếp nhận** – đọc đúng file người dùng chỉ định (.docx/.pdf/.txt hoặc nội dung dán). File gốc **chỉ đọc**, không sửa, không ghi đè. PDF scan không trích được chữ → báo người dùng, không đoán nội dung.
 
-**2. Sàng lọc tự động** – `quet_dieu_khoan_hop_dong` (`duong_dan` .docx/.pdf/.txt hoặc `van_ban`). Dòng lệnh: `python3 scripts/cong_cu.py quet_dieu_khoan_hop_dong duong_dan=hop-dong.docx`. Kết quả chỉ là gợi ý – phải đọc toàn văn.
+**2. Xác định loại hợp đồng và mục đích giao dịch** – loại (mua bán, dịch vụ, gia công, đại lý, thuê, xây dựng, NDA…), luật điều chỉnh (BLDS 2015 / LTM 2005 / luật chuyên ngành), **người dùng là bên nào**, giá trị, quan hệ với đối tác, điểm người dùng lo nhất, hạn ký. Thiếu "bên nào" → hỏi; không hỏi được → ghi **[Giả định]** ở đầu báo cáo.
 
-**3. Đọc kỹ theo `references/checklist-ra-soat.md`** (10 nhóm). Với mỗi điều khoản: điều này có lợi cho ai? nếu xấu nhất xảy ra, bên người dùng mất gì? Tính lại con số: phạt (`kiem_tra_phat_vi_pham`), lãi (`lai_cham_tra`), tổng thanh toán, số tiền bằng chữ.
+**3. Kiểm tra thông tin các bên** – theo nhóm 1 của checklist và mục 12 `nguyen-tac-chung.md`: tên, mã số doanh nghiệp, địa chỉ (địa giới mới), người đại diện, chức danh, căn cứ thẩm quyền ký (điều lệ, ủy quyền còn hạn, nghị quyết cho giao dịch cần chấp thuận), ngành nghề có điều kiện. Thông tin cần tra cứu bên ngoài (cổng đăng ký doanh nghiệp, cơ quan thuế) → liệt kê để người dùng tự tra hoặc đồng ý cho tra.
 
-**4. Xếp mức rủi ro** (với bên người dùng):
+**4. Phân tích quyền và nghĩa vụ** – bảng ngắn: nghĩa vụ chính của mỗi bên, mốc thời hạn, điều kiện thanh toán, hậu quả khi vi phạm. Chỉ ra chỗ **không cân bằng** (một bên chịu phạt, bên kia không; quyền chấm dứt một chiều).
 
-| Mức | Nghĩa |
-|---|---|
-| 🔴 Nghiêm trọng | Có thể mất tiền lớn, không đòi được, hợp đồng vô hiệu một phần, gánh trách nhiệm không giới hạn |
-| 🟡 Nên sửa | Bất lợi rõ nhưng có thể chấp nhận nếu đổi lấy điều khác |
-| 🔵 Gợi ý | Câu chữ chưa chặt, nên làm rõ |
+**5. Phát hiện điều khoản bất lợi, thiếu, mâu thuẫn** – chạy `quet_dieu_khoan_hop_dong` (`python3 scripts/cong_cu.py quet_dieu_khoan_hop_dong duong_dan=...`) để sàng lọc, rồi **đọc toàn văn** theo 10 nhóm `checklist-ra-soat.md`. Tập trung: thanh toán, phạt vi phạm, bồi thường – giới hạn trách nhiệm, chấm dứt, bảo mật – dữ liệu cá nhân, SHTT, bất khả kháng, giải quyết tranh chấp. Tính lại con số bằng công cụ: `kiem_tra_phat_vi_pham`, `lai_cham_tra`, `doc_so_thanh_chu`, `thoi_hieu_khoi_kien`.
 
-**5. Báo cáo** (đúng thứ tự):
-1. **Kết luận 1 dòng**: Ký được / Ký sau khi sửa N điểm 🔴 / Không nên ký – lý do chính.
-2. **Bảng rủi ro**: `# | Mức | Điều | Trích nguyên văn | Vấn đề & hậu quả với bên bạn | Đề xuất câu chữ thay thế | Phương án lùi`.
-3. **Điều khoản còn thiếu** cần bổ sung (kèm câu chữ mẫu từ playbook).
-4. **Câu hỏi cần đối tác làm rõ**.
-5. **Không kết luận được** (thiếu giấy tờ chủ thể, cần kiểm tra thẩm quyền ký, thông tin ngoài hợp đồng).
+**6. Đánh giá mức rủi ro** – mỗi rủi ro chấm Khả năng (1–5) × Ảnh hưởng (1–5) bằng `danh_gia_rui_ro` → **Thấp / Trung bình / Cao / Nghiêm trọng**. Không phóng đại: chỉ Nghiêm trọng khi có thể mất tiền lớn, điều khoản/hợp đồng vô hiệu, trách nhiệm không giới hạn, hoặc rủi ro hình sự.
 
-**6. Bản sửa (nếu người dùng yêu cầu)** – trả bản đầy đủ có đánh dấu `[SỬA]`/`[THÊM]`/`[XÓA]` hoặc bảng redline để gửi đối tác; chuẩn bị đàm phán → skill `dam-phan-hop-dong`. Không ghi đè file gốc.
+**7. Đề xuất phương án sửa** – câu chữ thay thế cụ thể (lấy từ `playbook-dieu-khoan.md` khi phù hợp) + **phương án lùi** nếu đối tác không đồng ý. Đề xuất là bản đề nghị trong bảng, **không** sửa vào văn bản gốc.
+
+**8. Đối chiếu căn cứ pháp luật** – mỗi dòng ghi căn cứ (văn bản, số hiệu, điều – khoản) và nhãn: **[Quy định đã xác minh]** / **[Nhận định chuyên môn]** / **[Giả định]** / **[Cần luật sư / người có thẩm quyền]** (mục 9–10 `nguyen-tac-chung.md`). Kiểm tra thời điểm áp dụng – đặc biệt Luật Thương mại sửa đổi hiệu lực 01/7/2027.
+
+**9. Xuất báo cáo rà soát** – đúng thứ tự:
+1. **Kết luận 1 dòng**: Có thể ký / Ký sau khi xử lý N rủi ro Cao–Nghiêm trọng / Không nên ký – lý do chính. Kèm [Giả định] đã dùng.
+2. **Bảng rủi ro** (sắp theo mức, Nghiêm trọng trước):
+
+| # | Điều khoản | Nội dung hiện tại (trích nguyên văn) | Rủi ro cho bên [người dùng] | Mức độ | Đề xuất sửa (+ phương án lùi) | Căn cứ + nhãn |
+|---|---|---|---|---|---|---|
+
+3. **Điều khoản còn thiếu** (kèm câu chữ mẫu).
+4. **Thông tin còn thiếu / mâu thuẫn** (bảng Đã có – Còn thiếu – Mâu thuẫn).
+5. **Câu hỏi cần đối tác làm rõ**.
+6. **Không kết luận được / cần luật sư**.
+Người dùng muốn file: xuất Word **mới** (`YYYY-MM-DD_Ra-soat_<ten-hop-dong>.docx`); khi cần tách bản gửi đối tác và bản nội bộ → `bang_gop_y_hop_dong`.
+
+**10. Chuyển người có thẩm quyền phê duyệt** – cuối báo cáo thêm khối:
+`Người rà soát: … · Ngày: … · Đề xuất: ☐ Ký ☐ Ký sau khi sửa ☐ Không ký · Người có thẩm quyền duyệt: … · Ý kiến: …`
+Trợ lý **không** quyết định ký, không gửi đối tác, không gửi đi ký điện tử.
+
+**Kiểm tra lại trước khi trả kết quả**: mọi dòng trong bảng có trích nguyên văn đúng vị trí; số liệu đã tính bằng công cụ; không có câu "hợp đồng hợp pháp/an toàn"; mỗi căn cứ có nhãn; không sửa gì ngoài bảng đề xuất. Văn bản quan trọng → đề nghị chạy agent `tham-dinh-phap-ly` và/hoặc `luat-su-doi-phuong` (góc nhìn đối tác).
+
+**Bản sửa (nếu người dùng yêu cầu)** – file **mới** có đánh dấu `[SỬA]`/`[THÊM]`/`[XÓA]` hoặc bảng redline; chuẩn bị đàm phán → skill `dam-phan-hop-dong`.
 
 ## Nguyên tắc
 - Không phóng đại rủi ro để tỏ ra kỹ lưỡng: chỉ 🔴 khi hậu quả thật sự nghiêm trọng.

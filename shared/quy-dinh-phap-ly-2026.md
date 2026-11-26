@@ -6,6 +6,7 @@
 |---|---|---|---|
 | Dân sự, hợp đồng chung | Bộ luật Dân sự số 91/2015/QH13 | Hợp đồng (Điều 385–429), phạt vi phạm (418), đặt cọc (328), lãi (357, 468), thời hiệu (429) | [Chắc chắn] |
 | Thương mại | Luật Thương mại số 36/2005/QH11 | Mua bán hàng hóa, dịch vụ, đại lý, phạt ≤ 8% (301), bồi thường (302–307), thời hiệu 2 năm (319) | [Chắc chắn] |
+| Thương mại (sửa đổi) | Luật sửa đổi, bổ sung một số điều của Luật Thương mại, Luật Cạnh tranh, Luật Quản lý ngoại thương, Luật Bảo vệ quyền lợi người tiêu dùng – Quốc hội thông qua 13/11/2026, hiệu lực 01/7/2027 | Dự thảo từng đề xuất bỏ trần phạt 8% (Điều 301); nội dung cuối cùng **chưa xác minh** – hợp đồng thực hiện từ 01/7/2027 phải đối chiếu văn bản chính thức | [Cần kiểm tra] |
 | Doanh nghiệp | Luật Doanh nghiệp số 59/2020/QH14, sửa đổi bởi Luật số 76/2025/QH15 (hiệu lực 01/7/2025) | Chủ sở hữu hưởng lợi; họp, biểu quyết | [Chắc chắn về hiệu lực] |
 | Đăng ký doanh nghiệp | Nghị định 168/2025/NĐ-CP (hiệu lực 01/7/2025), sửa đổi bởi NĐ 296/2026; biểu mẫu Thông tư 68/2025/TT-BTC | Thay NĐ 01/2021 | [Cần kiểm tra nội dung sửa đổi] |
 | Đầu tư | Luật Đầu tư 2020 (và sửa đổi) | Nhà đầu tư nước ngoài, BCC | [Cần kiểm tra sửa đổi] |
@@ -29,7 +30,7 @@
 
 | Nội dung | Quy định | Căn cứ |
 |---|---|---|
-| Phạt vi phạm hợp đồng thương mại | ≤ 8% giá trị phần nghĩa vụ bị vi phạm | Điều 301 LTM |
+| Phạt vi phạm hợp đồng thương mại | ≤ 8% giá trị phần nghĩa vụ bị vi phạm (đến 30/6/2027; từ 01/7/2027 kiểm tra luật sửa đổi) | Điều 301 LTM |
 | Phạt vi phạm dân sự | Theo thỏa thuận | Điều 418 BLDS |
 | Lãi chậm trả dân sự | Thỏa thuận ≤ 20%/năm; không thỏa thuận 10%/năm | Điều 357, 468 BLDS |
 | Lãi chậm trả thương mại | Lãi suất nợ quá hạn trung bình thị trường | Điều 306 LTM; NQ 01/2019/NQ-HĐTP |
