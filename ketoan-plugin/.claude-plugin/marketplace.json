@@ -1,0 +1,16 @@
+{
+  "name": "ketoan-vn-custom",
+  "description": "Marketplace nội bộ: bản tùy chỉnh đã kiểm toán của skill-ketoan-tai-chinh (upstream nguyenvansuai/skill-ketoan-tai-chinh).",
+  "owner": {
+    "name": "Kế toán (bản tùy chỉnh nội bộ)"
+  },
+  "plugins": [
+    {
+      "name": "tron-bo-skill-ke-toan",
+      "source": "./",
+      "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của bộ 12 skill kế toán – tài chính DNNVV Việt Nam 2026 (TT133, TT58, thuế GTGT, TNDN, nhà thầu, lương – bảo hiểm): định khoản, đọc hóa đơn XML, đối soát, khóa sổ, BCTC, dòng tiền, lịch thuế. Không khai báo MCP; script chạy cục bộ, không ghi đè file, chặn công thức độc hại từ hóa đơn/sao kê.",
+      "version": "1.1.0-vn.1",
+      "category": "ke-toan-tai-chinh"
+    }
+  ]
+}

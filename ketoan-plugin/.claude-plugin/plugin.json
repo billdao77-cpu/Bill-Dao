@@ -1,0 +1,20 @@
+{
+  "name": "tron-bo-skill-ke-toan",
+  "version": "1.1.0-vn.1",
+  "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của bộ 12 skill kế toán – tài chính DNNVV Việt Nam 2026 (TT133, TT58, thuế GTGT, TNDN, nhà thầu, lương – bảo hiểm): định khoản, đọc hóa đơn XML, đối soát, khóa sổ, BCTC, dòng tiền, lịch thuế. Không khai báo MCP; script chạy cục bộ, không ghi đè file, chặn công thức độc hại từ hóa đơn/sao kê.",
+  "author": {
+    "name": "nguyenvansuai",
+    "url": "https://github.com/nguyenvansuai"
+  },
+  "homepage": "https://github.com/nguyenvansuai/skill-ketoan-tai-chinh",
+  "repository": "https://github.com/nguyenvansuai/skill-ketoan-tai-chinh",
+  "license": "MIT",
+  "keywords": [
+    "ke-toan",
+    "thue",
+    "bctc",
+    "tt133",
+    "viet-nam"
+  ],
+  "privacyPolicyUrl": "https://github.com/nguyenvansuai/skill-ketoan-tai-chinh/blob/main/PRIVACY.md"
+}

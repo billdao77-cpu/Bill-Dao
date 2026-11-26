@@ -1,0 +1,4 @@
+# vn-custom: giữ bản của nhánh này cho file cấu hình quyền khi merge upstream (cần: git config merge.ours.driver true)
+.mcp.json merge=ours
+.claude-plugin/marketplace.json merge=ours
+.claude-plugin/plugin.json merge=ours
