@@ -177,13 +177,30 @@ def tao(mo_hinh, duong_dan, sales):
     return 0
 
 
+def _khong_ghi_de(duong_dan, ghi_de=False):
+    """vn-custom: không ghi đè file đã có (trừ khi người dùng đồng ý rõ và truyền --ghi-de)."""
+    import os
+    if os.path.exists(duong_dan) and not ghi_de:
+        print(f"LỖI: {duong_dan} đã tồn tại – không ghi đè để tránh mất dữ liệu. Đặt tên file mới, "
+              "hoặc thêm --ghi-de khi người dùng đồng ý rõ.", file=sys.stderr)
+        return False
+    return True
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--mo-hinh", choices=sorted(GIAI_DOAN), required=True)
     p.add_argument("--ra", required=True, help="đường dẫn file .xlsx")
     p.add_argument("--sales", help="danh sách tên sales, cách nhau dấu phẩy")
+    p.add_argument("--ghi-de", action="store_true", help="cho phép ghi đè file đã có (chỉ khi người dùng đồng ý)")
     a = p.parse_args(argv)
-    sales = [s.strip() for s in a.sales.split(",")] if a.sales else []
+    if not a.ra.lower().endswith(".xlsx"):
+        print("LỖI: --ra phải là file .xlsx", file=sys.stderr)
+        return 2
+    if not _khong_ghi_de(a.ra, a.ghi_de):
+        return 2
+    # vn-custom: tên bắt đầu bằng = + - @ bị Excel/openpyxl hiểu là công thức → thêm dấu '
+    sales = [("'" + s if s[:1] in "=+-@" else s) for s in (x.strip() for x in a.sales.split(","))] if a.sales else []
     return tao(a.mo_hinh, a.ra, sales)
 
 

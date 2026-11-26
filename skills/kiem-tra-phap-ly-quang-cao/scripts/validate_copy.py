@@ -12,7 +12,7 @@ script that needs `pip install` does not get run.
     python validate_copy.py src/messages/ --register saas --strict
     python validate_copy.py copy.md --doctype commit
     python validate_copy.py copy.md --json
-    python validate_copy.py copy.md --fix        # repairs NFC violations in place
+    python validate_copy.py copy.md --fix        # writes an NFC-normalised copy to copy.nfc.md (vn-custom: original untouched)
 
 Exit codes: 0 = clean or warnings only, 1 = errors present (or any finding with
 --strict), 2 = bad invocation.
@@ -669,9 +669,15 @@ def fix_nfc(path: pathlib.Path) -> bool:
     normalized = unicodedata.normalize("NFC", text)
     if normalized == text:
         return False
+    # vn-custom: không sửa file gốc của người dùng – ghi bản chuẩn hóa NFC ra file mới <tên>.nfc<đuôi>.
+    out = path.with_name(path.stem + ".nfc" + path.suffix)
+    if out.exists():
+        print(f"bỏ qua: {out} đã tồn tại (không ghi đè)", file=sys.stderr)
+        return False
     # Path.write_text(newline=...) is 3.10+; Path.open keeps this working on 3.9.
-    with path.open("w", encoding="utf-8", newline="") as handle:
+    with out.open("w", encoding="utf-8", newline="") as handle:
         handle.write(normalized)
+    print(f"đã ghi bản NFC: {out} (file gốc giữ nguyên)", file=sys.stderr)
     return True
 
 

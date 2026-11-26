@@ -165,16 +165,31 @@ def lap_file(ra, ct):
     return kq_all
 
 
+def _khong_ghi_de(duong_dan, ghi_de=False):
+    """vn-custom: không ghi đè file đã có (trừ khi người dùng đồng ý rõ và truyền --ghi-de)."""
+    import os
+    if os.path.exists(duong_dan) and not ghi_de:
+        print(f"LỖI: {duong_dan} đã tồn tại – không ghi đè để tránh mất dữ liệu. Đặt tên file mới, "
+              "hoặc thêm --ghi-de khi người dùng đồng ý rõ.", file=sys.stderr)
+        return False
+    return True
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("file", nargs="?")
     ap.add_argument("--ra", default="bang-cai-khuyen-mai.docx")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--ghi-de", action="store_true", help="cho phép ghi đè file đã có (chỉ khi người dùng đồng ý)")
     a = ap.parse_args(argv)
     if a.self_test:
         return self_test()
     if not a.file:
         ap.error("cần file JSON chương trình")
+    if not a.ra.lower().endswith(".docx"):
+        ap.error("--ra phải là file .docx")
+    if not _khong_ghi_de(a.ra, a.ghi_de):
+        return 2
     ct = json.loads(Path(a.file).read_text(encoding="utf-8"))
     for sp, k in lap_file(a.ra, ct):
         print(f"{sp.get('sku')}: {k['hanh_dong']}" + (f" – cài giảm {_pt_gon(k['giam_dx'])}" if "giam_dx" in k else ""))
