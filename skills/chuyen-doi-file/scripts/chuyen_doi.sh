@@ -20,6 +20,10 @@ fi
 
 mkdir -p da-chuyen
 for f in "$@"; do
+  # vn-custom: không ghi đè file đã có trong da-chuyen/; tên bắt đầu bằng '-' không bị hiểu là tùy chọn
+  b="$(basename -- "$f")"; dich="da-chuyen/${b%.*}.${DICH}"
+  if [ -e "$dich" ]; then echo "Bỏ qua $f: $dich đã tồn tại (không ghi đè)"; continue; fi
+  case "$f" in -*) f="./$f" ;; esac
   case "${f,,}" in
     *.pdf)
       # PDF -> Word cần bộ lọc nhập PDF của Writer

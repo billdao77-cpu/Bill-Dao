@@ -13,6 +13,14 @@ Giới hạn: chỉ hỗ trợ TCVN3. File VNI (font VNI-Times) dùng UniKey Too
 hoặc EVKey để chuyển. Luôn rà lại kết quả bằng mắt.
 """
 import sys
+try:  # vn-custom: không ghi đè, chống chèn công thức
+    import an_toan  # noqa: E402
+except ImportError:  # chạy bằng python -I: nạp theo đường dẫn
+    import importlib.util as _iu
+    import os as _os
+    _sp = _iu.spec_from_file_location("an_toan", _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "an_toan.py"))
+    an_toan = _iu.module_from_spec(_sp)
+    _sp.loader.exec_module(an_toan)
 import unicodedata
 
 TCVN3 = {
@@ -71,6 +79,7 @@ if __name__ == "__main__":
     if len(args) != 2:
         sys.exit(__doc__)
     vao, ra = args
+    an_toan.kiem_tra_dich(ra, ".docx" if vao.lower().endswith(".docx") else None, [vao])
     if vao.lower().endswith(".docx"):
         chuyen_docx(vao, ra, "--tat-ca" in sys.argv)
     else:

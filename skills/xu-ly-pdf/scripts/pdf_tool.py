@@ -15,6 +15,14 @@ import os
 import shutil
 import subprocess
 import sys
+try:  # vn-custom: không ghi đè, chống chèn công thức
+    import an_toan  # noqa: E402
+except ImportError:  # chạy bằng python -I: nạp theo đường dẫn
+    import importlib.util as _iu
+    import os as _os
+    _sp = _iu.spec_from_file_location("an_toan", _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "an_toan.py"))
+    an_toan = _iu.module_from_spec(_sp)
+    _sp.loader.exec_module(an_toan)
 
 
 def _trang(chuoi, tong):
@@ -33,6 +41,7 @@ def _trang(chuoi, tong):
 
 def gop(ra, *vao):
     from pypdf import PdfWriter
+    an_toan.kiem_tra_dich(ra, ".pdf", vao)
     w = PdfWriter()
     for f in vao:
         w.append(f)
@@ -44,6 +53,8 @@ def tach(vao, thu_muc):
     os.makedirs(thu_muc, exist_ok=True)
     r = PdfReader(vao)
     goc = os.path.splitext(os.path.basename(vao))[0]
+    for i in range(1, len(r.pages) + 1):  # vn-custom: kiểm tra trước khi ghi bất kỳ trang nào
+        an_toan.kiem_tra_dich(os.path.join(thu_muc, f"{goc}_trang_{i:03d}.pdf"), ".pdf", [vao])
     for i, p in enumerate(r.pages, 1):
         w = PdfWriter()
         w.add_page(p)
@@ -52,6 +63,7 @@ def tach(vao, thu_muc):
 
 def trich(vao, ra, chuoi):
     from pypdf import PdfReader, PdfWriter
+    an_toan.kiem_tra_dich(ra, ".pdf", [vao])
     r = PdfReader(vao)
     w = PdfWriter()
     for t in _trang(chuoi, len(r.pages)):
@@ -61,6 +73,7 @@ def trich(vao, ra, chuoi):
 
 def xoay(vao, ra, goc, chuoi=None):
     from pypdf import PdfReader, PdfWriter
+    an_toan.kiem_tra_dich(ra, ".pdf", [vao])
     r = PdfReader(vao)
     chon = set(_trang(chuoi, len(r.pages))) if chuoi else None
     w = PdfWriter()
@@ -77,6 +90,7 @@ def chu(vao, ra=None):
         noi_dung = "\n\n".join(f"--- Trang {i} ---\n{p.extract_text() or ''}"
                               for i, p in enumerate(pdf.pages, 1))
     if ra:
+        an_toan.kiem_tra_dich(ra, ".txt", [vao])
         with open(ra, "w", encoding="utf-8") as f:
             f.write(noi_dung)
     else:
@@ -86,6 +100,7 @@ def chu(vao, ra=None):
 def bang(vao, ra):
     import pdfplumber
     from openpyxl import Workbook
+    an_toan.kiem_tra_dich(ra, ".xlsx", [vao])
     wb = Workbook()
     wb.remove(wb.active)
     dem = 0
@@ -98,6 +113,7 @@ def bang(vao, ra):
                     ws.append([(o or "").replace("\n", " ") for o in hang])
     if dem == 0:
         sys.exit("Không tìm thấy bảng. Nếu là bản scan, chạy lệnh ocr trước.")
+    an_toan.vo_hieu_cong_thuc(wb)
     wb.save(ra)
     print(f"Đã rút {dem} bảng")
 
@@ -117,7 +133,9 @@ def ocr(vao, ra):
     if not shutil.which("ocrmypdf"):
         sys.exit("Chưa có ocrmypdf. Cài: sudo apt install ocrmypdf tesseract-ocr-vie "
                  "(macOS: brew install ocrmypdf tesseract-lang)")
-    subprocess.run(["ocrmypdf", "-l", "vie+eng", "--skip-text", "--deskew", vao, ra], check=True)
+    an_toan.kiem_tra_dich(ra, ".pdf", [vao])
+    # vn-custom: đường dẫn tuyệt đối để tên file bắt đầu bằng '-' không bị hiểu là tùy chọn
+    subprocess.run(["ocrmypdf", "-l", "vie+eng", "--skip-text", "--deskew", os.path.abspath(vao), os.path.abspath(ra)], check=True)
 
 
 LENH = {"gop": gop, "tach": tach, "trich": trich, "xoay": xoay, "chu": chu,

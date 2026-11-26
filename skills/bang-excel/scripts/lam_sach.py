@@ -19,6 +19,14 @@ import sys
 import unicodedata
 
 import pandas as pd
+try:  # vn-custom: không ghi đè, chống chèn công thức
+    import an_toan  # noqa: E402
+except ImportError:  # chạy bằng python -I: nạp theo đường dẫn
+    import importlib.util as _iu
+    import os as _os
+    _sp = _iu.spec_from_file_location("an_toan", _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "an_toan.py"))
+    an_toan = _iu.module_from_spec(_sp)
+    _sp.loader.exec_module(an_toan)
 
 AN = dict.fromkeys(map(ord, " ​‌‍﻿"), " ")
 
@@ -55,6 +63,7 @@ def mst(v):
 
 
 def main(vao, ra, sheet=None):
+    an_toan.kiem_tra_dich(ra, ".xlsx", [vao])
     df = (pd.read_csv(vao, dtype=str) if vao.lower().endswith(".csv")
           else pd.read_excel(vao, sheet_name=sheet or 0, dtype=str))
     van_de = []
@@ -83,6 +92,7 @@ def main(vao, ra, sheet=None):
     with pd.ExcelWriter(ra, engine="openpyxl") as w:
         df.to_excel(w, sheet_name="Du_lieu_sach", index=False)
         pd.DataFrame(van_de or [{"Vấn đề": "Không phát hiện vấn đề"}]).to_excel(w, sheet_name="Bao_cao", index=False)
+        an_toan.vo_hieu_cong_thuc(w.book)  # vn-custom: dữ liệu dạng =HYPERLINK(...) không thành công thức
     print(f"Xong: {len(df)} dòng, {len(van_de)} vấn đề -> {ra}")
 
 
