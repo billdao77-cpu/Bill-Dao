@@ -1,0 +1,115 @@
+{
+ "ten_chuong_trinh": "Sale 11.11",
+ "kenh": "Shopee",
+ "tu_ngay": "10/11/2026",
+ "den_ngay": "12/11/2026",
+ "loi_nhuan_muc_tieu": "10%",
+ "ngay_kiem_phi": "02/11/2026 (số minh họa)",
+ "san_pham": [
+  {
+   "sku": "LG30",
+   "ten": "Serum Vitamin C Lumi Glow 30ml",
+   "gia_ban": 450000,
+   "gia_von": 135000,
+   "phi": [
+    "phí cố định=10%",
+    "phí thanh toán=5%",
+    "phí dịch vụ Freeship Xtra=6%",
+    "phí dịch vụ Voucher Xtra=3%",
+    "phí hạ tầng=3000",
+    "hộp, đóng gói=8000"
+   ],
+   "ty_le_hoan": "8%",
+   "chi_phi_moi_don_hoan": 45000,
+   "ads_moi_don": 70000,
+   "giam": "40%",
+   "gioi_han_mua": 2
+  },
+  {
+   "sku": "LC150",
+   "ten": "Sữa rửa mặt Lumi Clean 150ml",
+   "gia_ban": 189000,
+   "gia_von": 52000,
+   "phi": [
+    "phí cố định=10%",
+    "phí thanh toán=5%",
+    "phí dịch vụ Freeship Xtra=6%",
+    "phí dịch vụ Voucher Xtra=3%",
+    "phí hạ tầng=3000",
+    "hộp, đóng gói=8000"
+   ],
+   "ty_le_hoan": "8%",
+   "chi_phi_moi_don_hoan": 30000,
+   "ads_moi_don": 25000,
+   "giam": "20%",
+   "gioi_han_mua": 3
+  },
+  {
+   "sku": "LS50",
+   "ten": "Kem chống nắng Lumi Sun 50ml",
+   "gia_ban": 320000,
+   "gia_von": null,
+   "phi": [
+    "phí cố định=10%",
+    "phí thanh toán=5%",
+    "phí dịch vụ Freeship Xtra=6%",
+    "phí dịch vụ Voucher Xtra=3%",
+    "phí hạ tầng=3000",
+    "hộp, đóng gói=8000"
+   ],
+   "ty_le_hoan": "8%",
+   "chi_phi_moi_don_hoan": 40000,
+   "ads_moi_don": 50000,
+   "giam": "40%",
+   "gioi_han_mua": 2
+  }
+ ],
+ "noi_dung": [
+  {
+   "cho": "Tiêu đề",
+   "cu": "Serum Vitamin C Lumi Glow 30ml - Trắng da sau 7 ngày, trị thâm nám tận gốc, an toàn tuyệt đối",
+   "moi": "Serum Vitamin C Lumi Glow 30ml – Dưỡng ẩm, hỗ trợ làm sáng da, giúp da đều màu",
+   "ly_do": "Mỹ phẩm nói như thuốc (\"trị tận gốc\"), cam kết tuyệt đối"
+  },
+  {
+   "cho": "Mô tả",
+   "cu": "Serum số 1 Việt Nam được hàng triệu chị em tin dùng.",
+   "moi": "Serum Vitamin C Lumi Glow giúp da ẩm mịn, hỗ trợ làm sáng và đều màu da khi dùng đều đặn sáng – tối.",
+   "ly_do": "\"Số 1\" không có tài liệu chứng minh"
+  },
+  {
+   "cho": "Mô tả",
+   "cu": "Cam kết trắng da sau 7 ngày, trị dứt điểm thâm nám, mụn, không hiệu quả hoàn tiền 100%.",
+   "moi": "Đổi trả trong 7 ngày nếu sản phẩm lỗi hoặc không đúng mô tả.",
+   "ly_do": "Cam kết công dụng, thời gian vượt công dụng đã công bố"
+  },
+  {
+   "cho": "Mô tả",
+   "cu": "Thành phần thiên nhiên an toàn tuyệt đối, được bác sĩ da liễu khuyên dùng.",
+   "moi": "Kết cấu mỏng nhẹ, thấm nhanh, hợp da văn phòng.",
+   "ly_do": "Cam kết tuyệt đối; dùng danh nghĩa bác sĩ cho mỹ phẩm"
+  },
+  {
+   "cho": "Mô tả",
+   "cu": "Tốt hơn hẳn serum Hàn Quốc giá gấp đôi.",
+   "moi": "(bỏ)",
+   "ly_do": "So sánh không có tài liệu chứng minh"
+  },
+  {
+   "cho": "Chân mô tả",
+   "cu": "(chưa có)",
+   "moi": "Sản phẩm là mỹ phẩm, không phải thuốc. Đơn vị chịu trách nhiệm: Công ty TNHH Mỹ phẩm Lumi, số phiếu công bố: [CẦN BỔ SUNG].",
+   "ly_do": "Bắt buộc ghi tổ chức chịu trách nhiệm (NĐ 342/2025)"
+  },
+  {
+   "cho": "Banner",
+   "cu": "SIÊU SALE 11.11 - GIẢM 40% DUY NHẤT HÔM NAY! Giá gốc 750.000đ - chỉ còn 270.000đ",
+   "moi": "SALE 11.11 – Serum Lumi Glow giảm 26% từ 10/11 đến hết 12/11/2026: 450.000đ → 333.000đ",
+   "ly_do": "Giá gốc ảo (giá thật 450.000đ); \"duy nhất hôm nay\" sai thời gian; mức giảm theo bảng mục 1"
+  }
+ ],
+ "phap_ly": [
+  "Giảm giá ≤ 50%: hợp lệ, không phải thông báo Sở Công Thương (NĐ 81/2018 sửa bởi NĐ 239/2026); phải công khai thông tin khuyến mại cho khách.",
+  "Giá đang bán ghi trên banner phải là giá thật đã bán ngay trước khuyến mại – không nâng giá rồi gạch."
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "sales-marketing-vn-custom",
+  "description": "Marketplace nội bộ: bản tùy chỉnh đã kiểm toán của skill-sales-marketing (upstream nguyenvansuai/skill-sales-marketing).",
+  "owner": {
+    "name": "Sales – Marketing (bản tùy chỉnh nội bộ)"
+  },
+  "plugins": [
+    {
+      "name": "tron-bo-skill-sales-marketing",
+      "source": "./",
+      "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của bộ 17 skill Sales – Marketing VN + 6 agent chuyên biệt (chiến lược, nội dung, huấn luyện sales, phễu, phân tích tăng trưởng, CRM – chăm sóc khách) và 5 workflow: chiến lược marketing, chiến dịch quảng cáo, phễu bán hàng, tối ưu quy trình sales, phân tích hiệu quả. Không khai báo MCP server; không đăng bài, gửi tin, chi tiền quảng cáo.",
+      "version": "1.0.0-vn.1",
+      "category": "sales-marketing"
+    }
+  ]
+}

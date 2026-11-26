@@ -1,0 +1,20 @@
+{
+  "name": "tron-bo-skill-sales-marketing",
+  "version": "1.0.0-vn.1",
+  "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của bộ 17 skill Sales – Marketing VN + 6 agent chuyên biệt (chiến lược, nội dung, huấn luyện sales, phễu, phân tích tăng trưởng, CRM – chăm sóc khách) và 5 workflow: chiến lược marketing, chiến dịch quảng cáo, phễu bán hàng, tối ưu quy trình sales, phân tích hiệu quả. Không khai báo MCP server; không đăng bài, gửi tin, chi tiền quảng cáo.",
+  "author": {
+    "name": "nguyenvansuai",
+    "url": "https://github.com/nguyenvansuai"
+  },
+  "homepage": "https://github.com/nguyenvansuai/skill-sales-marketing",
+  "repository": "https://github.com/nguyenvansuai/skill-sales-marketing",
+  "license": "MIT",
+  "keywords": [
+    "sales",
+    "marketing",
+    "quang-cao",
+    "crm",
+    "viet-nam"
+  ],
+  "privacyPolicyUrl": "https://github.com/nguyenvansuai/skill-sales-marketing/blob/main/PRIVACY.md"
+}
