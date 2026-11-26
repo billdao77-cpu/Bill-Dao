@@ -60,6 +60,7 @@ Mỗi kết luận, mỗi dòng trong bảng rủi ro gắn đúng một nhãn:
 - **[Giả định]** – điều chưa biết nhưng phải giả định để làm tiếp (bên người dùng, luật áp dụng, ngày ký…); liệt kê ở đầu báo cáo.
 - **[Cần luật sư / người có thẩm quyền]** – vấn đề vượt phạm vi trợ lý: tranh chấp đang/sắp xảy ra, yếu tố nước ngoài, M&A, bất động sản, tín dụng, nghi vấn hình sự, chọn luật áp dụng nước ngoài.
 Không viết "điều khoản này hợp pháp/hợp lệ" khi chưa có [Quy định đã xác minh]; viết "chưa phát hiện vi phạm trong phạm vi đã đối chiếu".
+**Điều kiện dùng nhãn [Quy định đã xác minh] – chỉ một trong hai:** (1) văn bản và con số có trong `quy-dinh-phap-ly-2026.md` với nhãn [Chắc chắn], hoặc (2) đã mở/tra nguồn chính thức **trong phiên này** (ghi nguồn + ngày tra). Viện dẫn **nhớ từ kiến thức** (số hiệu luật sửa đổi, nghị quyết hướng dẫn, số điều cụ thể chưa có trong bảng) → **[Cần kiểm tra]**, không được nâng thành [Quy định đã xác minh]. Cuối báo cáo liệt kê các viện dẫn [Cần kiểm tra] để người dùng đối chiếu.
 
 ## 10. Xác minh hiệu lực văn bản
 - Trước khi viện dẫn văn bản có thể đã thay đổi: tra nguồn chính thức – vbpl.vn, congbao.chinhphu.vn, vanban.chinhphu.vn, cổng Quốc hội (quochoi.vn), cổng bộ ngành; thuvienphapluat.vn, luatvietnam.vn chỉ là nguồn phụ.
