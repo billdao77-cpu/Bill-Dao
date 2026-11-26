@@ -1,0 +1,23 @@
+{
+  "name": "phapche-hopdong",
+  "version": "1.0.0-vn.1",
+  "description": "Bản tùy chỉnh (đã kiểm toán bảo mật) của plugin Pháp chế – Hợp đồng VN: soạn, rà soát theo quy trình 10 bước và 4 mức rủi ro, so sánh phiên bản, checklist ký kết, sổ rủi ro, đàm phán, quản lý mốc hợp đồng, thu hồi công nợ, tố tụng, thủ tục doanh nghiệp, dữ liệu cá nhân, sở hữu trí tuệ. Không khai báo MCP server; công cụ tính toán chạy cục bộ, không kết nối mạng.",
+  "author": {
+    "name": "nguyenvansuai",
+    "url": "https://github.com/nguyenvansuai"
+  },
+  "homepage": "https://github.com/nguyenvansuai/phapche-hopdong",
+  "repository": "https://github.com/nguyenvansuai/phapche-hopdong",
+  "license": "MIT",
+  "keywords": [
+    "phap-che",
+    "hop-dong",
+    "legal",
+    "viet-nam",
+    "bo-luat-dan-su",
+    "luat-thuong-mai",
+    "doanh-nghiep",
+    "du-lieu-ca-nhan"
+  ],
+  "privacyPolicyUrl": "https://github.com/nguyenvansuai/phapche-hopdong/blob/main/PRIVACY.md"
+}
